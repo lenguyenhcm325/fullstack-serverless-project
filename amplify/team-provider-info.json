@@ -1,0 +1,64 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-serverlessproject-dev-123953-authRole",
+      "UnauthRoleArn": "arn:aws:iam::312290079196:role/amplify-serverlessproject-dev-123953-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::312290079196:role/amplify-serverlessproject-dev-123953-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+      "UnauthRoleName": "amplify-serverlessproject-dev-123953-unauthRole",
+      "StackName": "amplify-serverlessproject-dev-123953",
+      "StackId": "arn:aws:cloudformation:eu-central-1:312290079196:stack/amplify-serverlessproject-dev-123953/8278cf30-636b-11ee-89cb-027ecc81b85b",
+      "AmplifyAppId": "d24dk6m4m6f1zu",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-serverlessproject-dev-123953-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "function": {
+        "getUserProfile": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/getUserProfile-4578634d613839443334-build.zip"
+        },
+        "getTodoList": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/getTodoList-4d316378665030475063-build.zip"
+        },
+        "addTaskToList": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/addTaskToList-4b61555938544b715a35-build.zip"
+        },
+        "addCollaboratorToList": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/addCollaboratorToList-4258336a2f4f45306864-build.zip"
+        },
+        "modifyTask": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/modifyTask-335843447a7a55796371-build.zip"
+        },
+        "updateUserProfile": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/updateUserProfile-6e67324f725a6e796966-build.zip"
+        },
+        "serverlessproject30ed819cPostConfirmation": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/serverlessproject30ed819cPostConfirmation-594c6b4f30625a37716f-build.zip"
+        },
+        "S3Trigger0cf57a81": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/S3Trigger0cf57a81-676f484a34344d373453-build.zip"
+        }
+      },
+      "api": {
+        "apigwtodo": {}
+      },
+      "auth": {
+        "serverlessproject30ed819c": {}
+      },
+      "storage": {
+        "usersTable": {},
+        "listsTable": {},
+        "tasksTable": {},
+        "profilePics": {}
+      }
+    }
+  }
+}

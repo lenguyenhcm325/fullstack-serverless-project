@@ -1,0 +1,14 @@
+{
+  "resourceName": "profilePics",
+  "policyUUID": "2e4c1e49",
+  "bucketName": "profilepics0711",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Trigger0cf57a81",
+  "groupAccess": {}
+}

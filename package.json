@@ -1,0 +1,38 @@
+{
+  "name": "serverless-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@aws-amplify/cli-extensibility-helper": "^3.0.18",
+    "@aws-amplify/ui-react": "^5.3.1",
+    "@aws-sdk/client-dynamodb": "^3.425.0",
+    "@aws-sdk/client-s3": "^3.425.0",
+    "@aws-sdk/lib-dynamodb": "^3.425.0",
+    "aws-amplify": "^5.3.11",
+    "aws-sdk": "^2.1470.0",
+    "draft-js": "^0.11.7",
+    "install": "^0.13.0",
+    "npm": "^10.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0",
+    "styled-components": "^6.0.8"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "vite": "^4.4.5"
+  }
+}

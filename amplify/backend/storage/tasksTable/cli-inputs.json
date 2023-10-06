@@ -1,0 +1,14 @@
+{
+  "resourceName": "tasksTable",
+  "tableName": "tasksTable",
+  "partitionKey": {
+    "fieldName": "listId",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "taskId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

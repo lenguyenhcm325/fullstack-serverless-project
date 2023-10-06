@@ -1,0 +1,10 @@
+{
+  "resourceName": "listsTable",
+  "tableName": "listsTable",
+  "partitionKey": {
+    "fieldName": "listId",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

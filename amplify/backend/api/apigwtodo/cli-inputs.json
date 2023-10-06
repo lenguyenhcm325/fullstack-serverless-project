@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "paths": {
+    "/profile/{userId}": {
+      "name": "/profile/{userId}",
+      "lambdaFunction": "getUserProfile",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/lists/{listId}": {
+      "name": "/lists/{listId}",
+      "lambdaFunction": "getTodoList",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/addTask/{listId}": {
+      "name": "/addTask/{listId}",
+      "lambdaFunction": "addTaskToList",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/addCollaborator": {
+      "name": "/addCollaborator",
+      "lambdaFunction": "addCollaboratorToList",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/tasks": {
+      "name": "/tasks",
+      "lambdaFunction": "modifyTask",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
