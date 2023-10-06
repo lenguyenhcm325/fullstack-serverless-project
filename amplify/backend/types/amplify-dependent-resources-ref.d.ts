@@ -60,6 +60,13 @@ export type AmplifyDependentResourcesAttributes = {
       "Name": "string",
       "Region": "string"
     },
+    "s3TriggerDynamoDB": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    },
     "serverlessproject30ed819cPostConfirmation": {
       "Arn": "string",
       "LambdaExecutionRole": "string",
@@ -87,6 +94,14 @@ export type AmplifyDependentResourcesAttributes = {
     "profilePics": {
       "BucketName": "string",
       "Region": "string"
+    },
+    "profilePicsMetadata": {
+      "Arn": "string",
+      "Name": "string",
+      "PartitionKeyName": "string",
+      "PartitionKeyType": "string",
+      "Region": "string",
+      "StreamArn": "string"
     },
     "tasksTable": {
       "Arn": "string",

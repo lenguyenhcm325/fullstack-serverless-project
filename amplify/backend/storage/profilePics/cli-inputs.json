@@ -9,6 +9,6 @@
     "READ",
     "DELETE"
   ],
-  "triggerFunction": "S3Trigger0cf57a81",
+  "triggerFunction": "s3TriggerDynamoDB",
   "groupAccess": {}
 }

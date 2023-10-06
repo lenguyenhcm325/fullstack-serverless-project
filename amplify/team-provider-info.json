@@ -45,6 +45,10 @@
         "S3Trigger0cf57a81": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
           "s3Key": "amplify-builds/S3Trigger0cf57a81-676f484a34344d373453-build.zip"
+        },
+        "s3TriggerDynamoDB": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/s3TriggerDynamoDB-556c754d4359376c3349-build.zip"
         }
       },
       "api": {
@@ -57,7 +61,8 @@
         "usersTable": {},
         "listsTable": {},
         "tasksTable": {},
-        "profilePics": {}
+        "profilePics": {},
+        "profilePicsMetadata": {}
       }
     }
   }

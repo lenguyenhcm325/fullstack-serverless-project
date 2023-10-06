@@ -18,6 +18,9 @@ const uploadToS3 = async (imageData, userId) => {
     Bucket: "profilepics0711123953-dev",
     Key: `thumbnail/${userId}.jpg`,
     Body: imageData,
+    Metadata: {
+      userId: userId,
+    },
   };
   s3.putObject(params, (err, data) => {
     if (err) {

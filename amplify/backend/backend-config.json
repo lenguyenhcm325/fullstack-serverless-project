@@ -116,6 +116,11 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "s3TriggerDynamoDB": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "serverlessproject30ed819cPostConfirmation": {
       "build": true,
       "dependsOn": [
@@ -235,6 +240,22 @@
         }
       ]
     },
+    "AMPLIFY_function_s3TriggerDynamoDB_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "s3TriggerDynamoDB"
+        }
+      ]
+    },
+    "AMPLIFY_function_s3TriggerDynamoDB_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "s3TriggerDynamoDB"
+        }
+      ]
+    },
     "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_deploymentBucketName": {
       "usedBy": [
         {
@@ -282,11 +303,15 @@
             "LambdaExecutionRole"
           ],
           "category": "function",
-          "resourceName": "S3Trigger0cf57a81"
+          "resourceName": "s3TriggerDynamoDB"
         }
       ],
       "providerPlugin": "awscloudformation",
       "service": "S3"
+    },
+    "profilePicsMetadata": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
     },
     "tasksTable": {
       "providerPlugin": "awscloudformation",
