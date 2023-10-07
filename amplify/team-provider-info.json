@@ -20,7 +20,7 @@
         },
         "getTodoList": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/getTodoList-4d316378665030475063-build.zip"
+          "s3Key": "amplify-builds/getTodoList-4d716f73485a4f795859-build.zip"
         },
         "addTaskToList": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
@@ -42,13 +42,17 @@
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
           "s3Key": "amplify-builds/serverlessproject30ed819cPostConfirmation-594c6b4f30625a37716f-build.zip"
         },
-        "S3Trigger0cf57a81": {
-          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/S3Trigger0cf57a81-676f484a34344d373453-build.zip"
-        },
         "s3TriggerDynamoDB": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/s3TriggerDynamoDB-556c754d4359376c3349-build.zip"
+          "s3Key": "amplify-builds/s3TriggerDynamoDB-44756755564b52387030-build.zip"
+        },
+        "dynamodbTriggerCreateThumbnail": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/dynamodbTriggerCreateThumbnail-6258677945347a467950-build.zip"
+        },
+        "createTodoList": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/createTodoList-6d6e42304b4e322f3050-build.zip"
         }
       },
       "api": {

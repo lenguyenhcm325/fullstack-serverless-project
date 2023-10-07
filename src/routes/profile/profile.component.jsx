@@ -2,37 +2,60 @@ import React, {useEffect, useState} from "react";
 import {Auth} from "aws-amplify"
 import { useParams } from 'react-router-dom';
 import { ProfileContainer } from "../profile.styles";
+import CreateList from "../../components/create-list/create-list.component";
 import UploadProfilePic from "../../components/upload-profile-pic/upload-profile-pic.component";
 const Profile = () => {
-
+    const {userId} = useParams();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [userInfo, setUserInfo] = useState({});
-    useEffect(() => {
-
-    }, [])
-
+    const [todoListsArray, setTodoListsArray] = useState([]);
+    const [toggleCreateList, setToggleCreateList] = useState(false); 
 
     const apiEndpoint = import.meta.env.VITE_REST_ENDPOINT;
-    const {userId} = useParams();
+
+
+
+
+
+    const handleCreateTodoList = async (title) => {
+        try {
+            setLoading(true);
+            const createTodoEndpoint = `${apiEndpoint}/lists/lorem_ipsum`;
+            const response = await fetch(createTodoEndpoint, {
+                method: "POST", 
+                headers: {
+                    Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                },
+                body: JSON.stringify({
+                    userId: userId,
+                    title: title
+                })
+            })
+            if (!response.ok){
+                throw new Error('Something went wrong!');
+            }
+            const result = await response.json();
+            console.log("this is the result of creating user todo list");
+            console.log(result);
+
+        }
+        catch(error){
+            setError(error);
+        }finally {
+            setLoading(false);
+        }
+    }
+
     useEffect(() => {
-        let accessKeyId, secretAccessKey, sessionToken
         Auth.currentCredentials()
         .then(credentials => {
-            // console.log('Access Key:', credentials.accessKeyId);
-            // accessKeyId = credentials.accessKeyId
-            // console.log('Secret Key:', credentials.secretAccessKey);
-            // secretAccessKey = credentials.secretAccessKey
-            // console.log('Session Token:', credentials.sessionToken);
-            // sessionToken = credentials.sessionToken
             const fetchUserProfile = async() => {
                 try {
                     const response = await fetch(`${apiEndpoint}/profile/${userId}`, 
                         {
                             headers: {
                                 Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
-
-    
                             }
                         }
                     )
@@ -42,7 +65,7 @@ const Profile = () => {
     
                     }
                     const result = await response.json();
-                    console.log("this is the result");
+                    console.log("this is the result fetchUserProfile");
                     console.log(result);
                     setUserInfo(result);
                 }
@@ -52,7 +75,31 @@ const Profile = () => {
                     setLoading(false);
                 }
             }
+            const fetchTodoListsArray = async() => {
+                try {
+                    const response = await fetch(`${apiEndpoint}/lists/${userId}`, 
+                        {
+                            headers: {
+                                Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                            }
+                        }
+                    )
+                    if (!response.ok){
+                        throw new Error('Something went wrong!');
+                    }
+                    const result = await response.json();
+                    console.log("this is the result fetchTodoListsArray");
+                    console.log(result);
+                    setTodoListsArray(result);
+                }
+                catch(error){
+                    setError(error);
+                }finally {
+                    setLoading(false);
+                }
+            }
             fetchUserProfile(); 
+            fetchTodoListsArray();
         })
         .catch(err => {
             console.error(err)
@@ -63,7 +110,7 @@ const Profile = () => {
         return <div>Loading, please wait</div>
     }
     if (error){
-        return <div>Error: {error.message}</div>
+        return <div>Error: {error.message ? error.message : JSON.stringify(error)}</div>
     }
 
     if (userInfo){
@@ -89,22 +136,23 @@ const Profile = () => {
                     <UploadProfilePic userId={userId}/>
                 </div>
                 <div class="button-div">
-                    <button class="nice-button">&#43; Create new To-do List</button>
+                    <button onClick={() => setToggleCreateList(true)} class="nice-button">&#43; Create new To-do List</button>
                 </div>
             </div>
-        
+            {
+                toggleCreateList && (
+                    <CreateList handleCreateTodoList={handleCreateTodoList} 
+                    setToggleCreateList={setToggleCreateList}
+                />
+
+                )
+            }
+            {
+                todoListsArray.length ? (<div>{JSON.stringify(todoListsArray)}</div>) : (<div>There isn't any todoListsArray!</div>)
+            }
         </ProfileContainer>
         )
     }
 }
 
 export default Profile; 
-                    // console.log({
-                    //     "X-Access-Key-ID": accessKeyId,
-                    //     "X-Secret-Access-Key": secretAccessKey,
-                    //     "X-Session-Token": sessionToken   
-                    // })
-
-                                // "X-Access-Key-ID": accessKeyId,
-                                // "X-Secret-Access-Key": secretAccessKey,
-                                // "X-Session-Token": sessionToken

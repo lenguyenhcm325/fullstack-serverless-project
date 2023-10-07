@@ -8,13 +8,6 @@
         "setting": "open"
       }
     },
-    "/lists/{listId}": {
-      "name": "/lists/{listId}",
-      "lambdaFunction": "getTodoList",
-      "permissions": {
-        "setting": "open"
-      }
-    },
     "/addTask/{listId}": {
       "name": "/addTask/{listId}",
       "lambdaFunction": "addTaskToList",
@@ -32,6 +25,13 @@
     "/tasks": {
       "name": "/tasks",
       "lambdaFunction": "modifyTask",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/lists/{listId}": {
+      "name": "/lists/{listId}",
+      "lambdaFunction": "getTodoList",
       "permissions": {
         "setting": "open"
       }

@@ -6,6 +6,7 @@ import { ProtectedSecond } from './components/protected-second/protected-second.
 import { Home } from './components/home/home.component';
 import { Layout } from './components/layout/layout.component';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import List from './routes/list/list.component';
 import Profile from './routes/profile/profile.component';
 import './App.css';
 import TaskNote from './components/task-note/task-note.component';
@@ -22,6 +23,9 @@ function MyRoutes() {
           <Profile/>
           </RequireAuth>
           }/>
+          <Route path="/lists/:listId" element={
+            <List/>
+          } />
           <Route path="/login" element={<Login />} />
         </Route>
       </Routes>

@@ -7,8 +7,6 @@ verify_ssl = true
 
 [packages]
 src = {editable = true, path = "./src"}
-python-jose = "*"
-pytz = "*"
 
 [requires]
 python_version = "3.8"

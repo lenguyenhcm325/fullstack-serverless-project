@@ -2,14 +2,31 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Description": "{\"createdOn\":\"Windows\",\"createdBy\":\"Amplify\",\"createdWith\":\"12.5.2\",\"stackType\":\"function-Lambda\",\"metadata\":{}}",
   "Parameters": {
-    "env": {
-      "Type": "String"
+    "CloudWatchRule": {
+      "Type": "String",
+      "Default": "NONE",
+      "Description": " Schedule Expression"
     },
     "deploymentBucketName": {
       "Type": "String"
     },
+    "env": {
+      "Type": "String"
+    },
     "s3Key": {
       "Type": "String"
+    },
+    "storageprofilePicsMetadataName": {
+      "Type": "String",
+      "Default": "storageprofilePicsMetadataName"
+    },
+    "storageprofilePicsMetadataArn": {
+      "Type": "String",
+      "Default": "storageprofilePicsMetadataArn"
+    },
+    "storageprofilePicsMetadataStreamArn": {
+      "Type": "String",
+      "Default": "storageprofilePicsMetadataArn"
     }
   },
   "Conditions": {
@@ -30,16 +47,24 @@
         "aws:asset:property": "Code"
       },
       "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "deploymentBucketName"
+          },
+          "S3Key": {
+            "Ref": "s3Key"
+          }
+        },
         "Handler": "index.handler",
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "S3Trigger0cf57a81",
+            "dynamodbTriggerCreateThumbnail",
             {
               "Fn::Join": [
                 "",
                 [
-                  "S3Trigger0cf57a81",
+                  "dynamodbTriggerCreateThumbnail",
                   "-",
                   {
                     "Ref": "env"
@@ -53,6 +78,9 @@
           "Variables": {
             "ENV": {
               "Ref": "env"
+            },
+            "REGION": {
+              "Ref": "AWS::Region"
             }
           }
         },
@@ -62,16 +90,9 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs18.x",
-        "Timeout": 25,
-        "Code": {
-          "S3Bucket": {
-            "Ref": "deploymentBucketName"
-          },
-          "S3Key": {
-            "Ref": "s3Key"
-          }
-        }
+        "Runtime": "python3.8",
+        "Layers": [],
+        "Timeout": 25
       }
     },
     "LambdaExecutionRole": {
@@ -80,12 +101,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "S3Trigger0cf57a81LambdaRole0cf57a81",
+            "serverlessprojectLambdaRole60bd1696",
             {
               "Fn::Join": [
                 "",
                 [
-                  "S3Trigger0cf57a81LambdaRole0cf57a81",
+                  "serverlessprojectLambdaRole60bd1696",
                   "-",
                   {
                     "Ref": "env"
@@ -154,6 +175,59 @@
             }
           ]
         }
+      }
+    },
+    "profilePicsMetadataTriggerPolicy": {
+      "DependsOn": [
+        "LambdaExecutionRole"
+      ],
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyName": "lambda-trigger-policy-profilePicsMetadata",
+        "Roles": [
+          {
+            "Ref": "LambdaExecutionRole"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Action": [
+                "dynamodb:DescribeStream",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:ListStreams"
+              ],
+              "Resource": [
+                {
+                  "Ref": "storageprofilePicsMetadataStreamArn"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "profilePicsMetadataTrigger": {
+      "Type": "AWS::Lambda::EventSourceMapping",
+      "DependsOn": [
+        "profilePicsMetadataTriggerPolicy"
+      ],
+      "Properties": {
+        "BatchSize": 100,
+        "Enabled": true,
+        "EventSourceArn": {
+          "Ref": "storageprofilePicsMetadataStreamArn"
+        },
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "LambdaFunction",
+            "Arn"
+          ]
+        },
+        "StartingPosition": "LATEST"
       }
     }
   },

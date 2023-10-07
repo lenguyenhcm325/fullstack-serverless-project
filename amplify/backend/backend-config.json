@@ -16,14 +16,6 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "getTodoList"
-        },
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
           "resourceName": "addTaskToList"
         },
         {
@@ -41,6 +33,14 @@
           ],
           "category": "function",
           "resourceName": "modifyTask"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "getTodoList"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -86,11 +86,6 @@
     }
   },
   "function": {
-    "S3Trigger0cf57a81": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "addCollaboratorToList": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -98,6 +93,27 @@
     },
     "addTaskToList": {
       "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "createTodoList": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "dynamodbTriggerCreateThumbnail": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ],
+          "category": "storage",
+          "resourceName": "profilePicsMetadata"
+        }
+      ],
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
@@ -144,22 +160,6 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_S3Trigger0cf57a81_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "S3Trigger0cf57a81"
-        }
-      ]
-    },
-    "AMPLIFY_function_S3Trigger0cf57a81_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "S3Trigger0cf57a81"
-        }
-      ]
-    },
     "AMPLIFY_function_addCollaboratorToList_deploymentBucketName": {
       "usedBy": [
         {
@@ -189,6 +189,38 @@
         {
           "category": "function",
           "resourceName": "addTaskToList"
+        }
+      ]
+    },
+    "AMPLIFY_function_createTodoList_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createTodoList"
+        }
+      ]
+    },
+    "AMPLIFY_function_createTodoList_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createTodoList"
+        }
+      ]
+    },
+    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dynamodbTriggerCreateThumbnail"
+        }
+      ]
+    },
+    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dynamodbTriggerCreateThumbnail"
         }
       ]
     },

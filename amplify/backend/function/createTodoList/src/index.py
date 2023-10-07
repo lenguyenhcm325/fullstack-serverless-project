@@ -1,6 +1,5 @@
 import json
 import boto3
-from boto3.dynamodb.conditions import Key, Attr
 import time
 import pytz
 import datetime
@@ -52,10 +51,23 @@ def getClaim(token):
 
 
 def handler(event, context):
-    print("this is the event object")
-    print(event)
+    try:
+        body = event["body"]
+        body_data = json.loads(body)
+        title = body_data["title"]
+        user_id = body_data["userId"]
+    except Exception as e:
+        print(e)
+        return {
+            'statusCode': 400,
+            'headers': {
+                'Access-Control-Allow-Headers': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': '*'
+            },
+            'body': json.dumps("Missing required attribute(s)!")
+        }
     global claim
-    user_id_from_url = event["pathParameters"]["listId"]
     print("below the event object")
     print(event)
     claim = None
@@ -89,8 +101,10 @@ def handler(event, context):
             'body': json.dumps("Unauthorized!")
         }
 
-    if user_id_from_url != claim["sub"]:
-        print(f'the user is requesting lists from someone else!')
+    print(f'there is claim!!!')
+    print(claim)
+
+    if user_id != claim["sub"]:
         return {
             'statusCode': 401,
             'headers': {
@@ -101,30 +115,49 @@ def handler(event, context):
             'body': json.dumps("Unauthorized!")
         }
 
-    print(f'there is claim!!!')
-    print(claim)
-    user_id = claim["sub"]
-    dynamodb = boto3.resource("dynamodb")
+    dynamodb = boto3.client("dynamodb")
     table_name = "listsTable-dev"
-    table = dynamodb.Table(table_name)
-
     try:
-        response = table.scan(
-            FilterExpression=Attr('userId').eq(user_id)
+        userId = claim["sub"]
+        generated_uuid = str(uuid.uuid4())
+
+        print(f'This is the generated uuid: {generated_uuid}')
+        utc_now = datetime.datetime.now(pytz.utc)
+        formatted_date = utc_now.isoformat()
+        print(f"time iso 8601 {formatted_date}")
+        ItemObject = {
+            "listId": {
+                "S": generated_uuid
+            },
+            "userId": {
+                "S": userId
+            },
+            "title": {
+                "S": title
+            },
+            "createdTime": {
+                "S": formatted_date
+            },
+            "lastModifiedTime": {
+                "S": formatted_date
+            }
+        }
+        print("below is the put_item Item")
+        print(ItemObject)
+        dynamodb.put_item(
+            TableName=table_name,
+            Item=ItemObject
         )
-        items = response["Items"]
-        print("items found!!!")
-        print(items)
+        print(f"Todo-list for user {userId} created!")
         return {
-            'statusCode': 200,
+            'statusCode': 201,
             'headers': {
                 'Access-Control-Allow-Headers': '*',
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps(items)
+            'body': json.dumps("Todo-list for user created!")
         }
-
     except Exception as e:
         print("there is error")
         print(e)

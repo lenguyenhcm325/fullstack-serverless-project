@@ -47,12 +47,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "getTodoList",
+            "createTodoList",
             {
               "Fn::Join": [
                 "",
                 [
-                  "getTodoList",
+                  "createTodoList",
                   "-",
                   {
                     "Ref": "env"
@@ -89,12 +89,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "serverlessprojectLambdaRoleda4e2e71",
+            "serverlessprojectLambdaRole24ef83ef",
             {
               "Fn::Join": [
                 "",
                 [
-                  "serverlessprojectLambdaRoleda4e2e71",
+                  "serverlessprojectLambdaRole24ef83ef",
                   "-",
                   {
                     "Ref": "env"
@@ -164,9 +164,11 @@
             {
               "Effect": "Allow",
               "Action": [
-                "dynamodb:Scan"
+                "dynamodb:PutItem"
               ],
-              "Resource": "arn:aws:dynamodb:eu-central-1:312290079196:table/listsTable-dev"
+              "Resource": [
+                "arn:aws:dynamodb:eu-central-1:312290079196:table/listsTable-dev"
+              ]
             }
           ]
         }

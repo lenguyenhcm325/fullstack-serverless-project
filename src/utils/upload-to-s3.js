@@ -16,7 +16,7 @@ const s3 = new AWS.S3();
 const uploadToS3 = async (imageData, userId) => {
   const params = {
     Bucket: "profilepics0711123953-dev",
-    Key: `thumbnail/${userId}.jpg`,
+    Key: `fullsize/${userId}.jpg`,
     Body: imageData,
     Metadata: {
       userId: userId,

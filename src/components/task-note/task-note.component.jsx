@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import {Editor, EditorState} from "draft-js"
 
 
 const TaskNote = () => {
-
+    const [editorState, setEditorState] = useState(() => 
+    EditorState.createEmpty(),)
 
 
     return (
-        <div>
-            hello sir
-        </div>
+        <Editor editorState={editorState} onChange={setEditorState}/>
     )
 
 }
