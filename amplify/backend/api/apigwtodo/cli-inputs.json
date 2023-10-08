@@ -1,13 +1,6 @@
 {
   "version": 1,
   "paths": {
-    "/profile/{userId}": {
-      "name": "/profile/{userId}",
-      "lambdaFunction": "getUserProfile",
-      "permissions": {
-        "setting": "open"
-      }
-    },
     "/addTask/{listId}": {
       "name": "/addTask/{listId}",
       "lambdaFunction": "addTaskToList",
@@ -29,9 +22,23 @@
         "setting": "open"
       }
     },
+    "/lists": {
+      "name": "/lists",
+      "lambdaFunction": "todoListHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
     "/lists/{listId}": {
       "name": "/lists/{listId}",
-      "lambdaFunction": "getTodoList",
+      "lambdaFunction": "tasksHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/profile/{userId}": {
+      "name": "/profile/{userId}",
+      "lambdaFunction": "userProfileHandler",
       "permissions": {
         "setting": "open"
       }

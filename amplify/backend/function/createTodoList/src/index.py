@@ -55,7 +55,7 @@ def handler(event, context):
         body = event["body"]
         body_data = json.loads(body)
         title = body_data["title"]
-        user_id = body_data["userId"]
+
     except Exception as e:
         print(e)
         return {
@@ -104,17 +104,6 @@ def handler(event, context):
     print(f'there is claim!!!')
     print(claim)
 
-    if user_id != claim["sub"]:
-        return {
-            'statusCode': 401,
-            'headers': {
-                'Access-Control-Allow-Headers': '*',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': '*'
-            },
-            'body': json.dumps("Unauthorized!")
-        }
-
     dynamodb = boto3.client("dynamodb")
     table_name = "listsTable-dev"
     try:
@@ -129,7 +118,7 @@ def handler(event, context):
             "listId": {
                 "S": generated_uuid
             },
-            "userId": {
+            "ownerId": {
                 "S": userId
             },
             "title": {

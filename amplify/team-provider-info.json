@@ -20,7 +20,7 @@
         },
         "getTodoList": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/getTodoList-4d716f73485a4f795859-build.zip"
+          "s3Key": "amplify-builds/getTodoList-573051662f4a72385770-build.zip"
         },
         "addTaskToList": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
@@ -52,8 +52,19 @@
         },
         "createTodoList": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/createTodoList-6d6e42304b4e322f3050-build.zip"
-        }
+          "s3Key": "amplify-builds/createTodoList-4c4e2b344d3347526438-build.zip"
+        },
+        "fetchTasksFromTodoList": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/fetchTasksFromTodoList-717049484d7551475976-build.zip"
+        },
+        "createTaskFromTodoList": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/createTaskFromTodoList-79466c49367a76786f38-build.zip"
+        },
+        "todoListHandler": {},
+        "tasksHandler": {},
+        "userProfileHandler": {}
       },
       "api": {
         "apigwtodo": {}

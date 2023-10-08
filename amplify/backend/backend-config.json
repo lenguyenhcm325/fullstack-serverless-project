@@ -8,14 +8,6 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "getUserProfile"
-        },
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
           "resourceName": "addTaskToList"
         },
         {
@@ -40,7 +32,23 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "getTodoList"
+          "resourceName": "todoListHandler"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "tasksHandler"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "userProfileHandler"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -96,6 +104,11 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "createTaskFromTodoList": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "createTodoList": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -114,6 +127,11 @@
           "resourceName": "profilePicsMetadata"
         }
       ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "fetchTasksFromTodoList": {
+      "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
@@ -153,172 +171,25 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
+    "tasksHandler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "todoListHandler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
     "updateUserProfile": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
-    }
-  },
-  "parameters": {
-    "AMPLIFY_function_addCollaboratorToList_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "addCollaboratorToList"
-        }
-      ]
     },
-    "AMPLIFY_function_addCollaboratorToList_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "addCollaboratorToList"
-        }
-      ]
-    },
-    "AMPLIFY_function_addTaskToList_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "addTaskToList"
-        }
-      ]
-    },
-    "AMPLIFY_function_addTaskToList_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "addTaskToList"
-        }
-      ]
-    },
-    "AMPLIFY_function_createTodoList_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "createTodoList"
-        }
-      ]
-    },
-    "AMPLIFY_function_createTodoList_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "createTodoList"
-        }
-      ]
-    },
-    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "dynamodbTriggerCreateThumbnail"
-        }
-      ]
-    },
-    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "dynamodbTriggerCreateThumbnail"
-        }
-      ]
-    },
-    "AMPLIFY_function_getTodoList_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "getTodoList"
-        }
-      ]
-    },
-    "AMPLIFY_function_getTodoList_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "getTodoList"
-        }
-      ]
-    },
-    "AMPLIFY_function_getUserProfile_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "getUserProfile"
-        }
-      ]
-    },
-    "AMPLIFY_function_getUserProfile_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "getUserProfile"
-        }
-      ]
-    },
-    "AMPLIFY_function_modifyTask_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "modifyTask"
-        }
-      ]
-    },
-    "AMPLIFY_function_modifyTask_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "modifyTask"
-        }
-      ]
-    },
-    "AMPLIFY_function_s3TriggerDynamoDB_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "s3TriggerDynamoDB"
-        }
-      ]
-    },
-    "AMPLIFY_function_s3TriggerDynamoDB_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "s3TriggerDynamoDB"
-        }
-      ]
-    },
-    "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "serverlessproject30ed819cPostConfirmation"
-        }
-      ]
-    },
-    "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "serverlessproject30ed819cPostConfirmation"
-        }
-      ]
-    },
-    "AMPLIFY_function_updateUserProfile_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "updateUserProfile"
-        }
-      ]
-    },
-    "AMPLIFY_function_updateUserProfile_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "updateUserProfile"
-        }
-      ]
+    "userProfileHandler": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
     }
   },
   "storage": {

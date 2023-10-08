@@ -55,7 +55,6 @@ def handler(event, context):
     print("this is the event object")
     print(event)
     global claim
-    user_id_from_url = event["pathParameters"]["listId"]
     print("below the event object")
     print(event)
     claim = None
@@ -79,18 +78,6 @@ def handler(event, context):
 
     if not claim:
         print(f'there isnt any claim here')
-        return {
-            'statusCode': 401,
-            'headers': {
-                'Access-Control-Allow-Headers': '*',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': '*'
-            },
-            'body': json.dumps("Unauthorized!")
-        }
-
-    if user_id_from_url != claim["sub"]:
-        print(f'the user is requesting lists from someone else!')
         return {
             'statusCode': 401,
             'headers': {

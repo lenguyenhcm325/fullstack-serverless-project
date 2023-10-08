@@ -19,6 +19,7 @@
     "aws-sdk": "^2.1470.0",
     "draft-js": "^0.11.7",
     "install": "^0.13.0",
+    "moment-timezone": "^0.5.43",
     "npm": "^10.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

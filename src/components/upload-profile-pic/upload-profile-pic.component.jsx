@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { UploadProfilePicContainer } from "./upload-profile-pic.styles";
 import uploadToS3 from "../../utils/upload-to-s3";
 const UploadProfilePic = ({userId}) => {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -22,15 +23,18 @@ const UploadProfilePic = ({userId}) => {
 
 
     return (
-    <div>
+    <UploadProfilePicContainer>
       <input id="pic-upload" type="file" accept="image/*" onChange={handleImageChange} />
-      {selectedImage && <img src={selectedImage} alt="Preview" />}
+      <label htmlFor="pic-upload" className="custom-file-upload">
+          Choose file
+      </label>  
+      {selectedImage && <img className="preview-image" src={selectedImage} alt="Preview" />}
       {selectedImage && (
-        <button id="add-pic" onClick={() => {
+        <button className="add-pic" onClick={() => {
             // console.log(selectedImage)
             uploadToS3(file, userId)}}>Upload to S3</button>
       )}
-    </div>
+    </UploadProfilePicContainer>
 
 
     )

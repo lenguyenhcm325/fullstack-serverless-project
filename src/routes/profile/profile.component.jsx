@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Auth} from "aws-amplify"
+import formatLocalDate from "../../utils/format-local-date";
 import { useParams } from 'react-router-dom';
 import { ProfileContainer } from "../profile.styles";
 import CreateList from "../../components/create-list/create-list.component";
@@ -17,11 +18,10 @@ const Profile = () => {
 
 
 
-
     const handleCreateTodoList = async (title) => {
         try {
             setLoading(true);
-            const createTodoEndpoint = `${apiEndpoint}/lists/lorem_ipsum`;
+            const createTodoEndpoint = `${apiEndpoint}/lists`;
             const response = await fetch(createTodoEndpoint, {
                 method: "POST", 
                 headers: {
@@ -62,7 +62,7 @@ const Profile = () => {
     
                     if (!response.ok){
                         throw new Error('Something went wrong!');
-    
+
                     }
                     const result = await response.json();
                     console.log("this is the result fetchUserProfile");
@@ -77,7 +77,7 @@ const Profile = () => {
             }
             const fetchTodoListsArray = async() => {
                 try {
-                    const response = await fetch(`${apiEndpoint}/lists/${userId}`, 
+                    const response = await fetch(`${apiEndpoint}/lists`, 
                         {
                             headers: {
                                 Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
@@ -113,9 +113,13 @@ const Profile = () => {
         return <div>Error: {error.message ? error.message : JSON.stringify(error)}</div>
     }
 
-    if (userInfo){
-
-    
+    if (Object.keys(userInfo).length !== 0){
+    console.log("this is user info")
+    console.log(userInfo)
+    console.log(userInfo)
+    console.log(userInfo)
+    console.log(userInfo)
+    console.log(userInfo)
     return (
         <ProfileContainer>
             <h1>User Profile</h1>
@@ -132,6 +136,9 @@ const Profile = () => {
                     <label for="dateJoined">Date Joined:</label>
                     <span id="dateJoined">{userInfo.dateJoined.S}</span>
                 </div>
+                <div class="profile-row">
+                    <label for="profilePic">Profile Pic:</label>
+                </div>
                 <div>
                     <UploadProfilePic userId={userId}/>
                 </div>
@@ -147,9 +154,22 @@ const Profile = () => {
 
                 )
             }
-            {
-                todoListsArray.length ? (<div>{JSON.stringify(todoListsArray)}</div>) : (<div>There isn't any todoListsArray!</div>)
-            }
+            <div className="scrollable-div">
+                {
+                    todoListsArray.map(todoList => (
+                        <div className="todo-list-container">
+                            <div className="todo-list-item">
+                            <div class="todo-title">{todoList.title}</div>
+                            <div class="todo-date">Last Modified: {formatLocalDate(todoList.lastModifiedTime)}</div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
+
+            
+
         </ProfileContainer>
         )
     }
