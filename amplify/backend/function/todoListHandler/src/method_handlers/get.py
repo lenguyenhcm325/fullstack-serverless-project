@@ -10,7 +10,7 @@ def handle_get_request(user_id):
 
     try:
         response = table.scan(
-            FilterExpression=Attr('userId').eq(user_id)
+            FilterExpression=Attr('ownerId').eq(user_id)
         )
         items = response["Items"]
         print("items found!!!")

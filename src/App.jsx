@@ -24,7 +24,9 @@ function MyRoutes() {
           </RequireAuth>
           }/>
           <Route path="/lists/:listId" element={
+            <RequireAuth>
             <List/>
+            </RequireAuth>
           } />
           <Route path="/login" element={<Login />} />
         </Route>

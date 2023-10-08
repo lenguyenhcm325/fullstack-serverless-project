@@ -11,7 +11,7 @@ def handle_get_request(event, user_id, email):
     list_id = event["pathParameters"]["listId"]
     dynamodb = boto3.client("dynamodb")
 
-    lists_table_name = "listsTablse-dev"
+    lists_table_name = "listsTable-dev"
 
     lists_primary_key = {"listId": {"S": list_id}}
 
@@ -23,7 +23,7 @@ def handle_get_request(event, user_id, email):
             print("there is a list with the same list id! ")
             print(item)
             collaborator_emails_list = item.get("collaborators", None)
-            if item["ownerId"] != user_id:
+            if item["ownerId"]["S"] != user_id:
                 print("user is not the owner")
                 if not collaborator_emails_list or email not in collaborator_emails_list:
                     return {

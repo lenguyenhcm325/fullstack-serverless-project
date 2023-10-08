@@ -55,7 +55,7 @@ def handle_post_request(event, user_id):
             TableName=table_name,
             Item=ItemObject
         )
-        print(f"Todo-list for user {userId} created!")
+        print(f"Todo-list for user {user_id} created!")
         return {
             'statusCode': 201,
             'headers': {

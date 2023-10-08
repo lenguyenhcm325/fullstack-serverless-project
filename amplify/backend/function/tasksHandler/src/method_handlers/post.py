@@ -43,7 +43,7 @@ def handle_post_request(event, user_id, email):
             print("there is a list with the same list id!")
             print(item)
             collaborator_emails_list = item.get("collaborators", None)
-            if item["ownerId"] != user_id:
+            if item["ownerId"]["S"] != user_id:
                 print("user is not the owner")
                 if not collaborator_emails_list or email not in collaborator_emails_list:
                     return {
@@ -101,6 +101,9 @@ def handle_post_request(event, user_id, email):
             },
             "email": {
                 "S": email
+            },
+            "status": {
+                "S": "todo"
             }
         }
         print("below is the put_item Item")

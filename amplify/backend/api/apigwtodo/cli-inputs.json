@@ -22,9 +22,9 @@
         "setting": "open"
       }
     },
-    "/lists": {
-      "name": "/lists",
-      "lambdaFunction": "todoListHandler",
+    "/profile/{userId}": {
+      "name": "/profile/{userId}",
+      "lambdaFunction": "userProfileHandler",
       "permissions": {
         "setting": "open"
       }
@@ -36,9 +36,9 @@
         "setting": "open"
       }
     },
-    "/profile/{userId}": {
-      "name": "/profile/{userId}",
-      "lambdaFunction": "userProfileHandler",
+    "/listsMetadata": {
+      "name": "/listsMetadata",
+      "lambdaFunction": "todoListHandler",
       "permissions": {
         "setting": "open"
       }

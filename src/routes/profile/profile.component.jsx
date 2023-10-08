@@ -21,7 +21,7 @@ const Profile = () => {
     const handleCreateTodoList = async (title) => {
         try {
             setLoading(true);
-            const createTodoEndpoint = `${apiEndpoint}/lists`;
+            const createTodoEndpoint = `${apiEndpoint}/listsMetadata`;
             const response = await fetch(createTodoEndpoint, {
                 method: "POST", 
                 headers: {
@@ -77,7 +77,7 @@ const Profile = () => {
             }
             const fetchTodoListsArray = async() => {
                 try {
-                    const response = await fetch(`${apiEndpoint}/lists`, 
+                    const response = await fetch(`${apiEndpoint}/listsMetadata`, 
                         {
                             headers: {
                                 Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
@@ -88,7 +88,7 @@ const Profile = () => {
                         throw new Error('Something went wrong!');
                     }
                     const result = await response.json();
-                    console.log("this is the result fetchTodoListsArray");
+                    console.log("this is the result fetch lists metadata");
                     console.log(result);
                     setTodoListsArray(result);
                 }
