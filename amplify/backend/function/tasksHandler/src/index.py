@@ -2,6 +2,7 @@ from method_handlers.get import handle_get_request
 from method_handlers.post import handle_post_request
 from method_handlers.options import handle_options_request
 from method_handlers.utilities import handle_claim
+from method_handlers.put import handle_put_request
 
 
 def handler(event, context):
@@ -15,7 +16,7 @@ def handler(event, context):
         claim = result["return_value"]
 
     user_id = claim["sub"]
-    email = claim["sub"]
+    email = claim["email"]
 
     if event["httpMethod"] == "GET":
         return handle_get_request(event, user_id, email)
@@ -23,3 +24,5 @@ def handler(event, context):
         return handle_post_request(event, user_id, email)
     if event["httpMethod"] == "OPTIONS":
         return handle_options_request()
+    if event["httpMethod"] == "PUT":
+        return handle_put_request(event)

@@ -28,7 +28,7 @@ export const ListContainer = styled.div`
 
 
 
-& button {
+& .toggle-create-task {
     width: 100%;
     padding: 10px;
     border: none;
@@ -38,7 +38,7 @@ export const ListContainer = styled.div`
     cursor: pointer;
 }
 
-& button:hover {
+& .toggle-create-task:hover {
     background-color: #2980b9;
 }
 `

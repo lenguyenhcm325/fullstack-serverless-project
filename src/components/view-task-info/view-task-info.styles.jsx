@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 
 export const ViewTaskInfoContainer = styled.div`
-    position: absolute; 
+    position: fixed; 
     top: 50%; 
     left: 50%; 
     z-index: 9999;
@@ -60,6 +60,20 @@ export const ViewTaskInfoContainer = styled.div`
         margin-left: -12px;
     }
     
+    & .close-button-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    
+    & .close-button {
+        font-size: 32px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        padding: 5px 5px;
+    
+    }
 
 
 `

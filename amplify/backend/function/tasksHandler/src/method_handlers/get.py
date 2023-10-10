@@ -1,22 +1,18 @@
 import json
 import boto3
 from boto3.dynamodb.conditions import Key
-import time
-import urllib.request
-from jose import jwk, jwt
-from jose.utils import base64url_decode
 
 
 def handle_get_request(event, user_id, email):
     list_id = event["pathParameters"]["listId"]
-    dynamodb = boto3.client("dynamodb")
+    dynamodb_client = boto3.client("dynamodb")
 
     lists_table_name = "listsTable-dev"
 
     lists_primary_key = {"listId": {"S": list_id}}
 
     try:
-        response = dynamodb.get_item(
+        response = dynamodb_client.get_item(
             TableName=lists_table_name, Key=lists_primary_key)
         item = response.get("Item")
         if item:
@@ -54,8 +50,11 @@ def handle_get_request(event, user_id, email):
     tasks_table_name = "tasksTable-dev"
     try:
 
-        dynamodb = boto3.resource("dynamodb")
-        table = dynamodb.Table(tasks_table_name)
+        profile_pic_urls_cache = {}
+        profile_pics_table_name = "profilePicsMetadata-dev"
+
+        dynamodb_resource = boto3.resource("dynamodb")
+        table = dynamodb_resource.Table(tasks_table_name)
         partition_key_name = "listId"
         partition_key_value = list_id
 
@@ -67,6 +66,30 @@ def handle_get_request(event, user_id, email):
         items = response["Items"]
         print("there are items inside this list already!")
         print(items)
+        for item in items:
+
+            if item["userId"] in profile_pic_urls_cache:
+                pass
+            else:
+                response = dynamodb_client.get_item(
+                    TableName=profile_pics_table_name,
+                    Key={
+                        "userId": {
+                            "S": item["userId"]
+                        }
+                    }
+                )
+                profile_pic_metadata = response.get("Item")
+                if not profile_pic_metadata:
+                    profile_pic_urls_cache[item["userId"]] = None
+                else:
+                    profile_pic_url = profile_pic_metadata["fullsizeUrl"]["S"]
+                    profile_pic_urls_cache[item["userId"]] = profile_pic_url
+
+            # Fix this later!
+            item["thumbnailUrl"] = profile_pic_urls_cache[item["userId"]]
+            item[""]
+
         return {
             'statusCode': 200,
             'headers': {

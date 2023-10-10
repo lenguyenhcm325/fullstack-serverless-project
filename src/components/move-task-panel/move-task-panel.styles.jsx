@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MovePanelContainer = styled.div`
+export const MoveTaskPanelContainer = styled.div`
 
     border: 1px solid #dee2e6;
     background-color: #d0ebff;

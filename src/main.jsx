@@ -9,7 +9,5 @@ import './index.css'
 Amplify.configure(awsExports);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <App />
-  </React.StrictMode>,
 )

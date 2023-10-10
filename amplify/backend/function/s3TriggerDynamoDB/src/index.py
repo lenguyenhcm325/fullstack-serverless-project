@@ -19,6 +19,7 @@ def handler(event, context):
     if event_name == "ObjectCreated:Put":
         last_modified = event["Records"][0]["eventTime"]
         size = event["Records"][0]["s3"]["object"]["size"]
+        key = event["Records"][0]["s3"]["object"]["key"]
 
         print("This is the metadata that youve got")
         print(metadata)
@@ -29,7 +30,7 @@ def handler(event, context):
                 "userId": {
                     "S": metadata["userid"]
                 },
-                "fullSizeUrl": {
+                "fullsizeUrl": {
                     "S": objectUrl
                 },
                 "lastModified": {
@@ -37,6 +38,9 @@ def handler(event, context):
                 },
                 "size": {
                     "N": str(size)
+                },
+                "key": {
+                    "S": key
                 }
 
 

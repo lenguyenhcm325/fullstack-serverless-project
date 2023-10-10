@@ -12,6 +12,7 @@ def handle_post_request(event, user_id, email):
 
         # DEAL WITH THIS
         title = body_data["title"]
+        description = body_data["description"]
         # It is path param, isn't it?!
         list_id = event["pathParameters"]["listId"]
         # actually you can get this from the JWT Token
@@ -104,6 +105,9 @@ def handle_post_request(event, user_id, email):
             },
             "status": {
                 "S": "todo"
+            },
+            "description": {
+                "S": description
             }
         }
         print("below is the put_item Item")

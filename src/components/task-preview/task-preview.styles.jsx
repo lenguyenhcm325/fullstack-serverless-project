@@ -59,10 +59,19 @@ export const TaskPreviewContainer = styled.div`
     justify-self: center;
     grid-row: 3; 
     grid-column: 2;
+    overflow: hidden;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     background-color: #4dabf7; /* Placeholder, replace with image */
+}
+
+& .profile-pic img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center;
 }
 
 & .edit-icon {
