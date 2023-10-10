@@ -1,7 +1,45 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import { ViewTaskInfoContainer } from "./view-task-info.styles";
 
-const ViewTaskInfo = ({setToggleEditTask}) => {
+const ViewTaskInfo = ({
+    setToggleEditTask,
+    note,
+
+    }) => {
+    const [error, setError] = useState(null);
+    const [taskInfo, setTaskInfo] = useState(
+        {
+            note: note? note : ""
+        }
+    )
+
+    const updateTaskInfo = async () => {
+        try {
+            const createTodoEndpoint = `${apiEndpoint}/lists/${listId}`;
+            const response = await fetch(createTodoEndpoint, {
+                headers: {
+                    Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                }
+            })
+            if (!response.ok){
+                throw new Error('Something went wrong!');
+            }
+            const result = await response.json();
+            console.log("this is the result of fetching tasks from a list!");
+            console.log(result);
+            setAllTasks(result)
+            console.log("this is the result of fetching tasks from a list! ABOVE");
+            // setTodoTasks(result.filter(task => task.status === "todo"))
+            // setDoingTasks(result.filter(task => task.status == "doing"))
+            // setDoneTasks(result.filter(task => task.status == "done"))
+        }
+        catch(error){
+            setError(error);
+        }finally {
+            setLoading(false);
+        }
+    }
+
 
     const handleClose = () => {
         console.log("it should be false!!!!!!!")
@@ -26,7 +64,7 @@ const ViewTaskInfo = ({setToggleEditTask}) => {
             </div>
             <div className="field">
                 <label htmlFor="description" className="label">Description:</label>
-                <input type="text" id="description" defaultValue="This is a prepopulated description" className="description-input" />
+                <input type="text" id="description" defaultValue={taskInfo.note} className="description-input" />
             </div>
             <div className="field">
                 <div className="label-with-icon">

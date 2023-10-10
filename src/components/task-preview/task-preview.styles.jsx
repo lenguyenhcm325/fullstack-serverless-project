@@ -27,11 +27,22 @@ export const TaskPreviewContainer = styled.div`
     display: flex; 
     justify-content: center;
     align-items: center;
-    grid-column: 2; 
-    grid-row: 2;
+
     padding: 4px;
     
 }
+
+& .view-task-block {
+    grid-column: 2; 
+    grid-row: 1;
+}
+
+& .change-status-block {
+    grid-column: 2; 
+    grid-row: 2;
+}
+
+
 
 & .circle-bg-icon {
     display: flex; 
@@ -74,14 +85,14 @@ export const TaskPreviewContainer = styled.div`
     object-position: center;
 }
 
-& .edit-icon {
+& .icon {
     width: 16px; 
     height: 16px;
     cursor: pointer;
     transition: opacity 0.3s;
 }
 
-& .edit-icon:hover {
+& .icon:hover {
     opacity: 0.7;
 }
 
