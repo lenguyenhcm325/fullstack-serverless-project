@@ -1,0 +1,26 @@
+{
+  "resourceName": "listsTableV2",
+  "tableName": "listsTableV2",
+  "partitionKey": {
+    "fieldName": "listId",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "userId",
+    "fieldType": "string"
+  },
+  "gsi": [
+    {
+      "name": "listsTableV2GSI",
+      "partitionKey": {
+        "fieldName": "userId",
+        "fieldType": "string"
+      },
+      "sortKey": {
+        "fieldName": "listId",
+        "fieldType": "string"
+      }
+    }
+  ],
+  "triggerFunctions": []
+}

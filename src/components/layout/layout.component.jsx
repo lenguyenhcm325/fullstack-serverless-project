@@ -1,14 +1,17 @@
 // components/Layout.js
 import React, {useEffect, useState} from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthenticator, Button, Heading, View } from '@aws-amplify/ui-react';
 import {Auth} from "aws-amplify"
-
+import ToProfileButton from '../to-profile-button/to-profile-button.component';
 
 
 
 
 export function Layout() {
+  const location = useLocation(); 
+  const currentPathname = location.pathname;
+  console.log(currentPathname)
   const [userObject, setUserObject] = useState(null);
   const [error, setError] = useState(null);
   const { route, signOut } = useAuthenticator((context) => [
@@ -47,6 +50,10 @@ export function Layout() {
       {
         error? (<div>there is an error</div>) : (<div>there is no error</div>)
       }
+      {
+        currentPathname.includes("/profile/") ? null : <ToProfileButton/>
+      }
+
       <Outlet />
     </>
   );

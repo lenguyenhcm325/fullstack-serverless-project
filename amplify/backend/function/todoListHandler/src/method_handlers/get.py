@@ -1,16 +1,17 @@
 import json
 import boto3
-from boto3.dynamodb.conditions import Attr
+from boto3.dynamodb.conditions import Key
 
 
 def handle_get_request(user_id):
     dynamodb = boto3.resource("dynamodb")
-    table_name = "listsTable-dev"
+    table_name = "listsTableV2-dev"
     table = dynamodb.Table(table_name)
 
     try:
-        response = table.scan(
-            FilterExpression=Attr('ownerId').eq(user_id)
+        response = table.query(
+            IndexName="listsTableV2GSI",
+            KeyConditionExpression=Key('userId').eq(user_id)
         )
         items = response["Items"]
         print("items found!!!")

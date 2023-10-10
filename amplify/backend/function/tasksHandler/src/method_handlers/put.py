@@ -3,7 +3,7 @@ import boto3
 from .utilities import construct_update_expression
 
 
-def handle_put_request(event):
+def handle_put_request(event, user_id):
     try:
         body = event["body"]
         print(body)
@@ -30,6 +30,43 @@ def handle_put_request(event):
                 'Access-Control-Allow-Methods': '*'
             },
             'body': json.dumps("Missing required attribute(s)!")
+        }
+
+    dynamodb = boto3.client("dynamodb")
+
+    lists_table_name = "listsTableV2-dev"
+
+    lists_primary_key = {"listId": {"S": list_id},
+                         "userId": {"S": user_id}}
+
+    # here we check whether the user is authorized to do so
+    try:
+        response = dynamodb.get_item(
+            TableName=lists_table_name, Key=lists_primary_key)
+        item = response.get("Item")
+        if not item:
+            return {
+                'statusCode': 401,
+                'headers': {
+                    'Access-Control-Allow-Headers': '*',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': '*'
+                },
+                'body': json.dumps("Unauthorized!")
+            }
+
+    except Exception as e:
+        print("there is an error")
+        print(e)
+
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Access-Control-Allow-Headers': '*',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': '*'
+            },
+            'body': json.dumps(e)
         }
 
     dynamodb = boto3.client("dynamodb")

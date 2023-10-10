@@ -8,22 +8,6 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "addTaskToList"
-        },
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
-          "resourceName": "addCollaboratorToList"
-        },
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
           "resourceName": "modifyTask"
         },
         {
@@ -49,6 +33,14 @@
           ],
           "category": "function",
           "resourceName": "todoListHandler"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "collaboratorsHandler"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -100,6 +92,11 @@
       "service": "Lambda"
     },
     "addTaskToList": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "collaboratorsHandler": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -222,6 +219,22 @@
         {
           "category": "function",
           "resourceName": "addTaskToList"
+        }
+      ]
+    },
+    "AMPLIFY_function_collaboratorsHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collaboratorsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_collaboratorsHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collaboratorsHandler"
         }
       ]
     },
@@ -439,6 +452,10 @@
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     },
+    "listsTableV2": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
     "profilePics": {
       "dependsOn": [
         {
@@ -459,6 +476,10 @@
       "service": "DynamoDB"
     },
     "tasksTable": {
+      "providerPlugin": "awscloudformation",
+      "service": "DynamoDB"
+    },
+    "userIdToInfo": {
       "providerPlugin": "awscloudformation",
       "service": "DynamoDB"
     },

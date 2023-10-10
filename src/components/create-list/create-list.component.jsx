@@ -10,12 +10,14 @@ const CreateList = ({handleCreateTodoList, setToggleCreateList}) => {
         setToggleCreateList(false);
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit =  async(event) => {
         event.preventDefault(); 
         console.log("Form got submitted with " + title);
-        handleCreateTodoList(title)
-        console.log("after the handleCreateTodoList")
         setToggleCreateList(false);
+        await handleCreateTodoList(title)
+        console.log("after the handleCreateTodoList")
+        window.location.reload();
+        
     
     }
     return (

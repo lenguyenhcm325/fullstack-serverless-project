@@ -1,20 +1,6 @@
 {
   "version": 1,
   "paths": {
-    "/addTask/{listId}": {
-      "name": "/addTask/{listId}",
-      "lambdaFunction": "addTaskToList",
-      "permissions": {
-        "setting": "open"
-      }
-    },
-    "/addCollaborator": {
-      "name": "/addCollaborator",
-      "lambdaFunction": "addCollaboratorToList",
-      "permissions": {
-        "setting": "open"
-      }
-    },
     "/tasks": {
       "name": "/tasks",
       "lambdaFunction": "modifyTask",
@@ -39,6 +25,13 @@
     "/listsMetadata": {
       "name": "/listsMetadata",
       "lambdaFunction": "todoListHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/collaborators": {
+      "name": "/collaborators",
+      "lambdaFunction": "collaboratorsHandler",
       "permissions": {
         "setting": "open"
       }

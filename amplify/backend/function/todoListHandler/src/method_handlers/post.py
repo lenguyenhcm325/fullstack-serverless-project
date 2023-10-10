@@ -24,7 +24,7 @@ def handle_post_request(event, user_id):
             'body': json.dumps("Missing required attribute(s)!")
         }
     dynamodb = boto3.client("dynamodb")
-    table_name = "listsTable-dev"
+    table_name = "listsTableV2-dev"
     try:
         generated_uuid = str(uuid.uuid4())
 
@@ -36,7 +36,7 @@ def handle_post_request(event, user_id):
             "listId": {
                 "S": generated_uuid
             },
-            "ownerId": {
+            "userId": {
                 "S": user_id
             },
             "title": {
@@ -47,6 +47,9 @@ def handle_post_request(event, user_id):
             },
             "lastModifiedTime": {
                 "S": formatted_date
+            },
+            "role": {
+                "S": "owner"
             }
         }
         print("below is the put_item Item")

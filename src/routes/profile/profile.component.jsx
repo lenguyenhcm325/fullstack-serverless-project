@@ -4,6 +4,7 @@ import formatLocalDate from "../../utils/format-local-date";
 import { useParams } from 'react-router-dom';
 import { ProfileContainer } from "../profile.styles";
 import CreateList from "../../components/create-list/create-list.component";
+import ListInfo from "../../components/list-info/list-info.component";
 import UploadProfilePic from "../../components/upload-profile-pic/upload-profile-pic.component";
 const Profile = () => {
     const {userId} = useParams();
@@ -115,30 +116,24 @@ const Profile = () => {
     }
 
     if (Object.keys(userInfo).length !== 0){
-    console.log("this is user info")
-    console.log(userInfo)
-    console.log(userInfo)
-    console.log(userInfo)
-    console.log(userInfo)
-    console.log(userInfo)
     return (
         <ProfileContainer>
             <h1>User Profile</h1>
             <div class="profile-info">
                 <div class="profile-row">
-                    <label for="email">Email:</label>
+                    <label htmlFor="email">Email:</label>
                     <span id="email">{userInfo.email.S}</span>
                 </div>
                 <div class="profile-row">
-                    <label for="userId">User ID:</label>
+                    <label htmlFor="userId">User ID:</label>
                     <span id="userId">{userInfo.userId.S}</span>
                 </div>
                 <div class="profile-row">
-                    <label for="dateJoined">Date Joined:</label>
+                    <label htmlFor="dateJoined">Date Joined:</label>
                     <span id="dateJoined">{userInfo.dateJoined.S}</span>
                 </div>
                 <div class="profile-row">
-                    <label for="profilePic">Profile Pic:</label>
+                    <label htmlFor="profilePic">Profile Pic:</label>
                 </div>
                 <div>
                     <UploadProfilePic userId={userId}/>
@@ -158,12 +153,7 @@ const Profile = () => {
             <div className="scrollable-div">
                 {
                     todoListsArray.map(todoList => (
-                        <div className="todo-list-container">
-                            <div className="todo-list-item">
-                            <div class="todo-title">{todoList.title}</div>
-                            <div class="todo-date">Last Modified: {formatLocalDate(todoList.lastModifiedTime)}</div>
-                            </div>
-                        </div>
+                        <ListInfo key={todoList.listId} listId={todoList.listId} title={todoList.title} lastModifiedTime={formatLocalDate(todoList.lastModifiedTime)}/>
                     ))
                 }
             </div>

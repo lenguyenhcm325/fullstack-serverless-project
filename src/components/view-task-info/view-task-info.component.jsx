@@ -10,6 +10,7 @@ const ViewTaskInfo = ({
 
     }) => {
         const timeout = useRef(null);
+        const noteRef = useRef()
     const {listId} = useParams();
     const [error, setError] = useState(null);
     const [updatingToBackend, setUpdatingToBackend] = useState(false);
@@ -19,23 +20,6 @@ const ViewTaskInfo = ({
         }
     )
     const apiEndpoint = import.meta.env.VITE_REST_ENDPOINT;
-
-    const handleChange = (event) => {
-        console.log(taskInfo)
-        const newNote = event.target.value;
-        setTaskInfo({
-            ...taskInfo, note: newNote
-        })
-        if (timeout.current){
-            clearTimeout(timeout.current)
-        }
-
-        timeout.current = setTimeout(() => {
-                console.log("This gets run, hopefully after 2 seconds")
-                updateTaskInfoBackend(newNote)
-            }, 2000)
-    }
-
     const updateTaskInfoBackend = async (note) => {
         try {
 
@@ -71,6 +55,45 @@ const ViewTaskInfo = ({
             console.log("finished")
             setUpdatingToBackend(false)
         }
+    }
+    const handleUpdateBeforeUnload = (event) => {
+        event.preventDefault()
+        const currentNote = noteRef.current;
+        console.log("this is the thing  " + currentNote)
+        console.log("this is the thing  " + currentNote)
+        console.log("this is the thing  " + currentNote)
+        console.log("this is the thing  " + currentNote)
+        console.log("this is the thing  " + currentNote)
+        updateTaskInfoBackend(currentNote)
+        event.returnValue = "You have unsaved changes! Do you really want to leave?"
+        
+        
+    }
+
+
+    useEffect(() => {
+        window.addEventListener("beforeunload", handleUpdateBeforeUnload)
+        return () => {
+            window.removeEventListener("beforeunload", handleUpdateBeforeUnload)
+        }
+
+    }, [])
+
+    const handleChange = (event) => {
+        console.log(taskInfo)
+        const newNote = event.target.value;
+        setTaskInfo({
+            ...taskInfo, note: newNote
+        })
+        noteRef.current = newNote;
+        if (timeout.current){
+            clearTimeout(timeout.current)
+        }
+
+        timeout.current = setTimeout(() => {
+                console.log("This gets run, hopefully after 2 seconds")
+                updateTaskInfoBackend(newNote)
+            }, 5000)
     }
 
     const handleClose = () => {

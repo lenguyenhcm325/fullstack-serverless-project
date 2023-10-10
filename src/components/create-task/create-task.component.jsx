@@ -1,14 +1,16 @@
 import React, {useEffect, useState} from "react"
 import { useParams } from "react-router-dom";
 import { CreateTaskContainer } from "./create-task.styles";
+import { useNavigate } from "react-router-dom";
 import {Auth} from "aws-amplify"
-const CreateTask = ({setToggleCreateTask}) => {
+const CreateTask = ({setToggleCreateTask, status}) => {
+    const navigateTo = useNavigate();
     const {listId} = useParams();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [taskInfo, setTaskInfo] = useState({
         title: "",
-        description: "",
+        note: "",
     })
 
     const apiEndpoint = import.meta.env.VITE_REST_ENDPOINT;
@@ -25,7 +27,8 @@ const CreateTask = ({setToggleCreateTask}) => {
                 body: JSON.stringify(
                     {
                         title: taskInfo.title,
-                        description: taskInfo.description
+                        note: taskInfo.note,
+                        status: status
                     })
             })
             if (!response.ok){
@@ -52,15 +55,15 @@ const CreateTask = ({setToggleCreateTask}) => {
     }
 
     console.log(taskInfo);
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault(); 
         console.log("Form got submitted with " + taskInfo.title);
-        handleCreateTask()
+        await handleCreateTask()
         console.log("after the handleCreateTask")
-        setToggleCreateTask(false);
-    
+        // setToggleCreateTask(false);
+        // navigateTo(`/lists/${listId}`)
+        window.location.reload();
     }
-
     const handleClose = () => {
         setToggleCreateTask(false);
     }
@@ -73,8 +76,8 @@ const CreateTask = ({setToggleCreateTask}) => {
                 {/* <label htmlFor="dueTime">Due Date Time</label>
                 <input type="datetime-local" id="dueTime" name="dueTime" value=""/>
                 <input value={taskInfo.title} onChange={handleInputChange} type="text" id="dueTime" name="dueTime" required/> */}
-                <label htmlFor="description">Description</label>
-                <input value={taskInfo.description} onChange={handleInputChange} type="text" id="description" name="description"/>
+                <label htmlFor="note">Note</label>
+                <input value={taskInfo.note} onChange={handleInputChange} type="text" id="note" name="note"/>
                 <button type="submit" >Submit</button>
             </form>
             <div className="close-button-container">

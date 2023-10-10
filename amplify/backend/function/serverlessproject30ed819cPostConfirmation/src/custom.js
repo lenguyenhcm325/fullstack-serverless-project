@@ -18,7 +18,7 @@ exports.handler = async (event, context) => {
     const day = String(currentTime.getDate()).padStart(2, "0");
     const currentDateString = `${day}/${month}/${year}`;
     const command = new PutCommand({
-      TableName: "usersTable-dev",
+      TableName: "userIdToInfo-dev",
       Item: {
         userId: sub,
         email: email,
@@ -33,7 +33,15 @@ exports.handler = async (event, context) => {
 
     const response = await docClient.send(command);
     console.log(response);
-    return response;
+    return {
+      statusCode: 201,
+      headers: {
+        "Access-Control-Allow-Headers": "*",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "*",
+      },
+      body: JSON.stringify(response),
+    };
   } catch (err) {
     console.log(err);
     return {

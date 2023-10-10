@@ -3,15 +3,17 @@ import { useParams } from "react-router-dom"
 import {Auth} from "aws-amplify"
 import CreateTask from "../../components/create-task/create-task.component"
 import TaskPreview from "../../components/task-preview/task-preview.component"
+import AddCollaboratorButton from "../../components/add-collaborator-button/add-collaborator-button.component"
+import AddCollaborator from "../../components/add-collaborator/add-collaborator.component"
 import { ListContainer } from "./list.styles"
 const List = () => {
 
     const {listId} = useParams();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-
+    const [taskStatus, setTaskStatus] = useState(null);
     const [allTasks, setAllTasks] = useState([]);
-    
+    const [toggleAddCollaborator, setToggleAddCollaborator] = useState(false);
     const [toggleCreateTask, setToggleCreateTask] = useState(false); 
 
 
@@ -77,6 +79,11 @@ const List = () => {
     //     }
     // }
 
+    const handleClick = (status) => {
+        setToggleCreateTask(true)
+        setTaskStatus(status)
+    }
+
 
 
     if (loading){
@@ -85,7 +92,8 @@ const List = () => {
     if (error){
         return <div>Error: {error.message ? error.message : JSON.stringify(error)}</div>
     }
-    if (allTasks.length > 0){
+
+
         return (
             <ListContainer>
             <div className="column">
@@ -95,7 +103,7 @@ const List = () => {
                         <TaskPreview key={task.taskId} {...task}/>
                     ))
                 }
-                <button className="toggle-create-task" onClick={() => setToggleCreateTask(true)}>+ Add task</button>
+                <button className="toggle-create-task" onClick={() => handleClick("todo")}>+ Add task</button>
             </div>
             <div className="column">
                 <h2>Doing</h2>
@@ -105,7 +113,7 @@ const List = () => {
                     ))
                 }
 
-                <button className="toggle-create-task" onClick={() => setToggleCreateTask(true)}>+ Add task</button>
+                <button className="toggle-create-task" onClick={() => handleClick("doing")}>+ Add task</button>
             </div>
             <div className="column">
                 <h2>Done</h2>
@@ -114,16 +122,20 @@ const List = () => {
                         <TaskPreview key={task.taskId} {...task}/>
                     ))
                 }
-                <button className="toggle-create-task" onClick={() => setToggleCreateTask(true)}>+ Add task</button>
+                <button className="toggle-create-task" onClick={() => handleClick("done")}>+ Add task</button>
             </div>
             {
-                toggleCreateTask && (<CreateTask setToggleCreateTask={setToggleCreateTask}/>)
+                toggleCreateTask && (<CreateTask setToggleCreateTask={setToggleCreateTask} status={taskStatus}/>)
+            }
+            <AddCollaboratorButton setToggleAddCollaborator={setToggleAddCollaborator}/>
+            {
+                toggleAddCollaborator && (
+                    <AddCollaborator setToggleAddCollaborator={setToggleAddCollaborator}/>
+                )
             }
         </ListContainer>
-
-
         )
-    }
+    
 }
 
 export default List; 

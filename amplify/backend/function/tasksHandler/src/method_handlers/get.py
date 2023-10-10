@@ -7,31 +7,26 @@ def handle_get_request(event, user_id, email):
     list_id = event["pathParameters"]["listId"]
     dynamodb_client = boto3.client("dynamodb")
 
-    lists_table_name = "listsTable-dev"
+    lists_table_name = "listsTableV2-dev"
 
-    lists_primary_key = {"listId": {"S": list_id}}
+    lists_primary_key = {"listId": {"S": list_id},
+                         "userId": {"S": user_id}
+                         }
 
     try:
         response = dynamodb_client.get_item(
             TableName=lists_table_name, Key=lists_primary_key)
-        item = response.get("Item")
-        if item:
-            print("there is a list with the same list id! ")
-            print(item)
-            collaborator_emails_list = item.get("collaborators", None)
-            if item["ownerId"]["S"] != user_id:
-                print("user is not the owner")
-                if not collaborator_emails_list or email not in collaborator_emails_list:
-                    return {
-                        'statusCode': 401,
-                        'headers': {
-                            'Access-Control-Allow-Headers': '*',
-                            'Access-Control-Allow-Origin': '*',
-                            'Access-Control-Allow-Methods': '*'
-                        },
-                        'body': json.dumps("Unauthorized!")
-                    }
-            print("User is authorized to add task to this list!")
+        item = response.get("Item", None)
+        if not item:
+            return {
+                'statusCode': 401,
+                'headers': {
+                    'Access-Control-Allow-Headers': '*',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': '*'
+                },
+                'body': json.dumps("Unauthorized!")
+            }
 
     except Exception as e:
         print("there is an error")
@@ -111,3 +106,20 @@ def handle_get_request(event, user_id, email):
             },
             'body': json.dumps(e)
         }
+
+        # print("there is a list with the same list id! ")
+        # print(item)
+        # collaborator_emails_list = item.get("collaborators", None)
+        # if item["ownerId"]["S"] != user_id:
+        #     print("user is not the owner")
+        #     if not collaborator_emails_list or email not in collaborator_emails_list:
+        #         return {
+        #             'statusCode': 401,
+        #             'headers': {
+        #                 'Access-Control-Allow-Headers': '*',
+        #                 'Access-Control-Allow-Origin': '*',
+        #                 'Access-Control-Allow-Methods': '*'
+        #             },
+        #             'body': json.dumps("Unauthorized!")
+        #         }
+        # print("User is authorized to add task to this list!")
