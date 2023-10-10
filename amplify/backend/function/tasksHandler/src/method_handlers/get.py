@@ -88,7 +88,6 @@ def handle_get_request(event, user_id, email):
 
             # Fix this later!
             item["thumbnailUrl"] = profile_pic_urls_cache[item["userId"]]
-            item[""]
 
         return {
             'statusCode': 200,

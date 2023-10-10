@@ -44,7 +44,7 @@
         },
         "s3TriggerDynamoDB": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/s3TriggerDynamoDB-476b61513066314f6b4b-build.zip"
+          "s3Key": "amplify-builds/s3TriggerDynamoDB-3652465247354944656e-build.zip"
         },
         "dynamodbTriggerCreateThumbnail": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
@@ -68,7 +68,7 @@
         },
         "tasksHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/tasksHandler-5561614751697247486b-build.zip"
+          "s3Key": "amplify-builds/tasksHandler-5130752f473246763074-build.zip"
         },
         "userProfileHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",

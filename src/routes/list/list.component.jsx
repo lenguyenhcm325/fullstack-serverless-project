@@ -34,10 +34,7 @@ const List = () => {
                     throw new Error('Something went wrong!');
                 }
                 const result = await response.json();
-                console.log("this is the result of fetching tasks from a list!");
-                console.log(result);
                 setAllTasks(result)
-                console.log("this is the result of fetching tasks from a list! ABOVE");
                 // setTodoTasks(result.filter(task => task.status === "todo"))
                 // setDoingTasks(result.filter(task => task.status == "doing"))
                 // setDoneTasks(result.filter(task => task.status == "done"))

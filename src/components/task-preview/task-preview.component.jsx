@@ -8,7 +8,8 @@ const TaskPreview = (props) => {
         thumbnailUrl,
         email,
         taskId,
-        status,  
+        status, 
+        note 
     } = props;
 
     

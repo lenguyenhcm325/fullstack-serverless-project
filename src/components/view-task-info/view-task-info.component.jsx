@@ -1,57 +1,84 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
+import { useParams } from "react-router-dom";
+import {Auth} from "aws-amplify"
 import { ViewTaskInfoContainer } from "./view-task-info.styles";
-
+import LoadingSpinner from "../loading-spinner/loading-spinner.component";
 const ViewTaskInfo = ({
     setToggleEditTask,
     note,
+    taskId
 
     }) => {
+        const timeout = useRef(null);
+    const {listId} = useParams();
     const [error, setError] = useState(null);
+    const [updatingToBackend, setUpdatingToBackend] = useState(false);
     const [taskInfo, setTaskInfo] = useState(
         {
             note: note? note : ""
         }
     )
+    const apiEndpoint = import.meta.env.VITE_REST_ENDPOINT;
 
-    const updateTaskInfo = async () => {
+    const handleChange = (event) => {
+        console.log(taskInfo)
+        const newNote = event.target.value;
+        setTaskInfo({
+            ...taskInfo, note: newNote
+        })
+        if (timeout.current){
+            clearTimeout(timeout.current)
+        }
+
+        timeout.current = setTimeout(() => {
+                console.log("This gets run, hopefully after 2 seconds")
+                updateTaskInfoBackend(newNote)
+            }, 2000)
+    }
+
+    const updateTaskInfoBackend = async (note) => {
         try {
+
+            setUpdatingToBackend(true)
+            console.log({
+                note: note,
+                taskId: taskId
+
+            })
             const createTodoEndpoint = `${apiEndpoint}/lists/${listId}`;
             const response = await fetch(createTodoEndpoint, {
                 headers: {
                     Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
-                }
+                },
+                method: "PUT",
+                body: JSON.stringify({
+                    note: note,
+                    taskId: taskId
+
+                })
             })
             if (!response.ok){
                 throw new Error('Something went wrong!');
             }
             const result = await response.json();
-            console.log("this is the result of fetching tasks from a list!");
+            console.log("this is the result of updating the attribute from a task");
             console.log(result);
-            setAllTasks(result)
-            console.log("this is the result of fetching tasks from a list! ABOVE");
-            // setTodoTasks(result.filter(task => task.status === "todo"))
-            // setDoingTasks(result.filter(task => task.status == "doing"))
-            // setDoneTasks(result.filter(task => task.status == "done"))
+            console.log("this is the result of updating the attribute from a task! ABOVE");
         }
         catch(error){
-            setError(error);
+            console.error(error);
         }finally {
-            setLoading(false);
+            console.log("finished")
+            setUpdatingToBackend(false)
         }
     }
-
 
     const handleClose = () => {
         console.log("it should be false!!!!!!!")
-        console.log("it should be false!!!!!!!")
-
         setToggleEditTask(false)
-        // setToggleEditTask(false)
-        // setToggleEditTask(false)
     }
 
     return(
-
         <ViewTaskInfoContainer>
             <div className="field">
                 <div className="label-with-icon">
@@ -63,8 +90,8 @@ const ViewTaskInfo = ({
                 
             </div>
             <div className="field">
-                <label htmlFor="description" className="label">Description:</label>
-                <input type="text" id="description" defaultValue={taskInfo.note} className="description-input" />
+                <label htmlFor="description" className="label">Note:</label>
+                <input type="text" id="description" onChange={handleChange} defaultValue={taskInfo.note} className="description-input" />
             </div>
             <div className="field">
                 <div className="label-with-icon">
@@ -80,6 +107,9 @@ const ViewTaskInfo = ({
             <div className="close-button-container">
                 <button onClick={handleClose} className="close-button">&times;</button>
             </div>
+            {
+                updatingToBackend && (<LoadingSpinner/>)
+            }
         </ViewTaskInfoContainer>
 
     )
