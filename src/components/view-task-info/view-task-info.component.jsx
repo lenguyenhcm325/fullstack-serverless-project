@@ -49,8 +49,9 @@ const ViewTaskInfo = ({
             console.log(result);
             console.log("this is the result of updating the attribute from a task! ABOVE");
         }
-        catch(error){
-            console.error(error);
+        catch(err){
+            setError(err)
+            console.error(err);
         }finally {
             console.log("finished")
             setUpdatingToBackend(false)
@@ -60,10 +61,7 @@ const ViewTaskInfo = ({
         event.preventDefault()
         const currentNote = noteRef.current;
         console.log("this is the thing  " + currentNote)
-        console.log("this is the thing  " + currentNote)
-        console.log("this is the thing  " + currentNote)
-        console.log("this is the thing  " + currentNote)
-        console.log("this is the thing  " + currentNote)
+
         updateTaskInfoBackend(currentNote)
         event.returnValue = "You have unsaved changes! Do you really want to leave?"
         
@@ -96,6 +94,44 @@ const ViewTaskInfo = ({
             }, 1000)
     }
 
+    const handleDelete = async (event) => {
+        try {
+            setUpdatingToBackend(true)
+            console.log({
+                listId: listId,
+                taskId: taskId
+
+            })
+            const deleteTaskEndpoint = `${apiEndpoint}/tasks/${taskId}?listId=${listId}`;
+            const response = await fetch(deleteTaskEndpoint, {
+                headers: {
+                    Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                },
+                method: "DELETE"
+            })
+            if (!response.ok){
+                throw new Error('Something went wrong!');
+            }
+            const result = await response.json();
+            console.log("this is the result of deleting a task");
+            console.log(result);
+            console.log("this is the result of deleting a task! ABOVE");
+            setUpdatingToBackend(false)
+            setToggleEditTask(false)
+            setTimeout(() => {
+                window.location.reload();
+            }, 1)
+            
+        }
+        catch(err){
+            setError(err);
+            console.error(err);
+            setUpdatingToBackend(false)
+            setToggleEditTask(false)
+        }     
+    }
+
+
     const handleClose = () => {
         console.log("it should be false!!!!!!!")
         setToggleEditTask(false)
@@ -103,6 +139,11 @@ const ViewTaskInfo = ({
 
     return(
         <ViewTaskInfoContainer>
+            {
+                error && (
+                    <div className="error-message">Something went wrong! <br/> Please try again later.</div>                    
+                )
+            }
             <div className="field">
                 <div className="label-with-icon">
                     <span className="label">Date</span>
@@ -117,7 +158,7 @@ const ViewTaskInfo = ({
                 <input type="text" id="description" onChange={handleChange} defaultValue={taskInfo.note} className="description-input" />
             </div>
             <div className="field">
-                <button className="delete-button">Delete</button>
+                <button onClick={handleDelete} className="delete-button">Delete</button>
 
             </div>
             <div className="close-button-container">

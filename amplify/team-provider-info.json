@@ -68,7 +68,7 @@
         },
         "tasksHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/tasksHandler-6369762f7552324e3735-build.zip"
+          "s3Key": "amplify-builds/tasksHandler-30456f41353752473665-build.zip"
         },
         "userProfileHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",

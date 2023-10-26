@@ -1,13 +1,6 @@
 {
   "version": 1,
   "paths": {
-    "/tasks": {
-      "name": "/tasks",
-      "lambdaFunction": "modifyTask",
-      "permissions": {
-        "setting": "open"
-      }
-    },
     "/profile/{userId}": {
       "name": "/profile/{userId}",
       "lambdaFunction": "userProfileHandler",
@@ -32,6 +25,13 @@
     "/collaborators": {
       "name": "/collaborators",
       "lambdaFunction": "collaboratorsHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/tasks/{taskId}": {
+      "name": "/tasks/{taskId}",
+      "lambdaFunction": "tasksHandler",
       "permissions": {
         "setting": "open"
       }

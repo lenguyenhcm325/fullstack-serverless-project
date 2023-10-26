@@ -4,9 +4,8 @@ import boto3
 
 def handle_delete_request(event):
     try:
-
         list_id = event["queryStringParameters"]["listId"]
-        task_id = event["queryStringParameters"]["taskId"]
+        task_id = event["pathParameters"]["taskId"]
     except Exception as e:
         print(e)
         return {

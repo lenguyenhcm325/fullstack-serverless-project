@@ -87,5 +87,17 @@ export const ViewTaskInfoContainer = styled.div`
             background-color: #d32f2f;
         }
     }
+    & .error-message {
+        font-weight: 700;
+        position: fixed;
+        color: red;
+        padding: 20px; 
+        border: 1px solid black;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #e7f5ff;
+        
+    }
 
 `

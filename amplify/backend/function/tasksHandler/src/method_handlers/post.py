@@ -16,7 +16,6 @@ def handle_post_request(event, user_id, email):
         note = body_data["note"]
         # It is path param, isn't it?!
         list_id = event["pathParameters"]["listId"]
-        # actually you can get this from the JWT Token
 
     except Exception as e:
         print(e)
