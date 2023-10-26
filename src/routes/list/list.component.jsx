@@ -5,6 +5,7 @@ import CreateTask from "../../components/create-task/create-task.component"
 import TaskPreview from "../../components/task-preview/task-preview.component"
 import AddCollaboratorButton from "../../components/add-collaborator-button/add-collaborator-button.component"
 import AddCollaborator from "../../components/add-collaborator/add-collaborator.component"
+import CollaboratorList from "../../components/collaborator-list/collaborator-list.component"
 import { ListContainer } from "./list.styles"
 const List = () => {
 
@@ -15,6 +16,7 @@ const List = () => {
     const [allTasks, setAllTasks] = useState([]);
     const [toggleAddCollaborator, setToggleAddCollaborator] = useState(false);
     const [toggleCreateTask, setToggleCreateTask] = useState(false); 
+    const [usersWithRole, setUsersWithRole] = useState([]);
 
 
     // const [todoTasks, setTodoTasks] = useState([]);
@@ -25,7 +27,6 @@ const List = () => {
     useEffect(() => {
         const fetchTasksFromList = async () => {
             try {
-                setLoading(true);
                 const createTodoEndpoint = `${apiEndpoint}/lists/${listId}`;
                 const response = await fetch(createTodoEndpoint, {
                     headers: {
@@ -43,11 +44,39 @@ const List = () => {
             }
             catch(error){
                 setError(error);
-            }finally {
-                setLoading(false);
             }
         }
+        const fetchUsersWithRole = async() => {
+            try {
+                const collaboratorsEndpoint = `${apiEndpoint}/collaborators?listId=${listId}`;
+                const response = await fetch(collaboratorsEndpoint, {
+                    headers: {
+                        Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                    }                    
+                })
+                if (!response.ok){
+                    throw new Error('Something went wrong!');
+                }
+                
+                const result = await response.json();
+                console.log("usersWithRole return!")
+                console.log(result)
+                console.log("usersWithRole return!")
+                console.log(result)
+                console.log("usersWithRole return!")
+                console.log(result)
+                console.log("usersWithRole return!")
+                console.log(result)
+                setUsersWithRole(result)
+
+            }catch(error) {
+                setError(error);
+            }
+        }
+        setLoading(true);
         fetchTasksFromList()
+        fetchUsersWithRole()
+        setLoading(false);
     }, [])
 
     // const handleAddTask = async (event) => {
@@ -127,12 +156,17 @@ const List = () => {
             {
                 toggleCreateTask && (<CreateTask setToggleCreateTask={setToggleCreateTask} status={taskStatus}/>)
             }
-            <AddCollaboratorButton setToggleAddCollaborator={setToggleAddCollaborator}/>
+            
             {
                 toggleAddCollaborator && (
                     <AddCollaborator setToggleAddCollaborator={setToggleAddCollaborator}/>
                 )
             }
+            <div className="collaborators-section">
+                <AddCollaboratorButton setToggleAddCollaborator={setToggleAddCollaborator}/>
+                <CollaboratorList usersWithRole={usersWithRole}/>
+            </div>
+
         </ListContainer>
         )
     

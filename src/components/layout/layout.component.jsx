@@ -9,6 +9,9 @@ import ToProfileButton from '../to-profile-button/to-profile-button.component';
 
 
 export function Layout() {
+  console.log("check to see if it re-renders1")
+  console.log("check to see if it re-renders2")
+  console.log("check to see if it re-renders3")
   const location = useLocation(); 
   const currentPathname = location.pathname;
   console.log(currentPathname)

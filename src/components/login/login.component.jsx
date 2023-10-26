@@ -11,6 +11,7 @@ export function Login() {
     useEffect(() => {
       if (route === 'authenticated') {
         navigate(from, { replace: true });
+
       }
     }, [route, navigate, from]);
     return (

@@ -41,4 +41,11 @@ export const ListContainer = styled.div`
 & .toggle-create-task:hover {
     background-color: #2980b9;
 }
+
+& .collaborators-section {
+    position: absolute;
+    right: 20px;
+    top: 96px;
+
+}
 `

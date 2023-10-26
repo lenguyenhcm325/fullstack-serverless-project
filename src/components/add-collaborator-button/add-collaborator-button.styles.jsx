@@ -1,13 +1,10 @@
 import styled from "styled-components";
 
 export const AddCollaboratorButtonContainer = styled.div`
-
-    position: absolute; 
-    top: 90px; 
-    right: 20px;
+    margin-bottom: 4px;
 & button {
     font-weight: 700;
-    padding: 10px 20px;
+    width: 200px;
     background-color: #3498db;
     color: #ffffff;
     border-radius: 5px;

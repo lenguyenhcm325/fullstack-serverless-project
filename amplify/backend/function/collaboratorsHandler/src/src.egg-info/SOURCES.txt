@@ -1,5 +1,6 @@
 index.py
 setup.py
+method_handlers/get.py
 method_handlers/options.py
 method_handlers/post.py
 method_handlers/utilities.py

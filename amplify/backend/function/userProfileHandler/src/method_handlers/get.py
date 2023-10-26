@@ -9,7 +9,7 @@ from jose.utils import base64url_decode
 def handle_get_request(event, user_id):
     user_id_from_url = event["pathParameters"]["userId"]
     dynamodb = boto3.client("dynamodb")
-    table_name = "usersTable-dev"
+    table_name = "userIdToInfo-dev"
     primary_key = {"userId": {"S": user_id}}
 
     if user_id != user_id_from_url:

@@ -91,7 +91,7 @@ def handler(event, context):
     print(f'there is claim!!!')
     print(claim)
     dynamodb = boto3.client("dynamodb")
-    table_name = "usersTable-dev"
+    table_name = "userIdToInfo-dev"
     primary_key = {"userId": {"S": claim["sub"]}}
 
     try:
