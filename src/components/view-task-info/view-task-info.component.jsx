@@ -93,7 +93,7 @@ const ViewTaskInfo = ({
         timeout.current = setTimeout(() => {
                 console.log("This gets run, hopefully after 2 seconds")
                 updateTaskInfoBackend(newNote)
-            }, 5000)
+            }, 1000)
     }
 
     const handleClose = () => {
@@ -117,15 +117,8 @@ const ViewTaskInfo = ({
                 <input type="text" id="description" onChange={handleChange} defaultValue={taskInfo.note} className="description-input" />
             </div>
             <div className="field">
-                <div className="label-with-icon">
-                    <span className="label">Collaborators</span>
-                    <img className="edit-icon" src="../../../../public/svg/edit.svg" alt="" />
-                </div>
-                <ul className="collaborators-list">
-                    <li>Collaborator 1</li>
-                    <li>Collaborator 2</li>
-                    <li>Collaborator 3</li>
-                </ul>
+                <button className="delete-button">Delete</button>
+
             </div>
             <div className="close-button-container">
                 <button onClick={handleClose} className="close-button">&times;</button>

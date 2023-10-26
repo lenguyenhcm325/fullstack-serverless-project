@@ -12,8 +12,15 @@ const TaskPreview = (props) => {
         note 
     } = props;
 
+    function truncateString(str) {
+        if (str.length > 20) {
+            return str.substring(0, 20) + '...';
+        }
+        return str;
+    }
     
     const [toggleEditTask, setToggleEditTask] = useState(false);
+    
     const [toggleMovePanel, setToggleMovePanel] = useState(false);
     const handleToggleMovePanel =(event) => {
         event.stopPropagation();
@@ -26,7 +33,9 @@ const TaskPreview = (props) => {
     return (
     <TaskPreviewContainer >
         <h3>{title}</h3>
-        <p className="date">DD/MM/YYYY</p>
+        <p className="note-preview">{
+            note? (truncateString(note)) : ("No note")
+        }</p>
         <div className="icon-grid-block view-task-block">
             <div className="circle-bg-icon ">
                 <img onClick={handleToggleEditTask} className="view-task-icon icon" src="../../../../public/svg/edit.svg" alt="" />                

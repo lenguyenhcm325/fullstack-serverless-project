@@ -8,6 +8,7 @@ import { Layout } from './components/layout/layout.component';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import List from './routes/list/list.component';
 import Profile from './routes/profile/profile.component';
+import NotFound from './routes/not-found/not-found.component';
 import './App.css';
 import TaskNote from './components/task-note/task-note.component';
 
@@ -29,6 +30,7 @@ function MyRoutes() {
             </RequireAuth>
           } />
           <Route path="/login" element={<Login />} />
+          <Route path="*" element={< NotFound/>} />
         </Route>
       </Routes>
     </BrowserRouter>

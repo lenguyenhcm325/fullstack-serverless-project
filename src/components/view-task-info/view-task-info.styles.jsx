@@ -55,10 +55,7 @@ export const ViewTaskInfoContainer = styled.div`
         margin-top: 5px;
     }
     
-    & .collaborators-list {
-        list-style-type: disc;
-        margin-left: -12px;
-    }
+
     
     & .close-button-container {
         position: absolute;
@@ -75,5 +72,20 @@ export const ViewTaskInfoContainer = styled.div`
     
     }
 
+    & .delete-button {
+        background-color: #ff6b6b; /* red color */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        font-weight: bold;
+    
+        /* Optional: Making it a bit darker when hovering */
+        &:hover {
+            background-color: #d32f2f;
+        }
+    }
 
 `

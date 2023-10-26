@@ -46,7 +46,9 @@ const AddCollaborator = ({setToggleAddCollaborator}) => {
                 }
                 
             }else {
+
                 setToggleAddCollaborator(false);
+                window.location.reload();
             }
             const result = await response.json();
             console.log("this is the result of adding collaborator!");

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Auth} from "aws-amplify"
+import BigErrorMessage from "../../components/big-error-message/big-error-message.component";
 import formatLocalDate from "../../utils/format-local-date";
 import { useParams } from 'react-router-dom';
 import { ProfileContainer } from "../profile.styles";
@@ -112,7 +113,9 @@ const Profile = () => {
         return <div>Loading, please wait</div>
     }
     if (error){
-        return <div>Error: {error.message ? error.message : JSON.stringify(error)}</div>
+        return (
+            <BigErrorMessage />
+        )
     }
 
     if (Object.keys(userInfo).length !== 0){

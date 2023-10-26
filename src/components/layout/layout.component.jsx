@@ -4,7 +4,7 @@ import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthenticator, Button, Heading, View } from '@aws-amplify/ui-react';
 import {Auth} from "aws-amplify"
 import ToProfileButton from '../to-profile-button/to-profile-button.component';
-
+import { LayoutContainer } from './layout.styles';
 
 
 
@@ -45,7 +45,7 @@ export function Layout() {
     navigate('/login');
   }
   return (
-    <>
+    <LayoutContainer>
 
       {
         userObject? (<div>User ID: {userObject.attributes.sub}</div>) : (<div>Nothing for you here...</div>)
@@ -58,7 +58,7 @@ export function Layout() {
       }
 
       <Outlet />
-    </>
+    </LayoutContainer>
   );
 }
 

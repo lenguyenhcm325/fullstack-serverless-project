@@ -7,6 +7,7 @@ import AddCollaboratorButton from "../../components/add-collaborator-button/add-
 import AddCollaborator from "../../components/add-collaborator/add-collaborator.component"
 import CollaboratorList from "../../components/collaborator-list/collaborator-list.component"
 import { ListContainer } from "./list.styles"
+import BigErrorMessage from "../../components/big-error-message/big-error-message.component"
 const List = () => {
 
     const {listId} = useParams();
@@ -42,8 +43,8 @@ const List = () => {
                 // setDoingTasks(result.filter(task => task.status == "doing"))
                 // setDoneTasks(result.filter(task => task.status == "done"))
             }
-            catch(error){
-                setError(error);
+            catch(err){
+                setError(err);
             }
         }
         const fetchUsersWithRole = async() => {
@@ -69,8 +70,8 @@ const List = () => {
                 console.log(result)
                 setUsersWithRole(result)
 
-            }catch(error) {
-                setError(error);
+            }catch(err) {
+                setError(err);
             }
         }
         setLoading(true);
@@ -114,12 +115,13 @@ const List = () => {
     }
 
 
-
     if (loading){
         return <div>Loading, please wait</div>
     }
     if (error){
-        return <div>Error: {error.message ? error.message : JSON.stringify(error)}</div>
+        return (
+            <BigErrorMessage/>
+        )
     }
 
 

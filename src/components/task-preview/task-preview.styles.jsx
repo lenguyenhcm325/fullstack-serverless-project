@@ -55,7 +55,7 @@ export const TaskPreviewContainer = styled.div`
     border-radius: 50%; 
 }
 
-& .date {
+& .note-preview {
     grid-column: 1;
     grid-row: 2;
 }

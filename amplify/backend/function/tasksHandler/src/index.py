@@ -3,6 +3,7 @@ from method_handlers.post import handle_post_request
 from method_handlers.options import handle_options_request
 from method_handlers.utilities import handle_claim
 from method_handlers.put import handle_put_request
+from method_handlers.delete import handle_delete_request
 
 
 def handler(event, context):
@@ -18,6 +19,8 @@ def handler(event, context):
     user_id = claim["sub"]
     email = claim["email"]
 
+    if event["httpMethod"] == "DELETE":
+        return handle_delete_request(event)
     if event["httpMethod"] == "GET":
         return handle_get_request(event, user_id, email)
     if event["httpMethod"] == "POST":
