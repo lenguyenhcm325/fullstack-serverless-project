@@ -29,7 +29,7 @@ const ViewTaskInfo = ({
                 taskId: taskId
 
             })
-            const createTodoEndpoint = `${apiEndpoint}/lists/${listId}`;
+            const createTodoEndpoint = `${apiEndpoint}/tasks/${taskId}`;
             const response = await fetch(createTodoEndpoint, {
                 headers: {
                     Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
@@ -37,7 +37,7 @@ const ViewTaskInfo = ({
                 method: "PUT",
                 body: JSON.stringify({
                     note: note,
-                    taskId: taskId
+                    listId: listId
 
                 })
             })
@@ -74,7 +74,6 @@ const ViewTaskInfo = ({
         return () => {
             window.removeEventListener("beforeunload", handleUpdateBeforeUnload)
         }
-
     }, [])
 
     const handleChange = (event) => {

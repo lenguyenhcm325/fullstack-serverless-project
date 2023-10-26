@@ -1,46 +1,22 @@
 import json
 import boto3
-import pytz
-import datetime
-import uuid
+from boto3.dynamodb.conditions import Key
 
 
-def handle_post_request(event, user_id, email):
-    try:
-        body = event["body"]
-        body_data = json.loads(body)
-
-        # DEAL WITH THIS
-        title = body_data["title"]
-        status = body_data["status"]
-        note = body_data["note"]
-        # It is path param, isn't it?!
-        list_id = body_data["listId"]
-
-    except Exception as e:
-        print(e)
-        return {
-            'statusCode': 400,
-            'headers': {
-                'Access-Control-Allow-Headers': '*',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': '*'
-            },
-            'body': json.dumps("Missing required attribute(s)!")
-        }
-
-    dynamodb = boto3.client("dynamodb")
+def handle_get_request(event, user_id, email):
+    list_id = event["pathParameters"]["listId"]
+    dynamodb_client = boto3.client("dynamodb")
 
     lists_table_name = "listsTableV2-dev"
 
     lists_primary_key = {"listId": {"S": list_id},
-                         "userId": {"S": user_id}}
+                         "userId": {"S": user_id}
+                         }
 
-    # here we check whether the user is authorized to do so
     try:
-        response = dynamodb.get_item(
+        response = dynamodb_client.get_item(
             TableName=lists_table_name, Key=lists_primary_key)
-        item = response.get("Item")
+        item = response.get("Item", None)
         if not item:
             return {
                 'statusCode': 401,
@@ -69,57 +45,55 @@ def handle_post_request(event, user_id, email):
     tasks_table_name = "tasksTable-dev"
     try:
 
-        generated_uuid = str(uuid.uuid4())
+        profile_pic_urls_cache = {}
+        profile_pics_table_name = "profilePicsMetadata-dev"
 
-        print(f'This is the generated uuid: {generated_uuid}')
-        utc_now = datetime.datetime.now(pytz.utc)
-        formatted_date = utc_now.isoformat()
-        print(f"time iso 8601 {formatted_date}")
-        ItemObject = {
-            "taskId": {
-                "S": generated_uuid
-            },
-            "listId": {
-                "S": list_id
-            },
-            "userId": {
-                "S": user_id
-            },
-            "title": {
-                "S": title
-            },
-            "createdTime": {
-                "S": formatted_date
-            },
-            "lastModifiedTime": {
-                "S": formatted_date
-            },
-            "email": {
-                "S": email
-            },
-            "status": {
-                "S": status
-            },
-            "note": {
-                "S": note
-            }
-        }
-        print("below is the put_item Item")
-        print(ItemObject)
-        dynamodb.put_item(
-            TableName=tasks_table_name,
-            Item=ItemObject
+        dynamodb_resource = boto3.resource("dynamodb")
+        table = dynamodb_resource.Table(tasks_table_name)
+        partition_key_name = "listId"
+        partition_key_value = list_id
+
+        response = table.query(
+            KeyConditionExpression=Key(
+                partition_key_name).eq(partition_key_value)
         )
-        print(f"Task for user {user_id} in list {list_id} created!")
+
+        items = response["Items"]
+        print("there are items inside this list already!")
+        print(items)
+        for item in items:
+
+            if item["userId"] in profile_pic_urls_cache:
+                pass
+            else:
+                response = dynamodb_client.get_item(
+                    TableName=profile_pics_table_name,
+                    Key={
+                        "userId": {
+                            "S": item["userId"]
+                        }
+                    }
+                )
+                profile_pic_metadata = response.get("Item")
+                if not profile_pic_metadata:
+                    profile_pic_urls_cache[item["userId"]] = None
+                else:
+                    profile_pic_url = profile_pic_metadata["fullsizeUrl"]["S"]
+                    profile_pic_urls_cache[item["userId"]] = profile_pic_url
+
+            # Fix this later!
+            item["thumbnailUrl"] = profile_pic_urls_cache[item["userId"]]
+
         return {
-            'statusCode': 201,
+            'statusCode': 200,
             'headers': {
                 'Access-Control-Allow-Headers': '*',
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps("Todo-list for user created!")
+            'body': json.dumps(items)
         }
+
     except Exception as e:
         print("there is error")
         print(e)
@@ -133,7 +107,7 @@ def handle_post_request(event, user_id, email):
             'body': json.dumps(e)
         }
 
-        # print("there is a list with the same list id!")
+        # print("there is a list with the same list id! ")
         # print(item)
         # collaborator_emails_list = item.get("collaborators", None)
         # if item["ownerId"]["S"] != user_id:

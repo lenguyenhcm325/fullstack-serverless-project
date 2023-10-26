@@ -15,19 +15,18 @@ const MoveTaskPanel = ({
         console.log("inside update task status!")
         try {
             setLoading(true);
-            const response = await fetch(`${apiEndpoint}/lists/${listId}`, 
+            const response = await fetch(`${apiEndpoint}/tasks/${taskId}`, 
                 {
                     headers: {
                         Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
                     },
                     method: "PUT",
                     body: JSON.stringify({
-                        taskId, 
+                        listId,
                         status          
 
                     })
                 },
-
             )
             console.log("inside the try block!")
             if (!response.ok){

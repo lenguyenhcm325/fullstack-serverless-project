@@ -68,7 +68,7 @@
         },
         "tasksHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/tasksHandler-30456f41353752473665-build.zip"
+          "s3Key": "amplify-builds/tasksHandler-30546964584a3267706a-build.zip"
         },
         "userProfileHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
@@ -77,6 +77,10 @@
         "collaboratorsHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
           "s3Key": "amplify-builds/collaboratorsHandler-355055484842756a4956-build.zip"
+        },
+        "listsHandler": {
+          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
+          "s3Key": "amplify-builds/listsHandler-4e466b6d594d51475954-build.zip"
         }
       },
       "api": {

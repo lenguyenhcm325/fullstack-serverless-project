@@ -16,14 +16,6 @@
             "Arn"
           ],
           "category": "function",
-          "resourceName": "tasksHandler"
-        },
-        {
-          "attributes": [
-            "Name",
-            "Arn"
-          ],
-          "category": "function",
           "resourceName": "todoListHandler"
         },
         {
@@ -33,6 +25,22 @@
           ],
           "category": "function",
           "resourceName": "collaboratorsHandler"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "tasksHandler"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "listsHandler"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -130,6 +138,11 @@
       "service": "Lambda"
     },
     "getUserProfile": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "listsHandler": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -323,6 +336,22 @@
         {
           "category": "function",
           "resourceName": "getUserProfile"
+        }
+      ]
+    },
+    "AMPLIFY_function_listsHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "listsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_listsHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "listsHandler"
         }
       ]
     },

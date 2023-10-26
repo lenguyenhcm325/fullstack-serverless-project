@@ -18,7 +18,7 @@ const CreateTask = ({setToggleCreateTask, status}) => {
     const handleCreateTask = async () => {
         try {
             setLoading(true);
-            const createTodoEndpoint = `${apiEndpoint}/lists/${listId}`;
+            const createTodoEndpoint = `${apiEndpoint}/tasks/123`;
             const response = await fetch(createTodoEndpoint, {
                 method: "POST", 
                 headers: {
@@ -26,6 +26,7 @@ const CreateTask = ({setToggleCreateTask, status}) => {
                 },
                 body: JSON.stringify(
                     {
+                        listId: listId,
                         title: taskInfo.title,
                         note: taskInfo.note,
                         status: status

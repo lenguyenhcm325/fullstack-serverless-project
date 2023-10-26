@@ -8,13 +8,6 @@
         "setting": "open"
       }
     },
-    "/lists/{listId}": {
-      "name": "/lists/{listId}",
-      "lambdaFunction": "tasksHandler",
-      "permissions": {
-        "setting": "open"
-      }
-    },
     "/listsMetadata": {
       "name": "/listsMetadata",
       "lambdaFunction": "todoListHandler",
@@ -32,6 +25,13 @@
     "/tasks/{taskId}": {
       "name": "/tasks/{taskId}",
       "lambdaFunction": "tasksHandler",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/lists/{listId}": {
+      "name": "/lists/{listId}",
+      "lambdaFunction": "listsHandler",
       "permissions": {
         "setting": "open"
       }

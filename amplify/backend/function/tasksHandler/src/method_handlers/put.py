@@ -8,7 +8,9 @@ def handle_put_request(event, user_id):
         body = event["body"]
         print(body)
         body_data = json.loads(body)
-        keys_to_remove = ["taskId"]
+        keys_to_remove = ["taskId", "listId"]
+        task_id = event["pathParameters"]["taskId"]
+        list_id = body_data["listId"]
         body_data_without_task_id = {
             k: v for k, v in body_data.items() if k not in keys_to_remove}
         print("body_data_without_task_id")
@@ -17,8 +19,6 @@ def handle_put_request(event, user_id):
         update_expr, expr_attr_names, expr_attr_values = construct_update_expression(
             body_data_without_task_id)
         # These three must be passed to the backend
-        task_id = body_data["taskId"]
-        list_id = event["pathParameters"]["listId"]
 
     except Exception as e:
         print(e)
