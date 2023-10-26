@@ -43,6 +43,7 @@ def handle_put_request(event, user_id):
     try:
         response = dynamodb.get_item(
             TableName=lists_table_name, Key=lists_primary_key)
+        print(response)
         item = response.get("Item")
         if not item:
             return {
@@ -91,6 +92,8 @@ def handle_put_request(event, user_id):
         print(response)
         status_after_update = response["Attributes"]
         # print(status_after_update)
+        print(
+            f'changed the status of task ${task_id} to ${status_after_update} successfully!')
         return {
             'statusCode': 200,
             'headers': {
@@ -112,5 +115,5 @@ def handle_put_request(event, user_id):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps(e)
+            'body': json.dumps("Something went wrong")
         }

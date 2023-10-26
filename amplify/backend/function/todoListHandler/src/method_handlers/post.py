@@ -13,6 +13,7 @@ def handle_post_request(event, user_id):
         title = body_data["title"]
 
     except Exception as e:
+        print("Missing required attribute(s)!")
         print(e)
         return {
             'statusCode': 400,
@@ -54,10 +55,11 @@ def handle_post_request(event, user_id):
         }
         print("below is the put_item Item")
         print(ItemObject)
-        dynamodb.put_item(
+        response = dynamodb.put_item(
             TableName=table_name,
             Item=ItemObject
         )
+        print(response)
         print(f"Todo-list for user {user_id} created!")
         return {
             'statusCode': 201,
@@ -78,5 +80,5 @@ def handle_post_request(event, user_id):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps(e)
+            'body': json.dumps("Something went wrong")
         }

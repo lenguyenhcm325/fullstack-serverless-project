@@ -13,6 +13,7 @@ def handle_get_request(user_id):
             IndexName="listsTableV2GSI",
             KeyConditionExpression=Key('userId').eq(user_id)
         )
+        print(response)
         items = response["Items"]
         print("items found!!!")
         print(items)
@@ -36,5 +37,5 @@ def handle_get_request(user_id):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps(e)
+            'body': json.dumps("Something went wrong")
         }

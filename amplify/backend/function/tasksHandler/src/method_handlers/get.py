@@ -16,6 +16,7 @@ def handle_get_request(event, user_id, email):
     try:
         response = dynamodb_client.get_item(
             TableName=lists_table_name, Key=lists_primary_key)
+        print(response)
         item = response.get("Item", None)
         if not item:
             return {
@@ -39,7 +40,7 @@ def handle_get_request(event, user_id, email):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps(e)
+            'body': json.dumps("Something went wrong")
         }
 
     tasks_table_name = "tasksTable-dev"
@@ -52,12 +53,11 @@ def handle_get_request(event, user_id, email):
         table = dynamodb_resource.Table(tasks_table_name)
         partition_key_name = "listId"
         partition_key_value = list_id
-
         response = table.query(
             KeyConditionExpression=Key(
                 partition_key_name).eq(partition_key_value)
         )
-
+        print(response)
         items = response["Items"]
         print("there are items inside this list already!")
         print(items)
@@ -83,7 +83,7 @@ def handle_get_request(event, user_id, email):
 
             # Fix this later!
             item["thumbnailUrl"] = profile_pic_urls_cache[item["userId"]]
-
+        print(items)
         return {
             'statusCode': 200,
             'headers': {
@@ -104,7 +104,7 @@ def handle_get_request(event, user_id, email):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps(e)
+            'body': json.dumps("Something went wrong")
         }
 
         # print("there is a list with the same list id! ")

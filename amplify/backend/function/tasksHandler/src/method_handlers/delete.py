@@ -7,6 +7,7 @@ def handle_delete_request(event):
         list_id = event["queryStringParameters"]["listId"]
         task_id = event["pathParameters"]["taskId"]
     except Exception as e:
+        print("Missing required attribute(s)!")
         print(e)
         return {
             'statusCode': 400,
@@ -27,6 +28,7 @@ def handle_delete_request(event):
                 "taskId": task_id
             }
         )
+        print(f"Task {task_id} from {list_id} deleted successfully!")
         print(response)
         return {
             'statusCode': 200,

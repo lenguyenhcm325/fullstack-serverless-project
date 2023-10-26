@@ -55,7 +55,6 @@ def extract_token_from_event(event):
 def handle_claim(event):
     claim = None
     token = extract_token_from_event(event)
-    print(f'test if it returns the token {token}')
     try:
         claim = get_claim(token)
     except Exception as e:

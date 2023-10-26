@@ -5,7 +5,6 @@ from method_handlers.options import handle_options_request
 
 
 def handler(event, context):
-    print("this is the event object")
     print(event)
     claim = None
     result = handle_claim(event)

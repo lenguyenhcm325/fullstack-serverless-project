@@ -13,6 +13,9 @@ def handle_get_request(event, user_id):
     primary_key = {"userId": {"S": user_id}}
 
     if user_id != user_id_from_url:
+        print("because user_id and user_id_from_url are not the same, user is rejected")
+        print(f"here is the user_id {user_id}")
+        print(f"here is the user_id_from_url {user_id_from_url}")
         return {
             'statusCode': 401,
             'headers': {
@@ -25,6 +28,7 @@ def handle_get_request(event, user_id):
 
     try:
         response = dynamodb.get_item(TableName=table_name, Key=primary_key)
+        print(response)
         item = response.get('Item')
         if item:
             print("there is item!")
@@ -60,5 +64,5 @@ def handle_get_request(event, user_id):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps(e)
+            'body': json.dumps("Something went wrong")
         }

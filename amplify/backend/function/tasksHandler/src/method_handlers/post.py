@@ -18,6 +18,7 @@ def handle_post_request(event, user_id, email):
         list_id = body_data["listId"]
 
     except Exception as e:
+        print("Missing required attribute(s)")
         print(e)
         return {
             'statusCode': 400,
@@ -40,6 +41,7 @@ def handle_post_request(event, user_id, email):
     try:
         response = dynamodb.get_item(
             TableName=lists_table_name, Key=lists_primary_key)
+        print(response)
         item = response.get("Item")
         if not item:
             return {
@@ -63,7 +65,7 @@ def handle_post_request(event, user_id, email):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps(e)
+            'body': json.dumps("Something went wrong")
         }
 
     tasks_table_name = "tasksTable-dev"
@@ -106,10 +108,11 @@ def handle_post_request(event, user_id, email):
         }
         print("below is the put_item Item")
         print(ItemObject)
-        dynamodb.put_item(
+        response = dynamodb.put_item(
             TableName=tasks_table_name,
             Item=ItemObject
         )
+        print(response)
         print(f"Task for user {user_id} in list {list_id} created!")
         return {
             'statusCode': 201,
@@ -130,7 +133,7 @@ def handle_post_request(event, user_id, email):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps(e)
+            'body': json.dumps("Something went wrong")
         }
 
         # print("there is a list with the same list id!")

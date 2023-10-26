@@ -55,7 +55,6 @@ def extract_token_from_event(event):
 def handle_claim(event):
     claim = None
     token = extract_token_from_event(event)
-    print(f'test if it returns the token {token}')
     try:
         claim = get_claim(token)
     except Exception as e:
@@ -114,5 +113,10 @@ def construct_update_expression(attributes_to_update):
         expr_attr_values[placeholder] = value
 
     update_expr = "SET " + ", ".join(update_expr_parts)
-
+    print("Output of construct_update_expression")
+    print({
+        "update_expr": update_expr,
+        "expr_attr_names": expr_attr_names,
+        "expr_attr_values": expr_attr_values
+    })
     return update_expr, expr_attr_names, expr_attr_values

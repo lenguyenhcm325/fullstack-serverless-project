@@ -12,6 +12,7 @@ def handle_get_request(event):
         list_id = event["queryStringParameters"]["listId"]
 
     except Exception as e:
+        print("Missing required attribute(s)!")
         print(e)
         return {
             'statusCode': 400,
@@ -34,6 +35,7 @@ def handle_get_request(event):
         response = table.query(
             KeyConditionExpression=Key(lookup_partition_key).eq(list_id)
         )
+        print(response)
         items = response["Items"] if response["Items"] else None
         if not items:
             print("Bad request! No list with the given ID found!")
@@ -72,6 +74,7 @@ def handle_get_request(event):
             print(
                 "here is the user list with role"
             )
+            print(user_id_to_email)
             print(
                 users_with_role
             )

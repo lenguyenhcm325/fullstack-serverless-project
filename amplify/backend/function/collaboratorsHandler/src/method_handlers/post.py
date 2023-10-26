@@ -38,6 +38,7 @@ def handle_post_request(event, user_id, email):
             IndexName=lookup_index_name,
             KeyConditionExpression=Key('email').eq(collaborator_email)
         )
+        print(response)
         item = response["Items"][0] if response["Items"] else None
         if not item:
             print("Bad request! User with the provided email not found!")
@@ -62,6 +63,7 @@ def handle_post_request(event, user_id, email):
             response = dynamodb.get_item(
                 TableName=lists_table_name, Key=owner_lists_primary_key
             )
+            print(response)
             item = response.get("Item")
             if not item:
                 print(
@@ -82,7 +84,7 @@ def handle_post_request(event, user_id, email):
             #     "userId": {"S": collaborator_id},
             #     "listId": {"S": list_id}
             # }
-            dynamodb.put_item(
+            response = dynamodb.put_item(
                 TableName=lists_table_name,
                 Item={
                     **item_without_owner_id,
@@ -94,6 +96,7 @@ def handle_post_request(event, user_id, email):
                     }
                 }
             )
+            print(response)
             print(
                 f"added collaborator with id {collaborator_id} and email {collaborator_email} to list {list_id} succesfully")
             return {
@@ -117,5 +120,5 @@ def handle_post_request(event, user_id, email):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps(e)
+            'body': json.dumps("Something went wrong")
         }

@@ -7,7 +7,6 @@ from method_handlers.utilities import handle_claim
 
 
 def handler(event, context):
-    print("this is the event object")
     print(event)
     claim = None
     result = handle_claim(event)
