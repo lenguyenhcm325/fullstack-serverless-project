@@ -2,6 +2,7 @@ import { Protected } from './components/protected/protected.component';
 import { RequireAuth } from './RequireAuth';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { Login } from './components/login/login.component';
+import { Hub } from 'aws-amplify';
 import { ProtectedSecond } from './components/protected-second/protected-second.component';
 import { Home } from './components/home/home.component';
 import { Layout } from './components/layout/layout.component';
@@ -43,6 +44,11 @@ function MyRoutes() {
 
 function App() {
   const dispatch = useDispatch(); 
+  useEffect(() => {
+    Hub.listen("auth", (_) => {
+      window.location.reload()
+    })
+  }, [])
   useEffect(() => {
     dispatch(handleGetJwt())
     dispatch(handleFetchInfo())

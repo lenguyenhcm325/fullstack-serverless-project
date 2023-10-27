@@ -165,9 +165,6 @@ const ViewTaskInfo = ({
             <div className="close-button-container">
                 <button onClick={handleClose} className="close-button">&times;</button>
             </div>
-            {/* {
-                updatingToBackend && (<LoadingSpinner/>)
-            } */}
         </ViewTaskInfoContainer>
 
     )
