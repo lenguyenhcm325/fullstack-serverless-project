@@ -9,7 +9,8 @@ const TaskPreview = (props) => {
         email,
         taskId,
         status, 
-        note 
+        note,
+        fetchTasksFromList
     } = props;
 
     function truncateString(str) {
@@ -52,7 +53,7 @@ const TaskPreview = (props) => {
             </div>
         {
             toggleMovePanel && (
-                <MoveTaskPanel taskId={taskId} status={status} setToggleMovePanel={setToggleMovePanel}/>
+                <MoveTaskPanel taskId={taskId} status={status} setToggleMovePanel={setToggleMovePanel} fetchTasksFromList={fetchTasksFromList}/>
             )
         }
         </div>

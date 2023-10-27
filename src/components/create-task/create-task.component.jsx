@@ -4,7 +4,7 @@ import { CreateTaskContainer } from "./create-task.styles";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectJwtToken } from "../../store/user/user.selector";
-const CreateTask = ({setToggleCreateTask, status}) => {
+const CreateTask = ({setToggleCreateTask, status, fetchTasksFromList}) => {
     const jwtToken = useSelector(selectJwtToken)
     const navigateTo = useNavigate();
     const {listId} = useParams();
@@ -63,9 +63,9 @@ const CreateTask = ({setToggleCreateTask, status}) => {
         console.log("Form got submitted with " + taskInfo.title);
         await handleCreateTask()
         console.log("after the handleCreateTask")
-        // setToggleCreateTask(false);
-        // navigateTo(`/lists/${listId}`)
-        window.location.reload();
+        setToggleCreateTask(false);
+        fetchTasksFromList()
+
     }
     const handleClose = () => {
         setToggleCreateTask(false);
@@ -76,20 +76,15 @@ const CreateTask = ({setToggleCreateTask, status}) => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="title">Title</label>
                 <input value={taskInfo.title} onChange={handleInputChange} type="text" id="title" name="title" required/>
-                {/* <label htmlFor="dueTime">Due Date Time</label>
-                <input type="datetime-local" id="dueTime" name="dueTime" value=""/>
-                <input value={taskInfo.title} onChange={handleInputChange} type="text" id="dueTime" name="dueTime" required/> */}
                 <label htmlFor="note">Note</label>
                 <input value={taskInfo.note} onChange={handleInputChange} type="text" id="note" name="note"/>
-                <button type="submit" >Submit</button>
+                <button type="submit">Submit</button>
             </form>
             <div className="close-button-container">
                 <button onClick={handleClose} className="close-button">&times;</button>
             </div>
         </CreateTaskContainer>
     )
-
-
 }
 
 export default CreateTask;

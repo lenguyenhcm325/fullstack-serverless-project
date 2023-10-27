@@ -7,7 +7,8 @@ import { selectJwtToken } from "../../store/user/user.selector";
 const MoveTaskPanel = ({
     taskId, 
     status,
-    setToggleMovePanel
+    setToggleMovePanel,
+    fetchTasksFromList
 }) => {
     const jwtToken = useSelector(selectJwtToken)
     const {listId} = useParams();
@@ -53,9 +54,9 @@ const MoveTaskPanel = ({
         console.log(statusAfter)
         await updateTaskStatus(statusAfter)
         setToggleMovePanel(false)
+        fetchTasksFromList()
         console.log("finish handleUpdateTaskStatus")
         // setTimeout(() => {
-            window.location.reload()
         // }, 3000)
 
         

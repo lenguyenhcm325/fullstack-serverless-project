@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, useRef} from "react"
 import { useParams } from "react-router-dom"
 import {Auth} from "aws-amplify"
 import CreateTask from "../../components/create-task/create-task.component"
@@ -21,35 +21,29 @@ const List = () => {
     const [toggleCreateTask, setToggleCreateTask] = useState(false); 
     const [usersWithRole, setUsersWithRole] = useState([]);
 
-
-    // const [todoTasks, setTodoTasks] = useState([]);
-    // const [doingTasks, setDoingTasks] = useState([]);
-    // const [doneTasks, setDoneTasks] = useState();
-
     const apiEndpoint = import.meta.env.VITE_REST_ENDPOINT;
-    useEffect(() => {
-        const fetchTasksFromList = async () => {
-            try {
-                const createTodoEndpoint = `${apiEndpoint}/lists/${listId}`;
-                const response = await fetch(createTodoEndpoint, {
-                    headers: {
-                        Authorization: `Bearer ${jwtToken}`
-                    }
-                })
-                if (!response.ok){
-                    throw new Error('Something went wrong!');
+    const fetchTasksFromList = async () => {
+        try {
+            const createTodoEndpoint = `${apiEndpoint}/lists/${listId}`;
+            const response = await fetch(createTodoEndpoint, {
+                headers: {
+                    Authorization: `Bearer ${jwtToken}`
                 }
-                const result = await response.json();
-                setAllTasks(result)
-                // setTodoTasks(result.filter(task => task.status === "todo"))
-                // setDoingTasks(result.filter(task => task.status == "doing"))
-                // setDoneTasks(result.filter(task => task.status == "done"))
+            })
+            if (!response.ok){
+                throw new Error('Something went wrong!');
             }
-            catch(err){
-                setError(err);
-            }
+            const result = await response.json();
+            setAllTasks(result)
         }
+        catch(err){
+            setError(err);
+        }
+    }
+
+    useEffect(() => {
         const fetchUsersWithRole = async() => {
+
             try {
                 const collaboratorsEndpoint = `${apiEndpoint}/collaborators?listId=${listId}`;
                 const response = await fetch(collaboratorsEndpoint, {
@@ -76,40 +70,12 @@ const List = () => {
                 setError(err);
             }
         }
+
         setLoading(true);
         fetchTasksFromList()
         fetchUsersWithRole()
         setLoading(false);
     }, [])
-
-    // const handleAddTask = async (event) => {
-    //     event.preventDefault();
-    //     try {
-    //         setLoading(true);
-    //         const createTodoEndpoint = `${apiEndpoint}/lists/${listId}`; 
-    //         const response = await fetch(createTodoEndpoint, {
-    //             method: "POST",
-    //             headers: {
-    //                 Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
-    //             },
-    //             body: JSON.stringify({
-    //                 title: "Task 3 Testing",
-                    
-    //             })
-    //         })
-    //         if (!response.ok){
-    //             throw new Error('Something went wrong!');
-    //         }
-    //         const result = await response.json();
-    //         console.log("this is the result of fetching tasks from a list!");
-    //         console.log(result);
-    //     }
-    //     catch(error){
-    //         setError(error);
-    //     }finally {
-    //         setLoading(false);
-    //     }
-    // }
 
     const handleClick = (status) => {
         setToggleCreateTask(true)
@@ -133,7 +99,7 @@ const List = () => {
                 <h2>To do</h2>
                 {
                     allTasks.filter(task => task.status === "todo").map(task => (
-                        <TaskPreview key={task.taskId} {...task}/>
+                        <TaskPreview key={task.taskId} {...task} fetchTasksFromList={fetchTasksFromList}/>
                     ))
                 }
                 <button className="toggle-create-task" onClick={() => handleClick("todo")}>+ Add task</button>
@@ -142,7 +108,7 @@ const List = () => {
                 <h2>Doing</h2>
                 {
                     allTasks.filter(task => task.status === "doing").map(task => (
-                        <TaskPreview key={task.taskId} {...task}/>
+                        <TaskPreview key={task.taskId} {...task} fetchTasksFromList={fetchTasksFromList}/>
                     ))
                 }
 
@@ -152,13 +118,13 @@ const List = () => {
                 <h2>Done</h2>
                 {
                     allTasks.filter(task => task.status === "done").map(task => (
-                        <TaskPreview key={task.taskId} {...task}/>
+                        <TaskPreview key={task.taskId} {...task} fetchTasksFromList={fetchTasksFromList}/>
                     ))
                 }
                 <button className="toggle-create-task" onClick={() => handleClick("done")}>+ Add task</button>
             </div>
             {
-                toggleCreateTask && (<CreateTask setToggleCreateTask={setToggleCreateTask} status={taskStatus}/>)
+                toggleCreateTask && (<CreateTask fetchTasksFromList={fetchTasksFromList} setToggleCreateTask={setToggleCreateTask} status={taskStatus}/>)
             }
             
             {
@@ -170,10 +136,8 @@ const List = () => {
                 <AddCollaboratorButton setToggleAddCollaborator={setToggleAddCollaborator}/>
                 <CollaboratorList usersWithRole={usersWithRole}/>
             </div>
-
         </ListContainer>
         )
-    
 }
 
 export default List; 
