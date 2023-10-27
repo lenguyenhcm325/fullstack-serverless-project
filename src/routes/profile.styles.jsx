@@ -67,11 +67,6 @@ export const ProfileContainer = styled.div`
     color: #ffffff;
 }
 
-& .scrollable-div {
-    max-height: 400px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
 
 & .todo-list-container {
     cursor: pointer;

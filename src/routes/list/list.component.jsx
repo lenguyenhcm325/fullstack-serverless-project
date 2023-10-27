@@ -40,36 +40,37 @@ const List = () => {
             setError(err);
         }
     }
+    const fetchUsersWithRole = async() => {
+
+        try {
+            const collaboratorsEndpoint = `${apiEndpoint}/collaborators?listId=${listId}`;
+            const response = await fetch(collaboratorsEndpoint, {
+                headers: {
+                    Authorization: `Bearer ${jwtToken}`
+                }                    
+            })
+            if (!response.ok){
+                throw new Error('Something went wrong!');
+            }
+            
+            const result = await response.json();
+            console.log("usersWithRole return!")
+            console.log(result)
+            console.log("usersWithRole return!")
+            console.log(result)
+            console.log("usersWithRole return!")
+            console.log(result)
+            console.log("usersWithRole return!")
+            console.log(result)
+            setUsersWithRole(result)
+
+        }catch(err) {
+            setError(err);
+        }
+    }
 
     useEffect(() => {
-        const fetchUsersWithRole = async() => {
 
-            try {
-                const collaboratorsEndpoint = `${apiEndpoint}/collaborators?listId=${listId}`;
-                const response = await fetch(collaboratorsEndpoint, {
-                    headers: {
-                        Authorization: `Bearer ${jwtToken}`
-                    }                    
-                })
-                if (!response.ok){
-                    throw new Error('Something went wrong!');
-                }
-                
-                const result = await response.json();
-                console.log("usersWithRole return!")
-                console.log(result)
-                console.log("usersWithRole return!")
-                console.log(result)
-                console.log("usersWithRole return!")
-                console.log(result)
-                console.log("usersWithRole return!")
-                console.log(result)
-                setUsersWithRole(result)
-
-            }catch(err) {
-                setError(err);
-            }
-        }
 
         setLoading(true);
         fetchTasksFromList()
@@ -129,7 +130,7 @@ const List = () => {
             
             {
                 toggleAddCollaborator && (
-                    <AddCollaborator setToggleAddCollaborator={setToggleAddCollaborator}/>
+                    <AddCollaborator fetchUsersWithRole={fetchUsersWithRole} setToggleAddCollaborator={setToggleAddCollaborator}/>
                 )
             }
             <div className="collaborators-section">

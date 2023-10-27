@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Auth } from "aws-amplify";
 import { useSelector} from "react-redux";
 import { selectJwtToken } from "../../store/user/user.selector";
-const AddCollaborator = ({setToggleAddCollaborator}) => {
+const AddCollaborator = ({setToggleAddCollaborator, fetchUsersWithRole}) => {
     const {listId} = useParams();
     const jwtToken = useSelector(selectJwtToken)
     const [email, setEmail] = useState("");
@@ -50,7 +50,7 @@ const AddCollaborator = ({setToggleAddCollaborator}) => {
             }else {
 
                 setToggleAddCollaborator(false);
-                window.location.reload();
+                fetchUsersWithRole();
             }
             const result = await response.json();
             console.log("this is the result of adding collaborator!");
