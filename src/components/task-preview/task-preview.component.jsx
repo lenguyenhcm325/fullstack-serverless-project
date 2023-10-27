@@ -43,7 +43,7 @@ const TaskPreview = (props) => {
             </div>
             {
             toggleEditTask && (
-                <ViewTaskInfo taskId={taskId} status={status} setToggleEditTask={setToggleEditTask} {...props}/>
+                <ViewTaskInfo taskId={taskId} status={status} setToggleEditTask={setToggleEditTask} {...props} fetchTasksFromList={fetchTasksFromList}/>
             )
         }
         </div>

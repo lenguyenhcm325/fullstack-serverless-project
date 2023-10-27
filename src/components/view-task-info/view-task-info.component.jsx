@@ -8,7 +8,8 @@ import LoadingSpinner from "../loading-spinner/loading-spinner.component";
 const ViewTaskInfo = ({
     setToggleEditTask,
     note,
-    taskId
+    taskId,
+    fetchTasksFromList
 
     }) => {
         const jwtToken = useSelector(selectJwtToken)
@@ -120,9 +121,7 @@ const ViewTaskInfo = ({
             console.log("this is the result of deleting a task! ABOVE");
             setUpdatingToBackend(false)
             setToggleEditTask(false)
-            setTimeout(() => {
-                window.location.reload();
-            }, 1)
+            fetchTasksFromList()
             
         }
         catch(err){
@@ -166,9 +165,9 @@ const ViewTaskInfo = ({
             <div className="close-button-container">
                 <button onClick={handleClose} className="close-button">&times;</button>
             </div>
-            {
+            {/* {
                 updatingToBackend && (<LoadingSpinner/>)
-            }
+            } */}
         </ViewTaskInfoContainer>
 
     )
