@@ -11,6 +11,10 @@ import Profile from './routes/profile/profile.component';
 import NotFound from './routes/not-found/not-found.component';
 import './App.css';
 import TaskNote from './components/task-note/task-note.component';
+import { useDispatch , useSelector} from 'react-redux';
+import { selectJwtToken } from './store/user/user.selector';
+import { useEffect } from 'react';
+import { handleFetchInfo, handleGetJwt } from './store/user/user.thunk';
 
 function MyRoutes() {
   return (
@@ -38,6 +42,11 @@ function MyRoutes() {
 }
 
 function App() {
+  const dispatch = useDispatch(); 
+  useEffect(() => {
+    dispatch(handleGetJwt())
+    dispatch(handleFetchInfo())
+  }, [dispatch])
   return (
     <Authenticator.Provider>
       <MyRoutes />

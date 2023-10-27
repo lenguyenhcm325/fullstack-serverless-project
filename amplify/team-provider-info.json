@@ -64,23 +64,23 @@
         },
         "todoListHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/todoListHandler-42564e554a3471794945-build.zip"
+          "s3Key": "amplify-builds/todoListHandler-31457a5757452b356837-build.zip"
         },
         "tasksHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/tasksHandler-30546964584a3267706a-build.zip"
+          "s3Key": "amplify-builds/tasksHandler-4e5741695172496a6858-build.zip"
         },
         "userProfileHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/userProfileHandler-6951415643794e414864-build.zip"
+          "s3Key": "amplify-builds/userProfileHandler-65374a47696d71715745-build.zip"
         },
         "collaboratorsHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/collaboratorsHandler-355055484842756a4956-build.zip"
+          "s3Key": "amplify-builds/collaboratorsHandler-6d586b4d427174735277-build.zip"
         },
         "listsHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/listsHandler-4e466b6d594d51475954-build.zip"
+          "s3Key": "amplify-builds/listsHandler-3555594a543758496c4c-build.zip"
         }
       },
       "api": {
