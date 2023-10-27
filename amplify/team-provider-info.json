@@ -40,7 +40,7 @@
         },
         "serverlessproject30ed819cPostConfirmation": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/serverlessproject30ed819cPostConfirmation-424f794f5a6342762b68-build.zip"
+          "s3Key": "amplify-builds/serverlessproject30ed819cPostConfirmation-417539694a3257736471-build.zip"
         },
         "s3TriggerDynamoDB": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
@@ -97,6 +97,12 @@
         "profilePicsMetadata": {},
         "listsTableV2": {},
         "userIdToInfo": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d24dk6m4m6f1zu",
+          "type": "manual"
+        }
       }
     }
   }
