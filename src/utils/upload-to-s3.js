@@ -1,15 +1,15 @@
 import AWS from "aws-sdk";
 
 AWS.config.update({
-  accessKeyId: "AKIAURNPQOHOJNKO57FT",
-  secretAccessKey: "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",
-  region: "eu-central-1",
+  accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID,
+  secretAccessKey: import.meta.env.VITE_AWS_SECRET_ACCESS_KEY,
+  region: import.meta.env.VITE_AWS_REGION,
 });
 const s3 = new AWS.S3();
 
 const uploadToS3 = async (imageData, userId) => {
   const params = {
-    Bucket: "profilepics0711123953-dev",
+    Bucket: import.meta.env.VITE_S3_PROFILE_PICS_BUCKET,
     Key: `fullsize/${userId}.jpg`,
     Body: imageData,
     Metadata: {
