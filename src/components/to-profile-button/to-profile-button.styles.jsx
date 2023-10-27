@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 export const ToProfileButtonContainer = styled.div`
-    position: absolute; 
-    top: 20px; 
-    right: 20px;
+
 & button {
     font-weight: 700;
     padding: 10px 20px;
@@ -13,6 +11,6 @@ export const ToProfileButtonContainer = styled.div`
     border: 2px solid #2980b9;
     display: inline-block;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+    // transition: background-color 0.3s, color 0.3s;
 }
 `

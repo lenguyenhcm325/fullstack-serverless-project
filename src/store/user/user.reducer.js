@@ -81,5 +81,12 @@ export const userReducer = (state = initialState, action) => {
       };
     }
   }
+  if (action.type == USER_ACTION_TYPES.SIGNOUT) {
+    return {
+      currentUser: null,
+      error: null,
+      isLoading: false,
+    };
+  }
   return state;
 };

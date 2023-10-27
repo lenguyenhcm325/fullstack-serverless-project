@@ -5,4 +5,5 @@ export const USER_ACTION_TYPES = {
   GET_JWT_START: "user/GET_JWT_START",
   GET_JWT_SUCCESS: "user/GET_JWT_SUCCESS",
   GET_JWT_ERROR: "user/GET_JWT_ERROR",
+  SIGNOUT: "user/SIGNOUT",
 };

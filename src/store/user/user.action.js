@@ -47,3 +47,9 @@ export const getJwtSuccess = (token) => {
     payload: token,
   };
 };
+
+export const signOut = () => {
+  return {
+    type: USER_ACTION_TYPES.SIGNOUT,
+  };
+};

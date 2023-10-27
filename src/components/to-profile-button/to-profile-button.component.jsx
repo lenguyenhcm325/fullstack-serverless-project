@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToProfileButtonContainer } from "./to-profile-button.styles";
 import { Auth } from "aws-amplify";
 const ToProfileButton = () => {
-    const navigateTo = useNavigate();
+
     const[userId, setUserId] = useState(null);
 
     useEffect(() => {
@@ -20,23 +20,14 @@ const ToProfileButton = () => {
         fetchUserId();
     }, [])
 
-    // const handleButtonClick = async () => {
-    //     navigateTo(`/profile/${(await Auth.currentAuthenticatedUser()).attributes.sub}`)
-    // }
-
     return(
        <ToProfileButtonContainer>
-        {userId ?
+        {userId &&
             (
                 <Link to={`/profile/${userId}`}>
                     <button>To Profile</button>
                 </Link>
-            ) : 
-            (
-                <Link to={`/login`}>
-                    <button>Login</button>
-                </Link>      
-            )
+            ) 
         }
        </ToProfileButtonContainer> 
     )

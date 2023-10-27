@@ -47,16 +47,28 @@ export function Layout() {
   return (
     <LayoutContainer>
 
-      {
-        userObject? (<div>User ID: {userObject.attributes.sub}</div>) : (<div>Nothing for you here...</div>)
-      }
-      {
-        error? (<div>there is an error</div>) : (<div>there is no error</div>)
-      }
-      {
-        currentPathname.includes("/profile/") ? null : <ToProfileButton/>
-      }
+      <div className='top-bar'>
+        <div className='dev-logging'>
+        {
+          userObject? (<div>User ID: {userObject.attributes.sub}</div>) : (<div>Nothing for you here...</div>)
+        }
+        {
+          error? (<div>there is an error</div>) : (<div>there is no error</div>)
+        }
+        </div>
 
+        <div className='buttons-div'>
+        {
+          route !== "authenticated" ? (
+            <Button className='login-logout-btn' onClick={() => navigate('/login')}>Login</Button>
+          ) : (
+            <Button className='login-logout-btn' onClick={() => logOut()}>Logout</Button>  
+        )}
+        {
+          currentPathname.includes("/profile/") ? null : <ToProfileButton/>
+        }
+        </div>
+      </div>
       <Outlet />
     </LayoutContainer>
   );

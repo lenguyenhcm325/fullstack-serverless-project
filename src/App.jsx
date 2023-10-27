@@ -45,8 +45,10 @@ function MyRoutes() {
 function App() {
   const dispatch = useDispatch(); 
   useEffect(() => {
-    Hub.listen("auth", (_) => {
-      window.location.reload()
+    Hub.listen("auth", (data) => {
+      if (data.payload.event === "signIn" || data.payload.event === "signOut"){
+        window.location.reload();
+      }
     })
   }, [])
   useEffect(() => {
