@@ -1,8 +1,8 @@
-export const selectJwtToken = (state) => state.user.jwtToken;
+export const selectJwtToken = (state) => state.user.currentUser.jwtToken;
 export const selectUserInfo = (state) => {
   return {
-    state: state.user.userId,
-    dateJoined: state.user.dateJoined,
-    email: state.user.email,
+    userId: state.user.currentUser.userId,
+    dateJoined: state.user.currentUser.dateJoined,
+    email: state.user.currentUser.email,
   };
 };

@@ -2,8 +2,10 @@ import React, {useEffect, useState} from "react"
 import { useParams } from "react-router-dom";
 import { CreateTaskContainer } from "./create-task.styles";
 import { useNavigate } from "react-router-dom";
-import {Auth} from "aws-amplify"
+import { useSelector } from "react-redux";
+import { selectJwtToken } from "../../store/user/user.selector";
 const CreateTask = ({setToggleCreateTask, status}) => {
+    const jwtToken = useSelector(selectJwtToken)
     const navigateTo = useNavigate();
     const {listId} = useParams();
     const [loading, setLoading] = useState(false);
@@ -22,7 +24,7 @@ const CreateTask = ({setToggleCreateTask, status}) => {
             const response = await fetch(createTodoEndpoint, {
                 method: "POST", 
                 headers: {
-                    Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                    Authorization: `Bearer ${jwtToken}`
                 },
                 body: JSON.stringify(
                     {

@@ -4,14 +4,28 @@ import BigErrorMessage from "../../components/big-error-message/big-error-messag
 import formatLocalDate from "../../utils/format-local-date";
 import { useParams } from 'react-router-dom';
 import { ProfileContainer } from "../profile.styles";
+import { useSelector } from "react-redux";
+import { selectJwtToken, selectUserInfo } from "../../store/user/user.selector";
 import CreateList from "../../components/create-list/create-list.component";
 import ListInfo from "../../components/list-info/list-info.component";
 import UploadProfilePic from "../../components/upload-profile-pic/upload-profile-pic.component";
 const Profile = () => {
+    const userInfo = useSelector(selectUserInfo)
+    console.log(userInfo);
+    console.log(userInfo);
+    console.log(userInfo);
+    console.log(userInfo);
+    console.log(userInfo);
+    console.log(userInfo);
+    console.log(userInfo);
+    console.log(userInfo);
+    console.log(userInfo);
+    console.log(userInfo);
     const {userId} = useParams();
+    const jwtToken = useSelector(selectJwtToken)
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [userInfo, setUserInfo] = useState({});
+    // const [userInfo, setUserInfo] = useState({});
     const [todoListsArray, setTodoListsArray] = useState([]);
     const [toggleCreateList, setToggleCreateList] = useState(false); 
 
@@ -28,7 +42,7 @@ const Profile = () => {
             const response = await fetch(createTodoEndpoint, {
                 method: "POST", 
                 headers: {
-                    Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                    Authorization: `Bearer ${jwtToken}`
                 },
                 body: JSON.stringify({
                     userId: userId,
@@ -53,37 +67,37 @@ const Profile = () => {
     useEffect(() => {
         Auth.currentCredentials()
         .then(credentials => {
-            const fetchUserProfile = async() => {
-                try {
-                    const response = await fetch(`${apiEndpoint}/profile/${userId}`, 
-                        {
-                            headers: {
-                                Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
-                            }
-                        }
-                    )
+            // const fetchUserProfile = async() => {
+            //     try {
+            //         const response = await fetch(`${apiEndpoint}/profile/${userId}`, 
+            //             {
+            //                 headers: {
+            //                     Authorization: `Bearer ${jwtToken}`
+            //                 }
+            //             }
+            //         )
     
-                    if (!response.ok){
-                        throw new Error('Something went wrong!');
+            //         if (!response.ok){
+            //             throw new Error('Something went wrong!');
 
-                    }
-                    const result = await response.json();
-                    console.log("this is the result fetchUserProfile");
-                    console.log(result);
-                    setUserInfo(result);
-                }
-                catch(error){
-                    setError(error);
-                }finally {
-                    setLoading(false);
-                }
-            }
+            //         }
+            //         const result = await response.json();
+            //         console.log("this is the result fetchUserProfile");
+            //         console.log(result);
+            //         setUserInfo(result);
+            //     }
+            //     catch(error){
+            //         setError(error);
+            //     }finally {
+            //         setLoading(false);
+            //     }
+            // }
             const fetchTodoListsArray = async() => {
                 try {
                     const response = await fetch(`${apiEndpoint}/listsMetadata`, 
                         {
                             headers: {
-                                Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                                Authorization: `Bearer ${jwtToken}`
                             }
                         }
                     )
@@ -101,7 +115,7 @@ const Profile = () => {
                     setLoading(false);
                 }
             }
-            fetchUserProfile(); 
+            // fetchUserProfile(); 
             fetchTodoListsArray();
         })
         .catch(err => {
@@ -125,15 +139,15 @@ const Profile = () => {
             <div class="profile-info">
                 <div class="profile-row">
                     <label htmlFor="email">Email:</label>
-                    <span id="email">{userInfo.email.S}</span>
+                    <span id="email">{userInfo.email}</span>
                 </div>
                 <div class="profile-row">
                     <label htmlFor="userId">User ID:</label>
-                    <span id="userId">{userInfo.userId.S}</span>
+                    <span id="userId">{userInfo.userId}</span>
                 </div>
                 <div class="profile-row">
                     <label htmlFor="dateJoined">Date Joined:</label>
-                    <span id="dateJoined">{userInfo.dateJoined.S}</span>
+                    <span id="dateJoined">{userInfo.dateJoined}</span>
                 </div>
                 <div class="profile-row">
                     <label htmlFor="profilePic">Profile Pic:</label>

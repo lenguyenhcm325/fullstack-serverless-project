@@ -2,6 +2,8 @@ import React, {useEffect, useState, useRef} from "react";
 import { useParams } from "react-router-dom";
 import {Auth} from "aws-amplify"
 import { ViewTaskInfoContainer } from "./view-task-info.styles";
+import { useSelector } from "react-redux";
+import { selectJwtToken } from "../../store/user/user.selector";
 import LoadingSpinner from "../loading-spinner/loading-spinner.component";
 const ViewTaskInfo = ({
     setToggleEditTask,
@@ -9,6 +11,7 @@ const ViewTaskInfo = ({
     taskId
 
     }) => {
+        const jwtToken = useSelector(selectJwtToken)
         const timeout = useRef(null);
         const noteRef = useRef()
     const {listId} = useParams();
@@ -32,7 +35,7 @@ const ViewTaskInfo = ({
             const createTodoEndpoint = `${apiEndpoint}/tasks/${taskId}`;
             const response = await fetch(createTodoEndpoint, {
                 headers: {
-                    Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                    Authorization: `Bearer ${jwtToken}`
                 },
                 method: "PUT",
                 body: JSON.stringify({
@@ -104,7 +107,7 @@ const ViewTaskInfo = ({
             const deleteTaskEndpoint = `${apiEndpoint}/tasks/${taskId}?listId=${listId}`;
             const response = await fetch(deleteTaskEndpoint, {
                 headers: {
-                    Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                    Authorization: `Bearer ${jwtToken}`
                 },
                 method: "DELETE"
             })

@@ -7,9 +7,11 @@ import AddCollaboratorButton from "../../components/add-collaborator-button/add-
 import AddCollaborator from "../../components/add-collaborator/add-collaborator.component"
 import CollaboratorList from "../../components/collaborator-list/collaborator-list.component"
 import { ListContainer } from "./list.styles"
+import { useSelector } from "react-redux"
+import { selectJwtToken } from "../../store/user/user.selector"
 import BigErrorMessage from "../../components/big-error-message/big-error-message.component"
 const List = () => {
-
+    const jwtToken = useSelector(selectJwtToken)
     const {listId} = useParams();
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -31,7 +33,7 @@ const List = () => {
                 const createTodoEndpoint = `${apiEndpoint}/lists/${listId}`;
                 const response = await fetch(createTodoEndpoint, {
                     headers: {
-                        Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                        Authorization: `Bearer ${jwtToken}`
                     }
                 })
                 if (!response.ok){
@@ -52,7 +54,7 @@ const List = () => {
                 const collaboratorsEndpoint = `${apiEndpoint}/collaborators?listId=${listId}`;
                 const response = await fetch(collaboratorsEndpoint, {
                     headers: {
-                        Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                        Authorization: `Bearer ${jwtToken}`
                     }                    
                 })
                 if (!response.ok){

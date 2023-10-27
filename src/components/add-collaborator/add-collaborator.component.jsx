@@ -2,9 +2,11 @@ import React, {useState} from "react";
 import { AddCollaboratorContainer } from "./add-collaborator.styles";
 import { useParams } from "react-router-dom";
 import { Auth } from "aws-amplify";
-
+import { useSelector} from "react-redux";
+import { selectJwtToken } from "../../store/user/user.selector";
 const AddCollaborator = ({setToggleAddCollaborator}) => {
     const {listId} = useParams();
+    const jwtToken = useSelector(selectJwtToken)
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -23,7 +25,7 @@ const AddCollaborator = ({setToggleAddCollaborator}) => {
             const response = await fetch(createTodoEndpoint, {
                 method: "POST", 
                 headers: {
-                    Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                    Authorization: `Bearer ${jwtToken}`
                 },
                 body: JSON.stringify(
                     {

@@ -1,12 +1,15 @@
 import React, {useState} from "react";
 import { useParams } from "react-router-dom";
 import { MoveTaskPanelContainer } from "./move-task-panel.styles";
-import {Auth} from "aws-amplify"
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { selectJwtToken } from "../../store/user/user.selector";
+
 const MoveTaskPanel = ({
     taskId, 
     status,
     setToggleMovePanel
 }) => {
+    const jwtToken = useSelector(selectJwtToken)
     const {listId} = useParams();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -18,7 +21,7 @@ const MoveTaskPanel = ({
             const response = await fetch(`${apiEndpoint}/tasks/${taskId}`, 
                 {
                     headers: {
-                        Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+                        Authorization: `Bearer ${jwtToken}`
                     },
                     method: "PUT",
                     body: JSON.stringify({
