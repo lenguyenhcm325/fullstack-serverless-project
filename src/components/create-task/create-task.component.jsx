@@ -1,12 +1,10 @@
-import React, {useEffect, useState} from "react"
+import React, { useState} from "react"
 import { useParams } from "react-router-dom";
 import { CreateTaskContainer } from "./create-task.styles";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectJwtToken } from "../../store/user/user.selector";
 const CreateTask = ({setToggleCreateTask, status, fetchTasksFromList}) => {
     const jwtToken = useSelector(selectJwtToken)
-    const navigateTo = useNavigate();
     const {listId} = useParams();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -38,12 +36,9 @@ const CreateTask = ({setToggleCreateTask, status, fetchTasksFromList}) => {
                 throw new Error('Something went wrong!');
             }
             const result = await response.json();
-            console.log("this is the result of creating task list");
-            console.log(result);
 
         }
         catch(error){
-            console.log(error)
             setError(error);
         }finally {
             setLoading(false);
@@ -57,12 +52,9 @@ const CreateTask = ({setToggleCreateTask, status, fetchTasksFromList}) => {
         setTaskInfo({... taskInfo, [name]: value})
     }
 
-    console.log(taskInfo);
     const handleSubmit = async (event) => {
         event.preventDefault(); 
-        console.log("Form got submitted with " + taskInfo.title);
         await handleCreateTask()
-        console.log("after the handleCreateTask")
         setToggleCreateTask(false);
         fetchTasksFromList()
 

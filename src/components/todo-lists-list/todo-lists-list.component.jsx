@@ -26,8 +26,6 @@ const TodoListsList = () => {
                 throw new Error('Something went wrong!');
             }
             const result = await response.json();
-            console.log("this is the result fetch lists metadata");
-            console.log(result);
             setTodoListsArray(result);
         }
         catch(error){
@@ -37,8 +35,6 @@ const TodoListsList = () => {
         }
     }
     useEffect(() => {
-
-            // fetchUserProfile(); 
             fetchTodoListsArray();
 
     }, [])
@@ -60,7 +56,6 @@ const TodoListsList = () => {
                     setToggleCreateList={setToggleCreateList}
                     fetchTodoListsArray={fetchTodoListsArray}
             />
-
             )
         }
         <div class="button-div">

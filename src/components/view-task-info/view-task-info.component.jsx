@@ -1,10 +1,8 @@
 import React, {useEffect, useState, useRef} from "react";
 import { useParams } from "react-router-dom";
-import {Auth} from "aws-amplify"
 import { ViewTaskInfoContainer } from "./view-task-info.styles";
 import { useSelector } from "react-redux";
 import { selectJwtToken } from "../../store/user/user.selector";
-import LoadingSpinner from "../loading-spinner/loading-spinner.component";
 const ViewTaskInfo = ({
     setToggleEditTask,
     note,
@@ -17,7 +15,6 @@ const ViewTaskInfo = ({
         const noteRef = useRef()
     const {listId} = useParams();
     const [error, setError] = useState(null);
-    const [updatingToBackend, setUpdatingToBackend] = useState(false);
     const [taskInfo, setTaskInfo] = useState(
         {
             note: note? note : ""
@@ -26,13 +23,6 @@ const ViewTaskInfo = ({
     const apiEndpoint = import.meta.env.VITE_REST_ENDPOINT;
     const updateTaskInfoBackend = async (note) => {
         try {
-
-            setUpdatingToBackend(true)
-            console.log({
-                note: note,
-                taskId: taskId
-
-            })
             const createTodoEndpoint = `${apiEndpoint}/tasks/${taskId}`;
             const response = await fetch(createTodoEndpoint, {
                 headers: {
@@ -49,29 +39,18 @@ const ViewTaskInfo = ({
                 throw new Error('Something went wrong!');
             }
             const result = await response.json();
-            console.log("this is the result of updating the attribute from a task");
-            console.log(result);
-            console.log("this is the result of updating the attribute from a task! ABOVE");
         }
         catch(err){
             setError(err)
-            console.error(err);
         }finally {
-            console.log("finished")
-            setUpdatingToBackend(false)
         }
     }
     const handleUpdateBeforeUnload = (event) => {
         event.preventDefault()
         const currentNote = noteRef.current;
-        console.log("this is the thing  " + currentNote)
-
         updateTaskInfoBackend(currentNote)
-        event.returnValue = "You have unsaved changes! Do you really want to leave?"
-        
-        
+        event.returnValue = "You have unsaved changes! Do you really want to leave?"     
     }
-
 
     useEffect(() => {
         window.addEventListener("beforeunload", handleUpdateBeforeUnload)
@@ -81,7 +60,6 @@ const ViewTaskInfo = ({
     }, [])
 
     const handleChange = (event) => {
-        console.log(taskInfo)
         const newNote = event.target.value;
         setTaskInfo({
             ...taskInfo, note: newNote
@@ -92,19 +70,12 @@ const ViewTaskInfo = ({
         }
 
         timeout.current = setTimeout(() => {
-                console.log("This gets run, hopefully after 2 seconds")
                 updateTaskInfoBackend(newNote)
             }, 1000)
     }
 
     const handleDelete = async (event) => {
         try {
-            setUpdatingToBackend(true)
-            console.log({
-                listId: listId,
-                taskId: taskId
-
-            })
             const deleteTaskEndpoint = `${apiEndpoint}/tasks/${taskId}?listId=${listId}`;
             const response = await fetch(deleteTaskEndpoint, {
                 headers: {
@@ -116,25 +87,17 @@ const ViewTaskInfo = ({
                 throw new Error('Something went wrong!');
             }
             const result = await response.json();
-            console.log("this is the result of deleting a task");
-            console.log(result);
-            console.log("this is the result of deleting a task! ABOVE");
-            setUpdatingToBackend(false)
             setToggleEditTask(false)
             fetchTasksFromList()
             
         }
         catch(err){
             setError(err);
-            console.error(err);
-            setUpdatingToBackend(false)
             setToggleEditTask(false)
         }     
     }
 
-
     const handleClose = () => {
-        console.log("it should be false!!!!!!!")
         setToggleEditTask(false)
     }
 
@@ -169,6 +132,5 @@ const ViewTaskInfo = ({
 
     )
 }
-
 
 export default ViewTaskInfo;

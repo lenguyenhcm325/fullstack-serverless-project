@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useRef} from "react"
 import { useParams } from "react-router-dom"
-import {Auth} from "aws-amplify"
 import CreateTask from "../../components/create-task/create-task.component"
 import TaskPreview from "../../components/task-preview/task-preview.component"
 import AddCollaboratorButton from "../../components/add-collaborator-button/add-collaborator-button.component"
@@ -41,7 +40,6 @@ const List = () => {
         }
     }
     const fetchUsersWithRole = async() => {
-
         try {
             const collaboratorsEndpoint = `${apiEndpoint}/collaborators?listId=${listId}`;
             const response = await fetch(collaboratorsEndpoint, {
@@ -51,27 +49,15 @@ const List = () => {
             })
             if (!response.ok){
                 throw new Error('Something went wrong!');
-            }
-            
+            }            
             const result = await response.json();
-            console.log("usersWithRole return!")
-            console.log(result)
-            console.log("usersWithRole return!")
-            console.log(result)
-            console.log("usersWithRole return!")
-            console.log(result)
-            console.log("usersWithRole return!")
-            console.log(result)
             setUsersWithRole(result)
-
         }catch(err) {
             setError(err);
         }
     }
 
     useEffect(() => {
-
-
         setLoading(true);
         fetchTasksFromList()
         fetchUsersWithRole()
@@ -83,7 +69,6 @@ const List = () => {
         setTaskStatus(status)
     }
 
-
     if (loading){
         return <div>Loading, please wait</div>
     }
@@ -92,7 +77,6 @@ const List = () => {
             <BigErrorMessage/>
         )
     }
-
 
         return (
             <ListContainer>

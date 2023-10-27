@@ -1,15 +1,12 @@
 import TodoListsList from "../../components/todo-lists-list/todo-lists-list.component";
 import { useParams } from 'react-router-dom';
-import { ProfileContainer } from "../profile.styles";
+import { ProfileContainer } from "./profile.styles";
 import { useSelector } from "react-redux";
 import {selectUserInfo } from "../../store/user/user.selector";
 import UploadProfilePic from "../../components/upload-profile-pic/upload-profile-pic.component";
 const Profile = () => {
     const userInfo = useSelector(selectUserInfo)
     const {userId} = useParams();
-
-
-
     if (Object.keys(userInfo).length !== 0){
     return (
         <ProfileContainer>
@@ -33,13 +30,10 @@ const Profile = () => {
                 <div>
                     <UploadProfilePic userId={userId}/>
                 </div>
-
             </div>
-
             <TodoListsList/>
         </ProfileContainer>
         )
     }
 }
-
 export default Profile; 

@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { AddCollaboratorContainer } from "./add-collaborator.styles";
 import { useParams } from "react-router-dom";
-import { Auth } from "aws-amplify";
 import { useSelector} from "react-redux";
 import { selectJwtToken } from "../../store/user/user.selector";
 const AddCollaborator = ({setToggleAddCollaborator, fetchUsersWithRole}) => {
@@ -12,8 +11,6 @@ const AddCollaborator = ({setToggleAddCollaborator, fetchUsersWithRole}) => {
     const [error, setError] = useState(null);
     const handleClose = () => {
         setToggleAddCollaborator(false);
-
-        
     }
     const apiEndpoint = import.meta.env.VITE_REST_ENDPOINT;
 
@@ -35,30 +32,17 @@ const AddCollaborator = ({setToggleAddCollaborator, fetchUsersWithRole}) => {
                     })
             })
             if (!response.ok){
-                console.log(response.status)
-                console.log(response.status)
-                console.log(response.status)
-                console.log(response.status)
-                console.log(response.status)
-                console.log(response.status)
                 if (response.status === 400){
                     setError("Unable to process your request. Please try again later.")
                 }else {
                     throw new Error('Something went wrong!');
                 }
-                
             }else {
-
                 setToggleAddCollaborator(false);
                 fetchUsersWithRole();
             }
-            const result = await response.json();
-            console.log("this is the result of adding collaborator!");
-            console.log(result);
-
         }
         catch(error){
-            console.log(error)
             setError(error);
         }finally {
             setLoading(false);
@@ -72,8 +56,6 @@ const AddCollaborator = ({setToggleAddCollaborator, fetchUsersWithRole}) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         await handleAddCollaborator();
-        // it depends! if there is an error prompt for the user to know!
-            // setToggleAddCollaborator(false);
     }
 
     return (
@@ -90,12 +72,10 @@ const AddCollaborator = ({setToggleAddCollaborator, fetchUsersWithRole}) => {
                 <button type="submit" >Submit</button>
                 </div>
             </form>
-            
             <div className="close-button-container">
                 <button onClick={handleClose} className="close-button">&times;</button>
             </div>            
         </AddCollaboratorContainer>
-
     )
 }
 

@@ -2,8 +2,6 @@ import React from "react";
 import { NotFoundContainer } from "./not-found.styles";
 
 const NotFound = () => {
-
-
     return (
 
         <NotFoundContainer>
@@ -13,7 +11,6 @@ const NotFound = () => {
                 <a href="/">Go Back Home</a>
             </div>
         </NotFoundContainer>
-
     )
 }
 

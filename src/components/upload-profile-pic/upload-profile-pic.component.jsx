@@ -10,17 +10,11 @@ const UploadProfilePic = ({userId}) => {
           setFile(uploadedFile);
           const reader = new FileReader();
           reader.onload = (e) => {
-            console.log("below is file")
-            console.log(e);
-            console.log(e);
-            console.log(e);
-            console.log(e);
             setSelectedImage(e.target.result);
           };
           reader.readAsDataURL(uploadedFile);
         }
       };
-
 
     return (
     <UploadProfilePicContainer>
@@ -31,11 +25,9 @@ const UploadProfilePic = ({userId}) => {
       {selectedImage && <img className="preview-image" src={selectedImage} alt="Preview" />}
       {selectedImage && (
         <button className="add-pic" onClick={() => {
-            // console.log(selectedImage)
             uploadToS3(file, userId)}}>Upload to S3</button>
       )}
     </UploadProfilePicContainer>
-
 
     )
 }

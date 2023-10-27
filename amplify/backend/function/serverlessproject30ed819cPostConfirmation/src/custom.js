@@ -10,8 +10,6 @@ exports.handler = async (event, context) => {
   try {
     const sub = event.request.userAttributes.sub;
     const email = event.request.userAttributes.email;
-    console.log("this is the userid ", sub);
-    console.log("this is the userid ", sub);
     const currentTime = new Date();
     const year = currentTime.getFullYear();
     const month = String(currentTime.getMonth() + 1).padStart(2, "0");
@@ -24,11 +22,6 @@ exports.handler = async (event, context) => {
         email: email,
         dateJoined: currentDateString,
       },
-    });
-    console.log({
-      userId: sub,
-      email,
-      currentDateString,
     });
 
     const response = await docClient.send(command);

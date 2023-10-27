@@ -16,7 +16,6 @@ const MoveTaskPanel = ({
     const [error, setError] = useState(null);
     const apiEndpoint = import.meta.env.VITE_REST_ENDPOINT;
     const updateTaskStatus = async(status) => {
-        console.log("inside update task status!")
         try {
             setLoading(true);
             const response = await fetch(`${apiEndpoint}/tasks/${taskId}`, 
@@ -32,17 +31,13 @@ const MoveTaskPanel = ({
                     })
                 },
             )
-            console.log("inside the try block!")
             if (!response.ok){
                 throw new Error('Something went wrong!');
             }
             const result = await response.json();
-            console.log("this is the result updateTaskStatus");
-            console.log(result);
             
         }
         catch(error){
-            console.log(error)
             setError(error);
         }finally {
             setLoading(false);
@@ -51,18 +46,10 @@ const MoveTaskPanel = ({
     
     const handleUpdateTaskStatus = async (event) => {
         const statusAfter = event.target.value;
-        console.log(statusAfter)
         await updateTaskStatus(statusAfter)
         setToggleMovePanel(false)
         fetchTasksFromList()
-        console.log("finish handleUpdateTaskStatus")
-        // setTimeout(() => {
-        // }, 3000)
-
-        
-
     }
-
     const options = {
         todo: (
             <button onClick={handleUpdateTaskStatus} value="todo" className="move-button">
@@ -80,7 +67,6 @@ const MoveTaskPanel = ({
             </button>            
         )
     }
-
     const getMoveButtons = () => {
         const buttons = [];
         for (let key in options){
@@ -90,14 +76,11 @@ const MoveTaskPanel = ({
         }
         return buttons;
     }
-
     return (
         <MoveTaskPanelContainer>
         {
             getMoveButtons()
         }    
-
-
         </MoveTaskPanelContainer>
     )
 }

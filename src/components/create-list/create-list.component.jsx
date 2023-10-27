@@ -32,13 +32,8 @@ const CreateList = ({setToggleCreateList, fetchTodoListsArray, setLoading, setEr
             if (!response.ok){
                 throw new Error('Something went wrong!');
             }
-            const result = await response.json();
-            console.log("this is the result of creating user todo list");
-            console.log(result);
-
         }
         catch(error){
-            console.error(error)
             setError(error);
         }finally {
             setLoading(false);
@@ -47,13 +42,11 @@ const CreateList = ({setToggleCreateList, fetchTodoListsArray, setLoading, setEr
 
     const handleSubmit =  async(event) => {
         event.preventDefault(); 
-        console.log("Form got submitted with " + title);
+
         setToggleCreateList(false);
         await handleCreateTodoList(title)
-        console.log("after the handleCreateTodoList")
-        fetchTodoListsArray()
-        
-    
+
+        fetchTodoListsArray() 
     }
     return (
         <CreateListContainer>

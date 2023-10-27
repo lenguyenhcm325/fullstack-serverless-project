@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 const ListInfo = ({
     title, lastModifiedTime, listId
 }) => {
-
-
-
     return (
         <ListInfoContainer>
             <Link className="link-tag" to={`/lists/${listId}`} >
@@ -18,5 +15,4 @@ const ListInfo = ({
         </ListInfoContainer>
     )
 }
-
 export default ListInfo;

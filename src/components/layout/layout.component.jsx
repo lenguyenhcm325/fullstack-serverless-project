@@ -1,4 +1,3 @@
-// components/Layout.js
 import React, {useEffect, useState} from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useAuthenticator, Button, Heading, View } from '@aws-amplify/ui-react';
@@ -9,14 +8,9 @@ import { LayoutContainer } from './layout.styles';
 
 
 export function Layout() {
-  console.log("check to see if it re-renders1")
-  console.log("check to see if it re-renders2")
-  console.log("check to see if it re-renders3")
   const location = useLocation(); 
   const currentPathname = location.pathname;
-  console.log(currentPathname)
   const [userObject, setUserObject] = useState(null);
-  const [error, setError] = useState(null);
   const { route, signOut } = useAuthenticator((context) => [
     context.route,
     context.signOut,
@@ -26,19 +20,18 @@ export function Layout() {
     async function currentAuthenticatedUser() {
       try {
         const user = await Auth.currentAuthenticatedUser({
-          bypassCache: false // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+          bypassCache: false
         });
         setUserObject(user); 
         return user;
       } catch(err) {
-        console.log(err);
         return;
       }
     };
     currentAuthenticatedUser();
   }, [Auth])
 
-  
+ 
   const navigate = useNavigate();
   function logOut() {
     signOut();
@@ -46,17 +39,12 @@ export function Layout() {
   }
   return (
     <LayoutContainer>
-
       <div className='top-bar'>
         <div className='dev-logging'>
         {
           userObject? (<div>User ID: {userObject.attributes.sub}</div>) : (<div>Nothing for you here...</div>)
         }
-        {
-          error? (<div>there is an error</div>) : (<div>there is no error</div>)
-        }
         </div>
-
         <div className='buttons-div'>
         {
           route !== "authenticated" ? (
@@ -73,22 +61,3 @@ export function Layout() {
     </LayoutContainer>
   );
 }
-
-{/* <nav>
-<Button onClick={() => navigate('/')}>Home</Button>
-<Button onClick={() => navigate('/protected')}>
-  First Protected Route
-</Button>
-<Button onClick={() => navigate('/protected2')}>
-  Second Protected Route
-</Button>
-{route !== 'authenticated' ? (
-  <Button onClick={() => navigate('/login')}>Login</Button>
-) : (
-  <Button onClick={() => logOut()}>Logout</Button>
-)}
-</nav>
-<Heading level={1}>Example Auth Routes App</Heading>
-<View>
-{route === 'authenticated' ? 'You are logged in!' : 'Please Login!'}
-</View> */}

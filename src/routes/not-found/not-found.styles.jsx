@@ -9,7 +9,6 @@ export const NotFoundContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    // background-color: #e7f5ff; /* BLUE 0 */
 
 
 & .not-found-content {

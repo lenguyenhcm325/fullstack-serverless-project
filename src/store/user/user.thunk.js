@@ -37,10 +37,7 @@ export const handleFetchInfo = () => async (dispatch) => {
       bypassCache: false, // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
     });
     userId = user.attributes.sub;
-    console.log("this is the user id   " + userId);
-    // dispatch(handleFetchPersonalInfo(userId));
   } catch (err) {
-    console.error("error inside the handleFetchUserId");
     dispatch(fetchInfoError(err.code));
   }
   try {
@@ -85,55 +82,3 @@ export const handleFetchInfo = () => async (dispatch) => {
     })
   );
 };
-
-// export const handleFetchInfo1 = () => async (dispatch) => {
-//   try {
-//     dispatch(fetchInfoStart());
-//     const user = await Auth.currentAuthenticatedUser({
-//       bypassCache: false, // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
-//     });
-//     const userId = user.attributes.sub;
-//     dispatch(handleFetchPersonalInfo(userId));
-//   } catch (err) {
-//     console.error("error inside the handleFetchUserId");
-//     dispatch(fetchInfoError(err.code));
-//   }
-
-// };
-
-// export const handleFetchPersonalInfo = (userId) => async (dispatch) => {
-//   try {
-//     const response = await fetch(`${apiEndpoint}/profile/${userId}`, {
-//       headers: {
-//         Authorization: `Bearer ${(await Auth.currentSession())
-//           .getIdToken()
-//           .getJwtToken()}`,
-//       },
-//     });
-
-//     if (!response.ok) {
-//       const error = await response.json();
-//       const errorStatusCode = error.status;
-//       throw new Error(errorStatusCode);
-//     }
-//     const result = await response.json();
-//   } catch (err) {
-//     if (Number(err.message) === 404) {
-//       dispatch(fetchInfoError("User can't be found"));
-//     } else if (Number(err.message) === 429) {
-//       dispatch(fetchInfoError("Too many requests, please try again later"));
-//     } else if (Number(err.message) === 500) {
-//       dispatch(fetchInfoError("Internal server error"));
-//     } else if (Number(err.message) === 401) {
-//       dispatch(fetchInfoError("Unauthorized"));
-//     } else if (Number(err.message) == 502) {
-//       dispatch(
-//         fetchInfoError("The backend server didn't return a valid response")
-//       );
-//     } else if (Number(err.message) === 504) {
-//       dispatch(fetchInfoError("Gateway timeout"));
-//     } else {
-//       dispatch(fetchInfoError("An unexpected error occurred."));
-//     }
-//   }
-// };

@@ -1,7 +1,5 @@
 import React from "react";
 import { AddCollaboratorButtonContainer } from "./add-collaborator-button.styles";
-
-
 const AddCollaboratorButton = ({setToggleAddCollaborator}) => {
     return(
         <AddCollaboratorButtonContainer>
