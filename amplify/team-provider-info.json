@@ -16,7 +16,7 @@
       "function": {
         "getUserProfile": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/getUserProfile-387a78715957512b7454-build.zip"
+          "s3Key": "amplify-builds/getUserProfile-786f75394468672f3274-build.zip"
         },
         "getTodoList": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
@@ -28,15 +28,15 @@
         },
         "addCollaboratorToList": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/addCollaboratorToList-4258336a2f4f45306864-build.zip"
+          "s3Key": "amplify-builds/addCollaboratorToList-6552435776437554526d-build.zip"
         },
         "modifyTask": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/modifyTask-335843447a7a55796371-build.zip"
+          "s3Key": "amplify-builds/modifyTask-4654336f526d646d5051-build.zip"
         },
         "updateUserProfile": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/updateUserProfile-6e67324f725a6e796966-build.zip"
+          "s3Key": "amplify-builds/updateUserProfile-474a3032456f6146596a-build.zip"
         },
         "serverlessproject30ed819cPostConfirmation": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
@@ -44,7 +44,7 @@
         },
         "s3TriggerDynamoDB": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/s3TriggerDynamoDB-3652465247354944656e-build.zip"
+          "s3Key": "amplify-builds/s3TriggerDynamoDB-2b47656f78455037717a-build.zip"
         },
         "dynamodbTriggerCreateThumbnail": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
@@ -101,7 +101,7 @@
       "hosting": {
         "amplifyhosting": {
           "appId": "d24dk6m4m6f1zu",
-          "type": "manual"
+          "type": "cicd"
         }
       }
     }
