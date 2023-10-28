@@ -55,6 +55,15 @@
     "storageusersTableStreamArn": {
       "Type": "String",
       "Default": "storageusersTableStreamArn"
+    },
+    "region": {
+      "Type": "String"
+    },
+    "cognitoUserpoolId": {
+      "Type": "String"
+    },
+    "cognitoAppClientId": {
+      "Type": "String"
     }
   },
   "Conditions": {
@@ -103,7 +112,7 @@
               "Ref": "modules"
             },
             "REGION": {
-              "Ref": "AWS::Region"
+              "Ref": "region"
             },
             "GROUP": {
               "Ref": "GROUP"
@@ -116,6 +125,12 @@
             },
             "STORAGE_USERSTABLE_STREAMARN": {
               "Ref": "storageusersTableStreamArn"
+            },
+            "COGNITO_USERPOOL_ID": {
+              "Ref": "cognitoUserpoolId"
+            },
+            "COGNITO_APP_CLIENT_ID": {
+              "Ref": "cognitoAppClientId"
             }
           }
         },

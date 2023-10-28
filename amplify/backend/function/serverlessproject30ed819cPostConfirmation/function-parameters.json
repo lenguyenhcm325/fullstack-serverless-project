@@ -22,5 +22,19 @@
         "delete"
       ]
     }
-  }
+  },
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "region",
+      "environmentVariableName": "REGION"
+    },
+    {
+      "cloudFormationParameterName": "cognitoUserpoolId",
+      "environmentVariableName": "COGNITO_USERPOOL_ID"
+    },
+    {
+      "cloudFormationParameterName": "cognitoAppClientId",
+      "environmentVariableName": "COGNITO_APP_CLIENT_ID"
+    }
+  ]
 }
