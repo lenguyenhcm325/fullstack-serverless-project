@@ -1,11 +1,14 @@
 import json
 import boto3
 from boto3.dynamodb.conditions import Key
+import os
+
+env = os.environ["ENV"]
 
 
 def handle_get_request(user_id):
     dynamodb = boto3.resource("dynamodb")
-    table_name = "listsTableV2-dev"
+    table_name = "listsTableV2-" + env
     table = dynamodb.Table(table_name)
 
     try:

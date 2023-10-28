@@ -1,6 +1,10 @@
 import json
 import boto3
 from .utilities import construct_update_expression
+import os
+
+
+env = os.environ["ENV"]
 
 
 def handle_put_request(event, user_id):
@@ -34,7 +38,7 @@ def handle_put_request(event, user_id):
 
     dynamodb = boto3.client("dynamodb")
 
-    lists_table_name = "listsTableV2-dev"
+    lists_table_name = "listsTableV2-" + env
 
     lists_primary_key = {"listId": {"S": list_id},
                          "userId": {"S": user_id}}
@@ -72,7 +76,7 @@ def handle_put_request(event, user_id):
 
     dynamodb = boto3.client("dynamodb")
     print({"list_id": list_id, "task_id": task_id})
-    tasks_table_name = "tasksTable-dev"
+    tasks_table_name = "tasksTable-" + env
     tasks_primary_key = {
         "listId": list_id,
         "taskId": task_id

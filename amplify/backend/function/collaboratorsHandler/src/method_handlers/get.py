@@ -1,9 +1,13 @@
 import json
 import boto3
+import os
 from boto3.dynamodb.conditions import Key
 import pytz
 import datetime
 import uuid
+
+
+env = os.environ["ENV"]
 
 
 def handle_get_request(event):
@@ -26,7 +30,7 @@ def handle_get_request(event):
 
     dynamodb = boto3.client("dynamodb")
     dynamodb_resource = boto3.resource("dynamodb")
-    lookup_table_name = "listsTableV2-dev"
+    lookup_table_name = "listsTableV2-" + env
     lookup_partition_key = 'listId'
     # here we check whether the user is authorized to do so
 
@@ -57,7 +61,7 @@ def handle_get_request(event):
                     pass
                 else:
                     response = dynamodb.get_item(
-                        TableName="userIdToInfo-dev",
+                        TableName="userIdToInfo-" + env,
                         Key={
                             "userId": {
                                 "S": user_id_from_item

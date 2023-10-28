@@ -1,9 +1,12 @@
 import json
 import boto3
+import os
 from boto3.dynamodb.conditions import Key
 import pytz
 import datetime
 import uuid
+
+env = os.environ["ENV"]
 
 
 def handle_post_request(event, user_id, email):
@@ -27,7 +30,7 @@ def handle_post_request(event, user_id, email):
 
     dynamodb = boto3.client("dynamodb")
     dynamodb_resource = boto3.resource("dynamodb")
-    lookup_table_name = "userIdToInfo-dev"
+    lookup_table_name = "userIdToInfo-" + env
     lookup_index_name = "emailToUserIdIndex"
 
     # here we check whether the user is authorized to do so
@@ -55,7 +58,7 @@ def handle_post_request(event, user_id, email):
             print("this is the collaborator_id! IMPORTANT!")
             collaborator_id = item["userId"]
             print(collaborator_id)
-            lists_table_name = "listsTableV2-dev"
+            lists_table_name = "listsTableV2-" + env
             owner_lists_primary_key = {
                 "userId": {"S": user_id},
                 "listId": {"S": list_id}

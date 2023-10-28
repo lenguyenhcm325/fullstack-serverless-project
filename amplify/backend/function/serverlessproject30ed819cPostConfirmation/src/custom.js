@@ -6,6 +6,8 @@ const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
 const { DynamoDBDocumentClient, PutCommand } = require("@aws-sdk/lib-dynamodb");
 const client = new DynamoDBClient({});
 const docClient = DynamoDBDocumentClient.from(client);
+const env = process.env.ENV;
+
 exports.handler = async (event, context) => {
   try {
     const sub = event.request.userAttributes.sub;
@@ -16,7 +18,7 @@ exports.handler = async (event, context) => {
     const day = String(currentTime.getDate()).padStart(2, "0");
     const currentDateString = `${day}/${month}/${year}`;
     const command = new PutCommand({
-      TableName: "userIdToInfo-dev",
+      TableName: `userIdToInfo-${env}`,
       Item: {
         userId: sub,
         email: email,

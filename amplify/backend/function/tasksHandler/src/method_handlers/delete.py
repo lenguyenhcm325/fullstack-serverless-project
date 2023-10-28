@@ -1,5 +1,9 @@
 import json
 import boto3
+import os
+
+
+env = os.environ["ENV"]
 
 
 def handle_delete_request(event):
@@ -19,7 +23,7 @@ def handle_delete_request(event):
             'body': json.dumps("Missing required attribute(s)!")
         }
     dynamodb = boto3.resource("dynamodb")
-    table_name = "tasksTable-dev"
+    table_name = "tasksTable-" + env
     table = dynamodb.Table(table_name)
     try:
         response = table.delete_item(

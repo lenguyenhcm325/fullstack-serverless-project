@@ -1,13 +1,16 @@
 import json
 import boto3
+import os
 from boto3.dynamodb.conditions import Key
+
+env = os.environ["ENV"]
 
 
 def handle_get_request(event, user_id, email):
     list_id = event["pathParameters"]["listId"]
     dynamodb_client = boto3.client("dynamodb")
 
-    lists_table_name = "listsTableV2-dev"
+    lists_table_name = "listsTableV2-" + env
 
     lists_primary_key = {"listId": {"S": list_id},
                          "userId": {"S": user_id}
@@ -43,11 +46,11 @@ def handle_get_request(event, user_id, email):
             'body': json.dumps("Something went wrong!")
         }
 
-    tasks_table_name = "tasksTable-dev"
+    tasks_table_name = "tasksTable-" + env
     try:
 
         profile_pic_urls_cache = {}
-        profile_pics_table_name = "profilePicsMetadata-dev"
+        profile_pics_table_name = "profilePicsMetadata-" + env
 
         dynamodb_resource = boto3.resource("dynamodb")
         table = dynamodb_resource.Table(tasks_table_name)
