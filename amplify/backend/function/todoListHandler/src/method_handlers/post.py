@@ -3,6 +3,10 @@ import boto3
 import pytz
 import datetime
 import uuid
+import os
+
+
+env = os.environ["ENV"]
 
 
 def handle_post_request(event, user_id):
@@ -25,7 +29,7 @@ def handle_post_request(event, user_id):
             'body': json.dumps("Missing required attribute(s)!")
         }
     dynamodb = boto3.client("dynamodb")
-    table_name = "listsTableV2-dev"
+    table_name = "listsTableV2-" + env
     try:
         generated_uuid = str(uuid.uuid4())
 

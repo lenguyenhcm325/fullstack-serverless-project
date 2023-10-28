@@ -1,5 +1,9 @@
 import json
 import boto3
+import os
+
+
+env = os.environ["ENV"]
 
 
 def handler(event, context):
@@ -25,7 +29,7 @@ def handler(event, context):
         print(metadata)
         objectUrl = f'https://{bucket_name}.s3.eu-central-1.amazonaws.com/{object_key}'
         dynamodb.put_item(
-            TableName="profilePicsMetadata-dev",
+            TableName="profilePicsMetadata-" + env,
             Item={
                 "userId": {
                     "S": metadata["userid"]
@@ -59,7 +63,7 @@ def handler(event, context):
         }
     elif event_name == "ObjectRemoved:DeleteMarkerCreated":
         dynamodb.delete_item(
-            TableName="profilePicsMetadata-dev",
+            TableName="profilePicsMetadata-" + env,
             Key={
                 "userId": {
                     "S": metadata["userid"]

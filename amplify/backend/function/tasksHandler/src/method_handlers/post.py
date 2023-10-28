@@ -1,8 +1,11 @@
 import json
 import boto3
+import os
 import pytz
 import datetime
 import uuid
+
+env = os.environ["ENV"]
 
 
 def handle_post_request(event, user_id, email):
@@ -32,7 +35,7 @@ def handle_post_request(event, user_id, email):
 
     dynamodb = boto3.client("dynamodb")
 
-    lists_table_name = "listsTableV2-dev"
+    lists_table_name = "listsTableV2-" + env
 
     lists_primary_key = {"listId": {"S": list_id},
                          "userId": {"S": user_id}}
@@ -68,7 +71,7 @@ def handle_post_request(event, user_id, email):
             'body': json.dumps("Something went wrong")
         }
 
-    tasks_table_name = "tasksTable-dev"
+    tasks_table_name = "tasksTable-" + env
     try:
 
         generated_uuid = str(uuid.uuid4())

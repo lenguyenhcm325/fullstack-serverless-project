@@ -1,15 +1,18 @@
 import json
 import boto3
+import os
 import time
 import urllib.request
 from jose import jwk, jwt
 from jose.utils import base64url_decode
 
+env = os.environ["ENV"]
+
 
 def handle_get_request(event, user_id):
     user_id_from_url = event["pathParameters"]["userId"]
     dynamodb = boto3.client("dynamodb")
-    table_name = "userIdToInfo-dev"
+    table_name = "userIdToInfo-" + env
     primary_key = {"userId": {"S": user_id}}
 
     if user_id != user_id_from_url:
