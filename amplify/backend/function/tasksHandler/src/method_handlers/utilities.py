@@ -1,12 +1,13 @@
 import json
 import time
+import os
 import urllib.request
 from jose import jwk, jwt
 from jose.utils import base64url_decode
 
-region = "eu-central-1"
-userpool_id = "eu-central-1_Azvfs3sCu"
-app_client_id = "3gs68n5j8qf28dag3didqedgpl"
+region = os.environ["REGION"]
+userpool_id = os.environ["COGNITO_USERPOOL_ID"]
+app_client_id = os.environ["COGNITO_APP_CLIENT_ID"]
 keys_url = 'https://cognito-idp.{}.amazonaws.com/{}/.well-known/jwks.json'.format(
     region, userpool_id)
 with urllib.request.urlopen(keys_url) as f:
