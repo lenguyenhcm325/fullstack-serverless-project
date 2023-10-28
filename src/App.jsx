@@ -40,9 +40,10 @@ function App() {
   useEffect(() => {
     Hub.listen("auth", (data) => {
       if (data.payload.event === "signIn"){
+        window.location.reload();
         dispatch(handleGetJwt())
         dispatch(handleFetchInfo())  
-        window.location.reload();
+
       }else if (data.payload.event === "signOut"){
         window.location.reload();
       }

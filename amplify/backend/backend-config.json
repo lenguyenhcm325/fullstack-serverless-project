@@ -86,27 +86,7 @@
     }
   },
   "function": {
-    "addCollaboratorToList": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "addTaskToList": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "collaboratorsHandler": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "createTaskFromTodoList": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "createTodoList": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -127,27 +107,7 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "fetchTasksFromTodoList": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "getTodoList": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "getUserProfile": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "listsHandler": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "modifyTask": {
       "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
@@ -183,11 +143,6 @@
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
-    "updateUserProfile": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
     "userProfileHandler": {
       "build": true,
       "providerPlugin": "awscloudformation",
@@ -202,39 +157,31 @@
     }
   },
   "parameters": {
-    "AMPLIFY_function_addCollaboratorToList_deploymentBucketName": {
+    "AMPLIFY_function_collaboratorsHandler_cognitoAppClientId": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "addCollaboratorToList"
+          "resourceName": "collaboratorsHandler"
         }
       ]
     },
-    "AMPLIFY_function_addCollaboratorToList_s3Key": {
+    "AMPLIFY_function_collaboratorsHandler_cognitoUserpoolId": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "addCollaboratorToList"
-        }
-      ]
-    },
-    "AMPLIFY_function_addTaskToList_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "addTaskToList"
-        }
-      ]
-    },
-    "AMPLIFY_function_addTaskToList_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "addTaskToList"
+          "resourceName": "collaboratorsHandler"
         }
       ]
     },
     "AMPLIFY_function_collaboratorsHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collaboratorsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_collaboratorsHandler_region": {
       "usedBy": [
         {
           "category": "function",
@@ -250,39 +197,31 @@
         }
       ]
     },
-    "AMPLIFY_function_createTaskFromTodoList_deploymentBucketName": {
+    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_cognitoAppClientId": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "createTaskFromTodoList"
+          "resourceName": "dynamodbTriggerCreateThumbnail"
         }
       ]
     },
-    "AMPLIFY_function_createTaskFromTodoList_s3Key": {
+    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_cognitoUserpoolId": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "createTaskFromTodoList"
-        }
-      ]
-    },
-    "AMPLIFY_function_createTodoList_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "createTodoList"
-        }
-      ]
-    },
-    "AMPLIFY_function_createTodoList_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "createTodoList"
+          "resourceName": "dynamodbTriggerCreateThumbnail"
         }
       ]
     },
     "AMPLIFY_function_dynamodbTriggerCreateThumbnail_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dynamodbTriggerCreateThumbnail"
+        }
+      ]
+    },
+    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_region": {
       "usedBy": [
         {
           "category": "function",
@@ -298,55 +237,31 @@
         }
       ]
     },
-    "AMPLIFY_function_fetchTasksFromTodoList_deploymentBucketName": {
+    "AMPLIFY_function_listsHandler_cognitoAppClientId": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "fetchTasksFromTodoList"
+          "resourceName": "listsHandler"
         }
       ]
     },
-    "AMPLIFY_function_fetchTasksFromTodoList_s3Key": {
+    "AMPLIFY_function_listsHandler_cognitoUserpoolId": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "fetchTasksFromTodoList"
-        }
-      ]
-    },
-    "AMPLIFY_function_getTodoList_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "getTodoList"
-        }
-      ]
-    },
-    "AMPLIFY_function_getTodoList_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "getTodoList"
-        }
-      ]
-    },
-    "AMPLIFY_function_getUserProfile_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "getUserProfile"
-        }
-      ]
-    },
-    "AMPLIFY_function_getUserProfile_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "getUserProfile"
+          "resourceName": "listsHandler"
         }
       ]
     },
     "AMPLIFY_function_listsHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "listsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_listsHandler_region": {
       "usedBy": [
         {
           "category": "function",
@@ -362,23 +277,31 @@
         }
       ]
     },
-    "AMPLIFY_function_modifyTask_deploymentBucketName": {
+    "AMPLIFY_function_s3TriggerDynamoDB_cognitoAppClientId": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "modifyTask"
+          "resourceName": "s3TriggerDynamoDB"
         }
       ]
     },
-    "AMPLIFY_function_modifyTask_s3Key": {
+    "AMPLIFY_function_s3TriggerDynamoDB_cognitoUserpoolId": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "modifyTask"
+          "resourceName": "s3TriggerDynamoDB"
         }
       ]
     },
     "AMPLIFY_function_s3TriggerDynamoDB_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "s3TriggerDynamoDB"
+        }
+      ]
+    },
+    "AMPLIFY_function_s3TriggerDynamoDB_region": {
       "usedBy": [
         {
           "category": "function",
@@ -394,7 +317,31 @@
         }
       ]
     },
+    "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_cognitoAppClientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "serverlessproject30ed819cPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_cognitoUserpoolId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "serverlessproject30ed819cPostConfirmation"
+        }
+      ]
+    },
     "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "serverlessproject30ed819cPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_region": {
       "usedBy": [
         {
           "category": "function",
@@ -410,7 +357,31 @@
         }
       ]
     },
+    "AMPLIFY_function_tasksHandler_cognitoAppClientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tasksHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_tasksHandler_cognitoUserpoolId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tasksHandler"
+        }
+      ]
+    },
     "AMPLIFY_function_tasksHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tasksHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_tasksHandler_region": {
       "usedBy": [
         {
           "category": "function",
@@ -426,7 +397,31 @@
         }
       ]
     },
+    "AMPLIFY_function_todoListHandler_cognitoAppClientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "todoListHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_todoListHandler_cognitoUserpoolId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "todoListHandler"
+        }
+      ]
+    },
     "AMPLIFY_function_todoListHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "todoListHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_todoListHandler_region": {
       "usedBy": [
         {
           "category": "function",
@@ -442,23 +437,31 @@
         }
       ]
     },
-    "AMPLIFY_function_updateUserProfile_deploymentBucketName": {
+    "AMPLIFY_function_userProfileHandler_cognitoAppClientId": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "updateUserProfile"
+          "resourceName": "userProfileHandler"
         }
       ]
     },
-    "AMPLIFY_function_updateUserProfile_s3Key": {
+    "AMPLIFY_function_userProfileHandler_cognitoUserpoolId": {
       "usedBy": [
         {
           "category": "function",
-          "resourceName": "updateUserProfile"
+          "resourceName": "userProfileHandler"
         }
       ]
     },
     "AMPLIFY_function_userProfileHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userProfileHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_userProfileHandler_region": {
       "usedBy": [
         {
           "category": "function",

@@ -14,73 +14,61 @@
     },
     "categories": {
       "function": {
-        "getUserProfile": {
-          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/getUserProfile-786f75394468672f3274-build.zip"
-        },
-        "getTodoList": {
-          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/getTodoList-573051662f4a72385770-build.zip"
-        },
-        "addTaskToList": {
-          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/addTaskToList-4b61555938544b715a35-build.zip"
-        },
-        "addCollaboratorToList": {
-          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/addCollaboratorToList-6552435776437554526d-build.zip"
-        },
-        "modifyTask": {
-          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/modifyTask-4654336f526d646d5051-build.zip"
-        },
-        "updateUserProfile": {
-          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/updateUserProfile-474a3032456f6146596a-build.zip"
-        },
         "serverlessproject30ed819cPostConfirmation": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/serverlessproject30ed819cPostConfirmation-417539694a3257736471-build.zip"
+          "s3Key": "amplify-builds/serverlessproject30ed819cPostConfirmation-417539694a3257736471-build.zip",
+          "region": "eu-central-1",
+          "cognitoUserpoolId": "eu-central-1_ECgES4zDX",
+          "cognitoAppClientId": "46vj3ghtje8vhbsb81eparnaue"
         },
         "s3TriggerDynamoDB": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/s3TriggerDynamoDB-2b47656f78455037717a-build.zip"
+          "s3Key": "amplify-builds/s3TriggerDynamoDB-6a61316d477647566a79-build.zip",
+          "region": "eu-central-1",
+          "cognitoUserpoolId": "eu-central-1_ECgES4zDX",
+          "cognitoAppClientId": "46vj3ghtje8vhbsb81eparnaue"
         },
         "dynamodbTriggerCreateThumbnail": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/dynamodbTriggerCreateThumbnail-6258677945347a467950-build.zip"
-        },
-        "createTodoList": {
-          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/createTodoList-4c4e2b344d3347526438-build.zip"
-        },
-        "fetchTasksFromTodoList": {
-          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/fetchTasksFromTodoList-717049484d7551475976-build.zip"
-        },
-        "createTaskFromTodoList": {
-          "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/createTaskFromTodoList-79466c49367a76786f38-build.zip"
+          "s3Key": "amplify-builds/dynamodbTriggerCreateThumbnail-6e677175704131792f4f-build.zip",
+          "region": "eu-central-1",
+          "cognitoUserpoolId": "eu-central-1_ECgES4zDX",
+          "cognitoAppClientId": "46vj3ghtje8vhbsb81eparnaue"
         },
         "todoListHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/todoListHandler-31457a5757452b356837-build.zip"
+          "s3Key": "amplify-builds/todoListHandler-704a31624a4f2f515761-build.zip",
+          "region": "eu-central-1",
+          "cognitoUserpoolId": "eu-central-1_ECgES4zDX",
+          "cognitoAppClientId": "46vj3ghtje8vhbsb81eparnaue"
         },
         "tasksHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/tasksHandler-4e5741695172496a6858-build.zip"
+          "s3Key": "amplify-builds/tasksHandler-763759645a4b564b4d48-build.zip",
+          "region": "eu-central-1",
+          "cognitoUserpoolId": "eu-central-1_ECgES4zDX",
+          "cognitoAppClientId": "46vj3ghtje8vhbsb81eparnaue"
         },
         "userProfileHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/userProfileHandler-65374a47696d71715745-build.zip"
+          "s3Key": "amplify-builds/userProfileHandler-57584c62554959754468-build.zip",
+          "region": "eu-central-1",
+          "cognitoUserpoolId": "eu-central-1_ECgES4zDX",
+          "cognitoAppClientId": "46vj3ghtje8vhbsb81eparnaue"
         },
         "collaboratorsHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/collaboratorsHandler-6d586b4d427174735277-build.zip"
+          "s3Key": "amplify-builds/collaboratorsHandler-4643794a34346e394a6c-build.zip",
+          "region": "eu-central-1",
+          "cognitoUserpoolId": "eu-central-1_ECgES4zDX",
+          "cognitoAppClientId": "46vj3ghtje8vhbsb81eparnaue"
         },
         "listsHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
-          "s3Key": "amplify-builds/listsHandler-3555594a543758496c4c-build.zip"
+          "s3Key": "amplify-builds/listsHandler-4a714b7a6866672f6259-build.zip",
+          "region": "eu-central-1",
+          "cognitoUserpoolId": "eu-central-1_ECgES4zDX",
+          "cognitoAppClientId": "46vj3ghtje8vhbsb81eparnaue"
         }
       },
       "api": {
