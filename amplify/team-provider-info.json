@@ -39,8 +39,8 @@
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
           "s3Key": "amplify-builds/todoListHandler-704a31624a4f2f515761-build.zip",
           "region": "eu-central-1",
-          "cognitoUserpoolId": "eu-central-1_SDVS3hv9F",
-          "cognitoAppClientId": "5tcdhnk34c3dnj0pnjdlerbq1h"
+          "cognitoUserpoolId": "eu-central-1_ECgES4zDX",
+          "cognitoAppClientId": "46vj3ghtje8vhbsb81eparnaue"
         },
         "tasksHandler": {
           "deploymentBucketName": "amplify-serverlessproject-dev-123953-deployment",
