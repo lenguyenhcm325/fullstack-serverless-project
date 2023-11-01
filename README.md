@@ -31,11 +31,11 @@ Test login credentials:
 
 - Every git commit serves as a checkpoint for rollback in case there are errors or failed deployment.
 
-### User Authorization via JWT Token for DynamoDB Access - [Code for Handling JWT Token](https://github.com/lenguyenhcm325/fullstack-serverless-project/blob/main/amplify/backend/function/tasksHandler/src/method_handlers/utilities.py)
+### JWT Token-Based User Authorization for DynamoDB Access - [Code for JWT Token Handling](https://github.com/lenguyenhcm325/fullstack-serverless-project/blob/main/amplify/backend/function/tasksHandler/src/method_handlers/utilities.py)
 
-- Upon receiving a JWT Token, the backend will validaate it. Users are granted access to data only if the UID claim in the JWT token matches the partition key or primary key in DynamoDB. Any attemps to access data associated with a different user will be denied.
+- Upon receiving a JWT Token inside a request's header, the backend AWS Lambda will verify it. Data access is permitted only if the JWT's UID claim is the same with the DynamoDB's partition or primary key. Unauthorized access attempts are blocked.
 
-- Example of validating request to access user information route, if the user IDs mismatch, lambda would response with `401 Unauthorized`
+- Below is a code snippet illustrating how a request to retrieve user information is authenticated. If there's a user ID mismatch, the Lambda function responds with `401 Unauthorized`.
 
 ```javascript
 // index.py snippet
@@ -73,11 +73,11 @@ def handle_get_request(event, user_id):
 
 ![main (prod) DynamoDB tables](./readme_images/dynamodb_tables_main1.jpg)
 
-### Event-based Lambda triggers
+### Event-driven Lambda triggers
 
-- Every time a new user is signed up via Cognito, a post confirmation Lambda will be invoked and created a personalized entry inside `userIdToInfo` table that store user's information from there on.
+- On each Cognito user registration, a post-confirmation Lambda is triggered, creating a unique entry in the `userIdToInfo` table for storing user details.
 
-- Every time a user uploads new profile images, a Lambda function is also invoked and stored the image's metadata inside the `profilePicsMetadata` table.
+- When a user uploads a new profile image to S3, an associated Lambda function is invoked by the S3 event, saving the image metadata to the `profilePicsMetadata` table.
 
 ### DynamoDB Table design
 
@@ -93,10 +93,11 @@ def handle_get_request(event, user_id):
 
 - The `listsTableV2` and `tasksTable` facilitates efficient data fetching which also improves latency when fetching (write this again but uses other words to sound smoother). One a user is added to a list as a collaborator, they can view all those lists in their [`profile`](./src/routes/profile/profile.component.jsx) page.
 
-### Separate module for every `httpMethod` for better code maintainability - [Code for all Lambda functions MOVE THIS UP!](https://github.com/lenguyenhcm325/fullstack-serverless-project/tree/main/amplify/backend/function)
+### Modularized Lambda Handlers for Each HTTP Method - [Code for all Lambda functions MOVE THIS UP!](https://github.com/lenguyenhcm325/fullstack-serverless-project/tree/main/amplify/backend/function)
 
-```python
-def handler(event, context):
+- For better maintainability, each HTTP method of each Lambda function has its dedicated module. This ensures cleaner code structure and easier debugging.
+  ```python
+  def handler(event, context):
     # ...
     if event["httpMethod"] == "DELETE":
         return handle_delete_request(event)
@@ -108,13 +109,26 @@ def handler(event, context):
         return handle_options_request()
     if event["httpMethod"] == "PUT":
         return handle_put_request(event, user_id)
-
-```
+  ```
 
 ![Lambda code structure](./readme_images/lambda_code_structure1.png)
 
-### API Gateway with Lambda Proxy Integration and handling CORS
+### API Gateway using Lambda Proxy Integration and Handling CORS
 
-- This require Lambda functions to return suitable HTTP - schema (what is it called?) as the response from Lambda is passed directly to the callers. Additionally Lambda needs to pass CORS headers back for a seamless connection.
+- With Lambda Proxy Integration, Lambda functions must return appropriate HTTP response structures, as their outputs are directly returned to the API callers. The functions must additionally include CORS headers in its response.
 
-![API Gateway With Lambda Integration](./readme_images/api_gateway_lambda1.png)
+  ![API Gateway With Lambda Integration](./readme_images/api_gateway_lambda1.png)
+
+- Example Lambda's return statement:
+
+  ```javascript
+  return {
+    statusCode: 200,
+    headers: {
+      "Access-Control-Allow-Headers": "*",
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "*",
+    },
+    body: json.dumps(items),
+  };
+  ```

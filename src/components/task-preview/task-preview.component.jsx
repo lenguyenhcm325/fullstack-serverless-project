@@ -39,7 +39,7 @@ const TaskPreview = (props) => {
         }</p>
         <div className="icon-grid-block view-task-block">
             <div className="circle-bg-icon ">
-                <img onClick={handleToggleEditTask} className="view-task-icon icon" src="../../assets/edit.png" alt="" />                
+                <img onClick={handleToggleEditTask} className="view-task-icon icon" src="https://serverless-project-assets.s3.eu-central-1.amazonaws.com/svg/edit.svg" alt="" />                
             </div>
             {
             toggleEditTask && (
@@ -49,7 +49,7 @@ const TaskPreview = (props) => {
         </div>
         <div className="icon-grid-block change-status-block">
             <div className="circle-bg-icon">
-                <img onClick={handleToggleMovePanel} className="change-status-icon icon" src="../../assets/settings.png" alt="" />
+                <img onClick={handleToggleMovePanel} className="change-status-icon icon" src="https://serverless-project-assets.s3.eu-central-1.amazonaws.com/svg/settings.svg" alt="" />
             </div>
         {
             toggleMovePanel && (
