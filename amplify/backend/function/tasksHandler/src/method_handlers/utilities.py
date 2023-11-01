@@ -1,3 +1,10 @@
+"""
+What get_claim() function does:
+1. It validates a given JWT token by checking its signature against a set of public keys and verifying the claim
+2. It ensures that the token is not expired and was issued for the expected audience
+3. If valid, the function returns the token's claim, otherwise it returns `False` .
+"""
+
 import json
 import time
 import os
@@ -13,13 +20,6 @@ keys_url = 'https://cognito-idp.{}.amazonaws.com/{}/.well-known/jwks.json'.forma
 with urllib.request.urlopen(keys_url) as f:
     response = f.read()
 keys = json.loads(response.decode('utf-8'))['keys']
-
-"""
-What get_claim() function do:
-1. It validates a given JWT token by checking its signature against a set of public keys and verifying the claim
-2. It ensures that the token is not expired and was issued for the expected audience
-3. If valid, the function returns the token's claim, otherwise it returns `False` 
-"""
 
 
 def get_claim(token):
@@ -58,15 +58,6 @@ def extract_token_from_event(event):
     bearer_token = event.get("headers", None).get("Authorization", None)
     token = bearer_token.split("Bearer ")[1]
     return token
-
-
-"""
-extract_token_from_event() function retrieve only the token (without "Bearer ") from even object
-get_claim() is the main validation logic
-1. It validates a given JWT token by checking its signature against a set of public keys and verifying the claim
-2. It ensures that the token is not expired and was issued for the expected audience
-3. If valid, the function returns the token's claim, otherwise it returns `False` 
-"""
 
 
 def handle_claim(event):
