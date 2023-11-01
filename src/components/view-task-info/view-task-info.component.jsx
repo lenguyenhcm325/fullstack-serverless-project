@@ -111,7 +111,7 @@ const ViewTaskInfo = ({
             <div className="field">
                 <div className="label-with-icon">
                     <span className="label">Date</span>
-                    <img className="edit-icon" src="../../../../public/svg/edit.svg" alt="" />
+                    <img className="edit-icon" src="../../assets/edit.png" alt="" />
                 </div>
 
                 <p className="data">2023-10-12</p>

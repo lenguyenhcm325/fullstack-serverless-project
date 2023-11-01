@@ -39,7 +39,7 @@ const TaskPreview = (props) => {
         }</p>
         <div className="icon-grid-block view-task-block">
             <div className="circle-bg-icon ">
-                <img onClick={handleToggleEditTask} className="view-task-icon icon" src="../../../../public/svg/edit.svg" alt="" />                
+                <img onClick={handleToggleEditTask} className="view-task-icon icon" src="../../assets/edit.png" alt="" />                
             </div>
             {
             toggleEditTask && (
@@ -49,7 +49,7 @@ const TaskPreview = (props) => {
         </div>
         <div className="icon-grid-block change-status-block">
             <div className="circle-bg-icon">
-                <img onClick={handleToggleMovePanel} className="change-status-icon icon" src="../../../../public/svg/settings.svg" alt="" />
+                <img onClick={handleToggleMovePanel} className="change-status-icon icon" src="../../assets/settings.png" alt="" />
             </div>
         {
             toggleMovePanel && (
