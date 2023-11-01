@@ -1,3 +1,10 @@
+"""
+What get_claim() function does:
+1. It validates a given JWT token by checking its signature against a set of public keys and verifying the claim
+2. It ensures that the token is not expired and was issued for the expected audience
+3. If valid, the function returns the token's claim, otherwise it returns `False` .
+"""
+
 import json
 import time
 import os
