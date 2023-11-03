@@ -22,12 +22,6 @@ export function Layout() {
         const user = await Auth.currentAuthenticatedUser({
           bypassCache: false
         });
-        console.log(user)
-        console.log(user)
-        console.log(user)
-        console.log(user)
-        console.log(user)
-        console.log(user)
         setUserObject(user); 
         return user;
       } catch(err) {
