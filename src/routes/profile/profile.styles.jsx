@@ -38,10 +38,6 @@ export const ProfileContainer = styled.div`
     color: #333;
 }
 
-& .button-div {
-    margin-top: 24px;
-}
-
 & #userId {
     text-align: right;
 }

@@ -1,10 +1,16 @@
 import React, {useState} from "react";
+import { selectJwtToken } from "../../store/user/user.selector";
+import { useSelector } from "react-redux";
 import { UploadProfilePicContainer } from "./upload-profile-pic.styles";
-import uploadToS3 from "../../utils/upload-to-s3";
-const UploadProfilePic = ({userId}) => {
+import handleSubmitToS3 from "../../utils/upload-to-s3";
+const UploadProfilePic = () => {
+    const jwtToken = useSelector(selectJwtToken);
     const [selectedImage, setSelectedImage] = useState(null);
+    const [uploadSuccessful, setUploadSuccessful] = useState(false);
+    const [showUploadStatus, setShowUploadStatus] = useState(false);
     const [file, setFile] = useState(null);
     const handleImageChange = (e) => {
+      setShowUploadStatus(false);
       const uploadedFile = e.target.files[0]
         if (uploadedFile) {
           setFile(uploadedFile);
@@ -15,6 +21,20 @@ const UploadProfilePic = ({userId}) => {
           reader.readAsDataURL(uploadedFile);
         }
       };
+      const handleClick = async () => {
+        setShowUploadStatus(false);
+        const returnStatus = await handleSubmitToS3(jwtToken, file);
+        setShowUploadStatus(true);
+        if (returnStatus === "upload_successful"){
+          setUploadSuccessful(true)
+        }
+        else {
+          setUploadSuccessful(false)
+        }
+
+      }
+
+    
 
     return (
     <UploadProfilePicContainer>
@@ -23,12 +43,20 @@ const UploadProfilePic = ({userId}) => {
           Choose file
       </label>  
       {selectedImage && <img className="preview-image" src={selectedImage} alt="Preview" />}
+      {
+        showUploadStatus && (
+          uploadSuccessful ? (
+            <div className="successful-msg-div"><p>Upload successful!</p></div>
+          ) : (
+
+            <div className="failed-msg-div"><p>Upload failed, please try again later.</p></div>
+          )
+        )
+      }
       {selectedImage && (
-        <button className="add-pic" onClick={() => {
-            uploadToS3(file, userId)}}>Upload to S3</button>
+        <button className="add-pic" onClick={handleClick}>Upload Profile Pic</button>
       )}
     </UploadProfilePicContainer>
-
     )
 }
 

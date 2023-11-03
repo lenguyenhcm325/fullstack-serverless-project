@@ -44,4 +44,17 @@ export const UploadProfilePicContainer = styled.div`
     transition: background-color 0.3s, color 0.3s;
 }
 
+& .successful-msg-div {
+    color: green;
+    font-weight: 700;
+    margin: 8px 0px;
+
+}
+
+& .failed-msg-div {
+    color: red;
+    font-weight: 700;
+    margin: 8px 0px;
+}
+
 `

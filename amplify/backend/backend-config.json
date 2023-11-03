@@ -41,6 +41,14 @@
           ],
           "category": "function",
           "resourceName": "listsHandler"
+        },
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "generatePreSignedProfilePicURL"
         }
       ],
       "providerPlugin": "awscloudformation",
@@ -104,6 +112,11 @@
           "resourceName": "profilePicsMetadata"
         }
       ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    },
+    "generatePreSignedProfilePicURL": {
+      "build": true,
       "providerPlugin": "awscloudformation",
       "service": "Lambda"
     },
@@ -234,6 +247,22 @@
         {
           "category": "function",
           "resourceName": "dynamodbTriggerCreateThumbnail"
+        }
+      ]
+    },
+    "AMPLIFY_function_generatePreSignedProfilePicURL_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "generatePreSignedProfilePicURL"
+        }
+      ]
+    },
+    "AMPLIFY_function_generatePreSignedProfilePicURL_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "generatePreSignedProfilePicURL"
         }
       ]
     },
