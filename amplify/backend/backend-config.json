@@ -169,6 +169,344 @@
       "type": "cicd"
     }
   },
+  "parameters": {
+    "AMPLIFY_function_collaboratorsHandler_cognitoAppClientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collaboratorsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_collaboratorsHandler_cognitoUserpoolId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collaboratorsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_collaboratorsHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collaboratorsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_collaboratorsHandler_region": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collaboratorsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_collaboratorsHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "collaboratorsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_cognitoAppClientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dynamodbTriggerCreateThumbnail"
+        }
+      ]
+    },
+    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_cognitoUserpoolId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dynamodbTriggerCreateThumbnail"
+        }
+      ]
+    },
+    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dynamodbTriggerCreateThumbnail"
+        }
+      ]
+    },
+    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_region": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dynamodbTriggerCreateThumbnail"
+        }
+      ]
+    },
+    "AMPLIFY_function_dynamodbTriggerCreateThumbnail_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "dynamodbTriggerCreateThumbnail"
+        }
+      ]
+    },
+    "AMPLIFY_function_listsHandler_cognitoAppClientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "listsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_listsHandler_cognitoUserpoolId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "listsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_listsHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "listsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_listsHandler_region": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "listsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_listsHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "listsHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_s3TriggerDynamoDB_cognitoAppClientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "s3TriggerDynamoDB"
+        }
+      ]
+    },
+    "AMPLIFY_function_s3TriggerDynamoDB_cognitoUserpoolId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "s3TriggerDynamoDB"
+        }
+      ]
+    },
+    "AMPLIFY_function_s3TriggerDynamoDB_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "s3TriggerDynamoDB"
+        }
+      ]
+    },
+    "AMPLIFY_function_s3TriggerDynamoDB_region": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "s3TriggerDynamoDB"
+        }
+      ]
+    },
+    "AMPLIFY_function_s3TriggerDynamoDB_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "s3TriggerDynamoDB"
+        }
+      ]
+    },
+    "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_cognitoAppClientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "serverlessproject30ed819cPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_cognitoUserpoolId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "serverlessproject30ed819cPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "serverlessproject30ed819cPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_region": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "serverlessproject30ed819cPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_serverlessproject30ed819cPostConfirmation_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "serverlessproject30ed819cPostConfirmation"
+        }
+      ]
+    },
+    "AMPLIFY_function_tasksHandler_cognitoAppClientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tasksHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_tasksHandler_cognitoUserpoolId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tasksHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_tasksHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tasksHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_tasksHandler_region": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tasksHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_tasksHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "tasksHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_todoListHandler_cognitoAppClientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "todoListHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_todoListHandler_cognitoUserpoolId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "todoListHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_todoListHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "todoListHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_todoListHandler_region": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "todoListHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_todoListHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "todoListHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_userProfileHandler_cognitoAppClientId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userProfileHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_userProfileHandler_cognitoUserpoolId": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userProfileHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_userProfileHandler_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userProfileHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_userProfileHandler_region": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userProfileHandler"
+        }
+      ]
+    },
+    "AMPLIFY_function_userProfileHandler_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "userProfileHandler"
+        }
+      ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_appId": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
+        }
+      ]
+    },
+    "AMPLIFY_hosting_amplifyhosting_type": {
+      "usedBy": [
+        {
+          "category": "hosting",
+          "resourceName": "amplifyhosting"
+        }
+      ]
+    }
+  },
   "storage": {
     "listsTable": {
       "providerPlugin": "awscloudformation",

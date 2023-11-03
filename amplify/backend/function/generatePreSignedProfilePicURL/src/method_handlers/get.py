@@ -4,6 +4,7 @@ import os
 from botocore.exceptions import ClientError
 
 env = os.environ["ENV"]
+bucket_name = os.environ["S3_PROFILE_PICS_BUCKET"]
 
 
 def handle_get_request(user_id):
@@ -11,7 +12,7 @@ def handle_get_request(user_id):
     client_method = "put_object"
     method_parameters = {
         "Key": f"fullsize/{user_id}.jpg",
-        "Bucket": "profilepics0711145900-" + env,
+        "Bucket": bucket_name,
         "ContentType": "image/*"
     }
     expires_in = 60 * 60

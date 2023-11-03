@@ -5,8 +5,8 @@
 For the best experience, please use in full-screen mode as the web application is more optimized for larger displays.  
 Test login credentials:
 
-- Email:
-- Password:
+- Email: max.mustermann@mail.de
+- Password: 12345678
 
 ## Application Infrastructure Overview
 

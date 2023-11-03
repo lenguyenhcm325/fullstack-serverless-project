@@ -6,7 +6,7 @@ import BigErrorMessage from "../big-error-message/big-error-message.component";
 import CreateList from "../create-list/create-list.component";
 import { selectJwtToken } from "../../store/user/user.selector";
 import formatLocalDate from "../../utils/format-local-date";
-const TodoListsList = () => {
+const TodoListsList = ({maxHeight}) => {
     const jwtToken = useSelector(selectJwtToken)
     const apiEndpoint = import.meta.env.VITE_REST_ENDPOINT;
     const [todoListsArray, setTodoListsArray] = useState([]);
@@ -47,7 +47,7 @@ const TodoListsList = () => {
         )
     }
     return (
-    <TodoListsListContainer>
+    <TodoListsListContainer maxHeight={maxHeight}>
         {
             toggleCreateList && (
                 <CreateList
@@ -58,8 +58,8 @@ const TodoListsList = () => {
             />
             )
         }
-        <div class="button-div">
-            <button onClick={() => setToggleCreateList(true)} class="nice-button">&#43; Create new To-do List</button>
+        <div className="button-div">
+            <button onClick={() => setToggleCreateList(true)} className="nice-button">&#43; Create new To-do List</button>
         </div>        
         <div className="scrollable-div">
             {

@@ -8,8 +8,8 @@ const ListInfo = ({
         <ListInfoContainer>
             <Link className="link-tag" to={`/lists/${listId}`} >
                 <div className="todo-list-item">
-                    <div class="todo-title">{title}</div>
-                    <div class="todo-date">Last Modified: {lastModifiedTime}</div>
+                    <div className="todo-title">{title}</div>
+                    <div className="todo-date">Last Modified: {lastModifiedTime}</div>
                 </div>
             </Link>
         </ListInfoContainer>

@@ -173,7 +173,8 @@
           "cognitoAppClientId": "5tcdhnk34c3dnj0pnjdlerbq1h"
         },
         "profilePicsMetadata": {},
-        "usersTable": {}
+        "usersTable": {},
+        "generatePreSignedProfilePicURL": {}
       },
       "hosting": {
         "amplifyhosting": {
