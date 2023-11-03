@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
 
+export const ListTitle = styled.div`
+
+    font-size: 32px; 
+    text-align: center;
+    font-weight: 700;
+    margin-top: 16px;
+`
+
 export const ListContainer = styled.div`
 
     display: flex;
@@ -9,6 +17,7 @@ export const ListContainer = styled.div`
     border: 1px solid #e0e0e0;
     width: 95%;
     margin: 50px 10px;
+    margin-top: 16px;
     background-color: #f7f7f7;
 
 

@@ -74,7 +74,7 @@ export const TaskPreviewContainer = styled.div`
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #4dabf7; /* Placeholder, replace with image */
+    background-color: #4dabf7; 
 }
 
 & .profile-pic img {

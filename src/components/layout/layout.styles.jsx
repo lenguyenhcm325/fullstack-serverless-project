@@ -7,6 +7,11 @@ export const LayoutContainer = styled.div`
     justify-content: space-between;
 }
 
+& .dev-logging {
+    display: flex;
+    align-items: center;
+}
+
 & .buttons-div {
     display: flex;
     gap: 20px;

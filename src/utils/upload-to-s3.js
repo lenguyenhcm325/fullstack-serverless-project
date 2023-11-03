@@ -1,27 +1,39 @@
-import AWS from "aws-sdk";
+const apiEndpoint = import.meta.env.VITE_REST_ENDPOINT;
 
-AWS.config.update({
-  accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID,
-  secretAccessKey: import.meta.env.VITE_AWS_SECRET_ACCESS_KEY,
-  region: import.meta.env.VITE_AWS_REGION,
-});
-const s3 = new AWS.S3();
-
-const uploadToS3 = async (imageData, userId) => {
-  const params = {
-    Bucket: import.meta.env.VITE_S3_PROFILE_PICS_BUCKET,
-    Key: `fullsize/${userId}.jpg`,
-    Body: imageData,
-    Metadata: {
-      userId: userId,
+const fetchPreSignedS3URL = async (jwtToken) => {
+  const apiUrl = `${apiEndpoint}/presignedurl/profilepic`;
+  const response = await fetch(apiUrl, {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
     },
-  };
-  s3.putObject(params, (err, data) => {
-    if (err) {
-      console.error("Error uploading image to S3:", err);
-    } else {
-    }
   });
+  if (!response.ok) {
+    console.error("Error uploading image to S3");
+    throw new Error("Something went wrong!");
+  }
+  const result = await response.json();
+  return result.url;
 };
 
-export default uploadToS3;
+const handleSubmitToS3 = async (jwtToken, file) => {
+  try {
+    const preSignedURL = await fetchPreSignedS3URL(jwtToken);
+    const response = await fetch(preSignedURL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "image/*",
+      },
+      body: file,
+    });
+
+    if (!response.ok) {
+      return "upload_failed";
+    }
+    return "upload_successful";
+  } catch (err) {
+    console.error(err);
+    return "upload_failed";
+  }
+};
+
+export default handleSubmitToS3;

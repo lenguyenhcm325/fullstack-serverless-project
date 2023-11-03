@@ -28,7 +28,6 @@ export const TodoListsListContainer = styled.div`
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Hover effect */
 & .nice-button:hover {
     background-color: #2980b9;
     color: #ffffff;
