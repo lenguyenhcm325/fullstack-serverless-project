@@ -4,8 +4,6 @@ import styled from "styled-components";
 
 export const ListInfoContainer = styled.div`
     cursor: pointer;
-    margin-top: 20px;
-    margin-bottom: 20px;
     border: 1px solid rgba(0, 0, 0, 0.1);  
     border-radius: 5px;  
     padding: 10px;  

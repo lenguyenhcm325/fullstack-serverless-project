@@ -5,9 +5,12 @@ export const TodoListsListContainer = styled.div`
 
 
 & .scrollable-div {
-    max-height: 400px;
+    max-height: ${props => props.maxHeight ? props.maxHeight : '400px'};
     overflow-y: auto;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 & .nice-button {
@@ -19,6 +22,7 @@ export const TodoListsListContainer = styled.div`
     padding: 10px 20px;
     background-color: #3498db;
     color: #ffffff;
+    margin-bottom: 16px;
     border-radius: 5px;
     border: 2px solid #2980b9;
     font-size: 16px;

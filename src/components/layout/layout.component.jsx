@@ -42,15 +42,15 @@ export function Layout() {
       <div className='top-bar'>
         <div className='dev-logging'>
         {
-          userObject? (<div>User's Email: {userObject.attributes.email}</div>) : (<div>You are not logged in</div>)
+          userObject? (<div>Hello, {userObject.attributes.email}</div>) : (<div>Log in to start creating your to-do lists.</div>)
         }
         </div>
         <div className='buttons-div'>
         {
           route !== "authenticated" ? (
-            <Button className='login-logout-btn' onClick={() => navigate('/login')}>Login</Button>
+            <Button className='login-logout-btn' onClick={() => navigate('/login')}>Log in</Button>
           ) : (
-            <Button className='login-logout-btn' onClick={() => logOut()}>Logout</Button>  
+            <Button className='login-logout-btn' onClick={() => logOut()}>Log out</Button>  
         )}
         {
           currentPathname.includes("/profile/") ? null : <ToProfileButton/>
