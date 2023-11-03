@@ -58,8 +58,8 @@ const TodoListsList = () => {
             />
             )
         }
-        <div class="button-div">
-            <button onClick={() => setToggleCreateList(true)} class="nice-button">&#43; Create new To-do List</button>
+        <div className="button-div">
+            <button onClick={() => setToggleCreateList(true)} className="nice-button">&#43; Create new To-do List</button>
         </div>        
         <div className="scrollable-div">
             {
