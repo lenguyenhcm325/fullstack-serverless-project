@@ -1,11 +1,11 @@
-import React, {useState, useEffect, useRef} from "react"
+import React, {useState, useEffect, useRef, Fragment} from "react"
 import { useParams } from "react-router-dom"
 import CreateTask from "../../components/create-task/create-task.component"
 import TaskPreview from "../../components/task-preview/task-preview.component"
 import AddCollaboratorButton from "../../components/add-collaborator-button/add-collaborator-button.component"
 import AddCollaborator from "../../components/add-collaborator/add-collaborator.component"
 import CollaboratorList from "../../components/collaborator-list/collaborator-list.component"
-import { ListContainer } from "./list.styles"
+import { ListContainer, ListTitle } from "./list.styles"
 import { useSelector } from "react-redux"
 import { selectJwtToken } from "../../store/user/user.selector"
 import BigErrorMessage from "../../components/big-error-message/big-error-message.component"
@@ -16,6 +16,7 @@ const List = () => {
     const [loading, setLoading] = useState(true);
     const [taskStatus, setTaskStatus] = useState(null);
     const [allTasks, setAllTasks] = useState([]);
+    const [listTitle, setListTitle] = useState("");
     const [toggleAddCollaborator, setToggleAddCollaborator] = useState(false);
     const [toggleCreateTask, setToggleCreateTask] = useState(false); 
     const [usersWithRole, setUsersWithRole] = useState([]);
@@ -33,7 +34,8 @@ const List = () => {
                 throw new Error('Something went wrong!');
             }
             const result = await response.json();
-            setAllTasks(result)
+            setAllTasks(result.items)
+            setListTitle(result.list_title)
         }
         catch(err){
             setError(err);
@@ -79,6 +81,11 @@ const List = () => {
     }
 
         return (
+            <Fragment>
+                {
+                    listTitle && <ListTitle>{listTitle}</ListTitle>
+                }
+                
             <ListContainer>
             <div className="column">
                 <h2>To do</h2>
@@ -122,6 +129,7 @@ const List = () => {
                 <CollaboratorList usersWithRole={usersWithRole}/>
             </div>
         </ListContainer>
+        </Fragment>
         )
 }
 

@@ -31,6 +31,8 @@ def handle_get_request(event, user_id, email):
                 },
                 'body': json.dumps("Unauthorized!")
             }
+        else:
+            list_title = item.get("title").get("S")
 
     except Exception as e:
         print("there is an error")
@@ -53,11 +55,11 @@ def handle_get_request(event, user_id, email):
         profile_pics_table_name = "profilePicsMetadata-" + env
 
         dynamodb_resource = boto3.resource("dynamodb")
-        table = dynamodb_resource.Table(tasks_table_name)
+        tasks_table = dynamodb_resource.Table(tasks_table_name)
         partition_key_name = "listId"
         partition_key_value = list_id
 
-        response = table.query(
+        response = tasks_table.query(
             KeyConditionExpression=Key(
                 partition_key_name).eq(partition_key_value)
         )
@@ -88,6 +90,10 @@ def handle_get_request(event, user_id, email):
             # Fix this later!
             item["thumbnailUrl"] = profile_pic_urls_cache[item["userId"]]
         print(items)
+        response_object = {
+            "items": items,
+            "list_title": list_title
+        }
         return {
             'statusCode': 200,
             'headers': {
@@ -95,7 +101,7 @@ def handle_get_request(event, user_id, email):
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*'
             },
-            'body': json.dumps(items)
+            'body': json.dumps(response_object)
         }
 
     except Exception as e:
