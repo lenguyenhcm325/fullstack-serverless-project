@@ -11,7 +11,7 @@ def handle_get_request(user_id):
     client_method = "put_object"
     method_parameters = {
         "Key": f"fullsize/{user_id}.jpg",
-        "Bucket": "profilepics0711123953-" + env,
+        "Bucket": "profilepics0711145900-" + env,
         "ContentType": "image/*"
     }
     expires_in = 60 * 60
