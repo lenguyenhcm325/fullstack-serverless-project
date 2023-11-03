@@ -73,7 +73,7 @@ export const ViewTaskInfoContainer = styled.div`
     }
 
     & .delete-button {
-        background-color: #ff6b6b; /* red color */
+        background-color: #ff6b6b;  
         color: white;
         padding: 10px 20px;
         border: none;
@@ -82,7 +82,6 @@ export const ViewTaskInfoContainer = styled.div`
         transition: background-color 0.2s;
         font-weight: bold;
     
-        /* Optional: Making it a bit darker when hovering */
         &:hover {
             background-color: #d32f2f;
         }

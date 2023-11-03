@@ -18,13 +18,13 @@ export const NotFoundContainer = styled.div`
 
 & .not-found-content h1 {
     font-size: 8rem;
-    color: #339af0; /* BLUE 5 */
+    color: #339af0;
     margin-bottom: 1rem;
 }
 
 & .not-found-content p {
     font-size: 1.5rem;
-    color: #1864ab; /* BLUE 9 */
+    color: #1864ab;
     margin-bottom: 2rem;
 }
 
@@ -34,13 +34,13 @@ export const NotFoundContainer = styled.div`
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
-    background-color: #228be6; /* BLUE 6 */
+    background-color: #228be6;
     color: white;
     transition: background-color 0.2s ease;
 }
 
 & .not-found-content a:hover {
-    background-color: #1c7ed6; /* BLUE 7 */
+    background-color: #1c7ed6;
 }
 
 

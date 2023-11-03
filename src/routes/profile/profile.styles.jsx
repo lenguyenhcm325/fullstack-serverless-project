@@ -46,7 +46,6 @@ export const ProfileContainer = styled.div`
     text-align: right;
 }
 
-/* Style the nice button */
 & .nice-button {
     border: none;
     padding: 0;
@@ -65,7 +64,6 @@ export const ProfileContainer = styled.div`
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Hover effect */
 & .nice-button:hover {
     background-color: #2980b9;
     color: #ffffff;
@@ -76,11 +74,11 @@ export const ProfileContainer = styled.div`
     cursor: pointer;
     margin-top: 20px;
     margin-bottom: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.1);  /* adding border */
-    border-radius: 5px;  /* keeping consistent with theme */
-    padding: 10px;  /* adding padding to give space inside border */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);  /* subtle shadow, similar to the theme */
-    background-color: #e7f5ff;  /* light background color */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    background-color: #e7f5ff;
 }
 
 & .todo-item {
