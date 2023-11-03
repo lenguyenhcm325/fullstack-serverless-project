@@ -42,6 +42,10 @@ export const ProfileContainer = styled.div`
     margin-top: 24px;
 }
 
+& #userId {
+    text-align: right;
+}
+
 /* Style the nice button */
 & .nice-button {
     border: none;

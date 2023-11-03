@@ -22,6 +22,12 @@ export function Layout() {
         const user = await Auth.currentAuthenticatedUser({
           bypassCache: false
         });
+        console.log(user)
+        console.log(user)
+        console.log(user)
+        console.log(user)
+        console.log(user)
+        console.log(user)
         setUserObject(user); 
         return user;
       } catch(err) {
@@ -42,7 +48,7 @@ export function Layout() {
       <div className='top-bar'>
         <div className='dev-logging'>
         {
-          userObject? (<div>User ID: {userObject.attributes.sub}</div>) : (<div>Nothing for you here...</div>)
+          userObject? (<div>User's Email: {userObject.attributes.email}</div>) : (<div>You are not logged in</div>)
         }
         </div>
         <div className='buttons-div'>
