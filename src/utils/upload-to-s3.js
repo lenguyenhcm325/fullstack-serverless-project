@@ -23,6 +23,7 @@ const handleSubmitToS3 = async ({ jwtToken, file, userId }) => {
       headers: {
         "Content-Type": "image/*",
         "x-amz-meta-userid": userId,
+        "Cache-Control": "no-cache",
       },
       body: file,
     });
