@@ -15,13 +15,14 @@ const fetchPreSignedS3URL = async (jwtToken) => {
   return result.url;
 };
 
-const handleSubmitToS3 = async (jwtToken, file) => {
+const handleSubmitToS3 = async ({ jwtToken, file, userId }) => {
   try {
     const preSignedURL = await fetchPreSignedS3URL(jwtToken);
     const response = await fetch(preSignedURL, {
       method: "PUT",
       headers: {
         "Content-Type": "image/*",
+        "x-amz-meta-userid": userId,
       },
       body: file,
     });

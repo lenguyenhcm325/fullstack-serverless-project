@@ -13,7 +13,8 @@ def handle_get_request(user_id):
     method_parameters = {
         "Key": f"fullsize/{user_id}.jpg",
         "Bucket": bucket_name,
-        "ContentType": "image/*"
+        "ContentType": "image/*",
+        "x-amz-meta-userid": user_id
     }
     expires_in = 60 * 60
     try:
