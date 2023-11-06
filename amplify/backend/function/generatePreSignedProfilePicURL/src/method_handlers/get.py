@@ -15,8 +15,10 @@ def handle_get_request(user_id):
         "Bucket": bucket_name,
         "ContentType": "image/*",
         "Metadata": {
-            "userid": user_id
-        }
+            "userid": user_id,
+
+        },
+        "CacheControl": "no-cache"
     }
     expires_in = 60 * 60
     try:
