@@ -25,12 +25,6 @@ const UploadProfilePic = () => {
       };
       const handleClick = async () => {
         setShowUploadStatus(false);
-        console.log(jwtToken)
-        console.log(jwtToken)
-        console.log(jwtToken)
-        console.log(jwtToken)
-        console.log(jwtToken)
-        console.log(jwtToken)
         const returnStatus = await handleSubmitToS3({jwtToken, file, userId});
         setShowUploadStatus(true);
         if (returnStatus === "upload_successful"){
