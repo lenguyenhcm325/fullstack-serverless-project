@@ -1,9 +1,11 @@
 import React, {useState} from "react";
-import { selectJwtToken } from "../../store/user/user.selector";
+import { selectJwtToken, selectUserInfo } from "../../store/user/user.selector";
 import { useSelector } from "react-redux";
 import { UploadProfilePicContainer } from "./upload-profile-pic.styles";
 import handleSubmitToS3 from "../../utils/upload-to-s3";
 const UploadProfilePic = () => {
+    const userInfo = useSelector(selectUserInfo)
+    const userId = userInfo.userId
     const jwtToken = useSelector(selectJwtToken);
     const [selectedImage, setSelectedImage] = useState(null);
     const [uploadSuccessful, setUploadSuccessful] = useState(false);
@@ -23,7 +25,13 @@ const UploadProfilePic = () => {
       };
       const handleClick = async () => {
         setShowUploadStatus(false);
-        const returnStatus = await handleSubmitToS3(jwtToken, file);
+        console.log(jwtToken)
+        console.log(jwtToken)
+        console.log(jwtToken)
+        console.log(jwtToken)
+        console.log(jwtToken)
+        console.log(jwtToken)
+        const returnStatus = await handleSubmitToS3({jwtToken, file, userId});
         setShowUploadStatus(true);
         if (returnStatus === "upload_successful"){
           setUploadSuccessful(true)
